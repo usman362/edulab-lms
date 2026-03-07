@@ -65,6 +65,10 @@
         @endif
     </td>
     <td class="px-3.5 py-4">
+        @php $pct = $enrolled->progress_percentage ?? 0; @endphp
+        <span class="font-semibold text-primary-500">{{ (int) $pct }}%</span>
+    </td>
+    <td class="px-3.5 py-4">
         @switch($enrolled->status)
             @case('processing')
                 <span class="badge badge-warning-outline b-outline capitalize">

@@ -60,6 +60,15 @@
                        </select>
                        <span class="text-danger error-text question_type_err"></span>
                    </div>
+                   <div class="mt-4">
+                       <label class="form-label">{{ translate('Difficulty level') }}</label>
+                       <select class="form-input" name="difficulty_level">
+                           <option value="">{{ translate('Any') }}</option>
+                           <option value="simple" {{ ($quizQuestion->difficulty_level ?? '') == 'simple' ? 'selected' : '' }}>{{ translate('Simple') }}</option>
+                           <option value="medium" {{ ($quizQuestion->difficulty_level ?? '') == 'medium' ? 'selected' : '' }}>{{ translate('Medium') }}</option>
+                           <option value="hard" {{ ($quizQuestion->difficulty_level ?? '') == 'hard' ? 'selected' : '' }}>{{ translate('Hard') }}</option>
+                       </select>
+                   </div>
                    <div class="answer-list-area">
                        @if ($quizQuestion->question_type == \Modules\LMS\Enums\QuestionTypes::FILL_IN_BLANK)
                            @php

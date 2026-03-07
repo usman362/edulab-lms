@@ -1142,7 +1142,7 @@ class CourseRepository extends BaseRepository
     {
         switch ($type) {
             case 'video':
-                return Video::find($id);
+                return Video::with('topic')->find($id);
             case 'reading':
                 return Reading::find($id);
             case 'supplement':

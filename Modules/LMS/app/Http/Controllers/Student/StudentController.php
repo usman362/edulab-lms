@@ -34,6 +34,10 @@ class StudentController extends Controller
      */
     public function logout()
     {
+        $userId = authCheck()?->id;
+        if ($userId) {
+            \Modules\LMS\Services\DeviceSessionService::removeCurrentSession($userId);
+        }
         Auth::logout();
         Session::flush();
         return redirect('/');

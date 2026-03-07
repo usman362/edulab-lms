@@ -7,7 +7,7 @@ use Modules\LMS\Http\Controllers\Student\SupportController;
 use Modules\LMS\Http\Controllers\Student\NotificationController;
 
 Route::group(
-    ['prefix' => 'dashboard', 'as' => 'student.', 'middleware' => ['auth', 'role:Student', 'checkInstaller']],
+    ['prefix' => 'dashboard', 'as' => 'student.', 'middleware' => ['auth', 'role:Student', 'checkInstaller', 'device.limit']],
     function () {
 
         Route::group(['controller' => StudentController::class], function () {

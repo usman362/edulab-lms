@@ -1055,6 +1055,9 @@ class UserRepository  extends BaseRepository
             // Retrieve the authenticated user's guard type and match to route
             $userGuard = Auth::user()->guard;
             if (array_key_exists($userGuard, $dashboardRoutes)) {
+                if ($userGuard === 'student') {
+                    \Modules\LMS\Services\DeviceSessionService::registerSession(Auth::id());
+                }
                 return [
                     'status' => 'success',
                     'url' => $dashboardRoutes[$userGuard],

@@ -278,6 +278,7 @@ Route::group(
             ['prefix' => 'enrollment', 'as' => 'enrollment.', 'controller' => EnrollmentController::class],
             function () {
                 Route::get('all', 'index')->name('index');
+                Route::get('progress', 'progress')->name('progress');
                 Route::get('new-create', 'create')->name('create');
                 Route::post('enrolled', 'enrolled')->name('store');
                 Route::get('enrolled/edit/{id}', 'edit')->name('edit');

@@ -27,6 +27,7 @@
             {{ translate('Free') }}
         @endif
     </td>
+    <td class="px-3.5 py-4">—</td>
     <td class="px-3.5 py-4">
         @switch($enrolled->status)
             @case('processing')

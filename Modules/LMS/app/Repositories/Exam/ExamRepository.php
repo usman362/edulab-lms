@@ -48,10 +48,18 @@ class ExamRepository extends BaseRepository
                 // Step 3: Handle existing exam scenario
                 if ($exam = self::userCourseExam($options)) {
                     self::handleExistingExam($exam, $request);
-                    return self::update($exam->id, $request->all());
+                    $result = self::update($exam->id, $request->all());
+                    if ($result['status'] === 'success') {
+                        self::updateAssignmentProgress($result['data']);
+                    }
+                    return $result;
                 }
                 // Step 4: Handle new exam scenario
-                return self::handleNewExam($request);
+                $result = self::handleNewExam($request);
+                if ($result['status'] === 'success' && isset($result['data'])) {
+                    self::updateAssignmentProgress($result['data']);
+                }
+                return $result;
             default:
                 return ['status' => 'error'];
         }
@@ -176,6 +184,12 @@ class ExamRepository extends BaseRepository
             ];
         }
 
+        $difficulty = $request->get('difficulty');
+        if ($difficulty && in_array($difficulty, ['simple', 'medium', 'hard'], true)) {
+            $quiz->setRelation('questions', $quiz->questions->filter(function ($q) use ($difficulty) {
+                return empty($q->difficulty_level) || $q->difficulty_level === $difficulty;
+            })->values());
+        }
 
         $questions = array_chunk($quiz->questions->toArray(), 2, true);
         $userExam = self::userCourseExam(['quiz_id' => $quiz->id, 'user_id' => $userId]);
@@ -271,5 +285,18 @@ class ExamRepository extends BaseRepository
             examId: $examId,
             fileTile: $fileName
         );
+    }
+
+    private static function updateAssignmentProgress($exam): void
+    {
+        $exam->load(['assignment.topic']);
+        if (!$exam->assignment?->topic) {
+            return;
+        }
+        $userId = $exam->user_id;
+        $topicId = $exam->assignment->topic->id;
+        $courseId = (int) $exam->assignment->topic->course_id;
+        \Modules\LMS\Services\CourseProgressService::markTopicCompleted($userId, $topicId);
+        \Modules\LMS\Services\CourseProgressService::updateProgressPercentage($userId, $courseId);
     }
 }

@@ -39,6 +39,15 @@
                                    </select>
                                    <span class="text-danger error-text question_type_err"></span>
                                </div>
+                               <div class="mt-4">
+                                   <label class="form-label">{{ translate('Difficulty level') }}</label>
+                                   <select class="form-input" name="difficulty_level">
+                                       <option value="">{{ translate('Any') }}</option>
+                                       <option value="simple">{{ translate('Simple') }}</option>
+                                       <option value="medium">{{ translate('Medium') }}</option>
+                                       <option value="hard">{{ translate('Hard') }}</option>
+                                   </select>
+                               </div>
                                <div class="answer-list-area">
                                </div>
                            </div>

@@ -67,6 +67,16 @@ class QuizController extends Controller
     {
         $this->quiz->finalSubmit($id, $request);
 
+        $userId = authCheck()?->id;
+        $courseId = (int) $request->get('course_id');
+        if ($userId && $courseId) {
+            $quiz = $this->quiz->first($id, 'id', ['topic'])['data'] ?? null;
+            if ($quiz && $quiz->topic) {
+                \Modules\LMS\Services\CourseProgressService::markTopicCompleted($userId, $quiz->topic->id);
+                \Modules\LMS\Services\CourseProgressService::updateProgressPercentage($userId, $courseId);
+            }
+        }
+
         return redirect()->route('student.quiz.result');
     }
 

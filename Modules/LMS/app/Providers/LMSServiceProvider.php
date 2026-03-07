@@ -23,6 +23,7 @@ use Modules\LMS\Http\Middleware\CookieConsentMiddleware;
 use Modules\LMS\Http\Middleware\CrossOriginHandler;
 use Modules\LMS\Http\Middleware\InstallerValidMiddleware;
 use Modules\LMS\Http\Middleware\LicenseActivationMiddleware;
+use Modules\LMS\Http\Middleware\EnforceDeviceLimit;
 use Modules\LMS\Http\Middleware\PerformanceMonitor;
 use Modules\LMS\Models\Resources\PerformanceMetric;
 use Modules\LMS\Services\ResourceMonitor;
@@ -125,6 +126,7 @@ class LMSServiceProvider extends ServiceProvider
         if (alreadyInstalled() && checkDatabaseConnection()) {
             $router->pushMiddlewareToGroup('web', PerformanceMonitor::class);
             $router->aliasMiddleware('checkInstaller', LicenseActivationMiddleware::class);
+            $router->aliasMiddleware('device.limit', EnforceDeviceLimit::class);
         }
     }
 

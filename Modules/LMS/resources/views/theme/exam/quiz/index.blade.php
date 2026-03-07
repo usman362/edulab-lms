@@ -159,4 +159,16 @@
         </div>
     </div>
     <!-- END INNER CONTENT AREA -->
+    <script>
+        document.querySelectorAll('.show-answer-btn').forEach(function(btn) {
+            btn.addEventListener('click', function() {
+                var targetId = this.getAttribute('data-target');
+                var block = targetId ? document.getElementById(targetId) : null;
+                if (block) {
+                    block.classList.remove('hidden');
+                    this.classList.add('hidden');
+                }
+            });
+        });
+    </script>
 </x-frontend-layout>

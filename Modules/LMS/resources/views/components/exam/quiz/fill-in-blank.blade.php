@@ -15,7 +15,14 @@
 @endforeach
 
 @if ($disabled == 'disabled')
-    <x-theme::exam.quiz.result-show :questionScore="$questionScore" :answers="$answers" />
+    <div class="mt-4">
+        <button type="button" class="show-answer-btn btn b-outline btn-primary-outline btn-sm" data-target="show-answer-block-fill-{{ $question['id'] ?? 'q' }}" aria-label="{{ translate('Show Answer') }}">
+            {{ translate('Show Answer') }}
+        </button>
+        <div id="show-answer-block-fill-{{ $question['id'] ?? 'q' }}" class="show-answer-block hidden mt-3">
+            <x-theme::exam.quiz.result-show :questionScore="$questionScore" :answers="$answers" />
+        </div>
+    </div>
     @php
         reset($answers);
     @endphp

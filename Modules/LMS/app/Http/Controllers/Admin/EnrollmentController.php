@@ -24,6 +24,18 @@ class EnrollmentController extends Controller
         return view('portal::admin.enrollment.index', compact('enrollments'));
     }
 
+    /**
+     * Student progress and performance (enrollments with course progress status).
+     */
+    public function progress()
+    {
+        $response = $this->purchase->paginate(15, relations: ['user.userable.translations', 'course', 'courseBundle'], options: [
+            'where' => ['type', PurchaseType::ENROLLED]
+        ]);
+        $enrollments = $response['data'] ?? [];
+        return view('portal::admin.enrollment.progress', compact('enrollments'));
+    }
+
     public function create()
     {
         return view('portal::admin.enrollment.create');

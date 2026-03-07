@@ -131,6 +131,10 @@
                                 </th>
                                 <th
                                     class="px-3.5 py-4 bg-[#F2F4F9] dark:bg-dark-card-two first:rounded-l-lg last:rounded-r-lg first:dk-theme-card-square-left last:dk-theme-card-square-right">
+                                    {{ translate('Progress') }}
+                                </th>
+                                <th
+                                    class="px-3.5 py-4 bg-[#F2F4F9] dark:bg-dark-card-two first:rounded-l-lg last:rounded-r-lg first:dk-theme-card-square-left last:dk-theme-card-square-right">
                                     {{ translate('Status') }}
                                 </th>
                             </tr>

@@ -22,9 +22,10 @@
         @if (
             $data->system_video &&
                 fileExists('lms/courses/topics/videos/', $data->system_video) == true &&
-                $data->system_video != '')
-            <video id="main-course-video" playsinline controls data-poster="assets/images/course/course-2.png">
-                <source src="{{ edulab_asset('/lms/courses/topics/videos/' . $data->system_video) }}" type="video/mp4" />
+                $data->system_video != '' &&
+                $data->topic?->id)
+            <video id="player" playsinline controls controlsList="nodownload" oncontextmenu="return false;" data-poster="assets/images/course/course-2.png">
+                <source src="{{ route('stream.course.video', $data->topic->id) }}" type="video/mp4" />
             </video>
         @endif
         <script>

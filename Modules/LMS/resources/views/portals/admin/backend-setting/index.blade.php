@@ -108,6 +108,14 @@
                                 value="{{ $backendSetting['contact_email'] ?? '' }}">
                         </div>
                         <div class="leading-none mt-6">
+                            <label class="form-label"> {{ translate('Max devices per user') }} </label>
+                            <select class="form-input" name="max_devices_per_user">
+                                <option value="1" {{ isset($backendSetting['max_devices_per_user']) && $backendSetting['max_devices_per_user'] == 1 ? 'selected' : '' }}>1</option>
+                                <option value="2" {{ empty($backendSetting['max_devices_per_user']) || $backendSetting['max_devices_per_user'] == 2 ? 'selected' : '' }}>2</option>
+                            </select>
+                            <p class="text-sm text-gray-500 dark:text-dark-text mt-1">{{ translate('Limit how many devices a student can use at the same time (1 or 2).') }}</p>
+                        </div>
+                        <div class="leading-none mt-6">
                             <label class="form-label"> {{ translate('Time Zone') }} </label>
                             <select class="singleSelect form-input" id="time_zone" name="time_zone">
                                 <option selected disabled>{{ translate('Select Time Zone') }}</option>

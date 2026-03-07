@@ -15,6 +15,7 @@ use Modules\LMS\Http\Controllers\Frontend\ForumController;
 use Modules\LMS\Http\Controllers\Frontend\BundleController;
 use Modules\LMS\Http\Controllers\Frontend\CourseController;
 use Modules\LMS\Http\Controllers\Frontend\ContactController;
+use Modules\LMS\Http\Controllers\Frontend\VideoStreamController;
 use Modules\LMS\Http\Controllers\Frontend\PaymentController;
 use Modules\LMS\Http\Controllers\Frontend\CheckoutController;
 use Modules\LMS\Http\Controllers\Auth\ForgotPasswordController;
@@ -97,7 +98,7 @@ Route::group(['middleware' => ['checkInstaller']], function () {
 
     Route::get('organizations', [OrganizationController::class, 'index'])->name('organization.list');
     Route::get('checkout', [CheckoutController::class, 'checkoutPage'])->name('checkout.page');
-    Route::group(['middleware' => 'auth'], function () {
+    Route::group(['middleware' => ['auth', 'device.limit']], function () {
         Route::post('forum-post', [ForumController::class, 'forumPost']);
         Route::post('blog/store', [BlogController::class, 'store'])->name('blog.comment');
 
@@ -115,6 +116,7 @@ Route::group(['middleware' => ['checkInstaller']], function () {
 
         Route::get('learn/course/{slug}', [CourseController::class, 'courseVideoPlayer'])->name('play.course');
         Route::get('learn/course-topic', [CourseController::class, 'leanCourseTopic'])->name('learn.course.topic');
+        Route::get('stream/course-video/{topicId}', [VideoStreamController::class, 'stream'])->name('stream.course.video')->whereNumber('topicId');
         Route::post('course-review', [CourseController::class, 'review'])->name('review');
         Route::post('quiz/{id}/store', [QuizController::class, 'quizStoreResult'])->name('quiz.store.result');
         Route::post('user/submit-quiz-answer/{quiz_id}/{type}', [QuizController::class, 'submitQuizAnswer'])->name('user.submit.quiz.answer');

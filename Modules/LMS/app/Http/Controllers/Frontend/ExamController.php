@@ -10,7 +10,13 @@ class ExamController extends Controller
 {
     public function examStart($type, $exam_type_id, $courseId, Request $request)
     {
-
+        if ($type === 'quiz' && !$request->has('difficulty')) {
+            return view('theme::exam.quiz.select-difficulty', [
+                'type' => $type,
+                'exam_type_id' => $exam_type_id,
+                'course_id' => $courseId,
+            ]);
+        }
 
         $result = ExamRepository::startExam($type, $exam_type_id, $courseId, $request);
 
