@@ -13,7 +13,7 @@
                             </svg>
                         </div>
                         @if (!$permission['isSet'])
-                            <a href="https://docs-codexshaper.vercel.app/edulab/Installation.html#step-03" target="_blank"> View Docs</a>
+                            <a href="#" target="_blank"> View Docs</a>
                         @endif
                     </div>
                 </td>

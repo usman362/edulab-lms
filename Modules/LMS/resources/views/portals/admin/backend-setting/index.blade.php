@@ -27,13 +27,6 @@
 
                 <button
                     class="tablinks btn b-outline btn-primary-outline border-primary-200 justify-start !grow shrink-0 lg:w-full text-sm !text-gray-500 dark:!text-white hover:!text-primary hover:!bg-primary-200 dark:hover:!bg-dark-icon [&.active]:bg-primary-200 dark:[&.active]:bg-dark-icon [&.active]:border-transparent [&.active]:!text-primary dk-theme-card-square ac-transition"
-                    onclick="openStep(event, 'openai-setting')">
-                    <i class="ri-sparkling-2-line text-inherit"></i>
-                    {{ translate('Ai Setting') }}
-                </button>
-
-                <button
-                    class="tablinks btn b-outline btn-primary-outline border-primary-200 justify-start !grow shrink-0 lg:w-full text-sm !text-gray-500 dark:!text-white hover:!text-primary hover:!bg-primary-200 dark:hover:!bg-dark-icon [&.active]:bg-primary-200 dark:[&.active]:bg-dark-icon [&.active]:border-transparent [&.active]:!text-primary dk-theme-card-square ac-transition"
                     onclick="openStep(event, 'system-information')">
                     <i class="ri-information-2-line text-inherit"></i>
                     {{ translate('System Information') }}
@@ -532,49 +525,6 @@
                 </form>
             </div>
 
-            <div id="openai-setting" class="tabcontent hidden">
-                <div class="card">
-                    <h6 class="leading-none text-xl font-semibold text-heading">
-                        {{ translate('ChatGPT setting') }}
-                    </h6>
-                    <form enctype="multipart/form-data" class="add_setting" method="POST"
-                        action="{{ route('theme.setting') }}" data-key="ai_setting">
-                        @csrf
-                        @php
-                            $openAi = get_theme_option(key: 'ai_setting') ?? [];
-                        @endphp
-                        <div class="grid grid-cols-2 gap-x-4 gap-y-6 mt-7">
-                            <div class="col-span-full xl:col-auto leading-none">
-                                <label class="form-label">{{ translate('Select ChatGPT Model') }}</label>
-                                <select name="ai_modal" class="form-input dark:bg-dark-card-two singleSelect">
-                                    <option>{{ translate('Select model') }}</option>
-                                    <option value="gpt-4o"
-                                        {{ isset($openAi['ai_modal']) && $openAi['ai_modal'] == 'gpt-4o' ? 'selected' : '' }}>
-                                        gpt-4o
-                                    </option>
-                                    <option value="gpt-4o-mini"
-                                        {{ isset($openAi['ai_modal']) && $openAi['ai_modal'] == 'gpt-4o-mini' ? 'selected' : '' }}>
-                                        gpt-4o-mini </option>
-                                    <option value="gpt-3.5-turbo-0125"
-                                        {{ isset($openAi['ai_modal']) && $openAi['ai_modal'] == 'gpt-3.5-turbo-0125' ? 'selected' : '' }}>
-                                        gpt-3.5-turbo-0125
-                                    </option>
-                                </select>
-                            </div>
-                            <div class="col-span-full xl:col-auto leading-none">
-                                <label class="form-label"> {{ translate('ChatGPT Secret Key') }} </label>
-                                <input type="text" class="form-input" value="{{ $openAi['secret_key'] ?? '' }}"
-                                    name="secret_key" placeholder="{{ translate('Secret Key') }}">
-                            </div>
-                        </div>
-                        <div class="flex justify-end mt-10">
-                            <button type="submit" class="btn b-solid btn-primary-solid w-max dk-theme-card-square">
-                                {{ translate('Save') }}
-                            </button>
-                        </div>
-                    </form>
-                </div>
-            </div>
             <!-- START SYSTEM INFORMATION CONTENTS -->
             <div id="system-information" class="tabcontent card hidden">
                 <h6 class="leading-none text-xl font-semibold text-heading">{{ translate('System Information') }}

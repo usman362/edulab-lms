@@ -46,15 +46,11 @@
 
     <x-portal::admin.sidebar />
 
-    <x-portal::admin.settings-sidebar />
-
     <!-- Start Main Content -->
     <main class="main-content group-data-[sidebar-size=lg]:xl:ml-[calc(theme('spacing.app-menu')_+_16px)] rtl:group-data-[sidebar-size=lg]:xl:ml-0 rtl:group-data-[sidebar-size=lg]:xl:mr-[calc(theme('spacing.app-menu')_+_16px)] group-data-[sidebar-size=sm]:xl:ml-[calc(theme('spacing.app-menu-sm')_+_16px)] rtl:group-data-[sidebar-size=sm]:xl:ml-0 rtl:group-data-[sidebar-size=sm]:xl:mr-[calc(theme('spacing.app-menu-sm')_+_16px)] px-4 group-data-[theme-width=box]:xl:px-0 duration-300">
         {{ $slot }}
     </main>
     <!-- End Main Content -->
-
-    <x-portal::admin.ai.modal />
 
     @include('portal::admin.placeholder')
     @auth

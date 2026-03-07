@@ -13,7 +13,7 @@
                     {{ translate('Testimonials') }}
                 </div>
                 <h2 class="area-title mt-2">
-                    {{ translate('Edulab Received More than') }}
+                    {{ translate('We have received more than') }}
                     <span class="title-highlight-one">{{ $totalTestimonials }}</span>
                     {{ translate('Reviews') }}
                 </h2>

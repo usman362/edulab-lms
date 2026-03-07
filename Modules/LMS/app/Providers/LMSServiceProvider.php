@@ -254,6 +254,7 @@ class LMSServiceProvider extends ServiceProvider
     {
         $this->commands([
             \Modules\LMS\Console\Commands\ClearTenantCache::class,
+            \Modules\LMS\Console\SetDefaultSettingsCommand::class,
         ]);
     }
 

@@ -15,11 +15,11 @@
 
 @layer base {
     :root {
-        --color-primary: #5f3eed;
-        --color-primary-50: #f7f4ff;
-        --color-primary-100: #e5deff;
-        --color-primary-200: #f2ecfe;
-        --color-secondary: #f4b826;
+        --color-primary: #0d9488;
+        --color-primary-50: #f0fdfa;
+        --color-primary-100: #ccfbf1;
+        --color-primary-200: #99f6e4;
+        --color-secondary: #f59e0b;
         --color-heading: #111827;
         --color-section: #f7f4ff;
 
@@ -68,7 +68,7 @@
         @apply text-sm lg:text-base inline-flex items-center justify-center text-primary !leading-none font-bold tracking-tight;
     }
     .area-subtitle {
-        @apply [&.subtitle-outline]:px-5 [&.subtitle-outline]:py-2 [&.subtitle-outline]:border [&.subtitle-outline]:border-[#5F3EED1A] [&.subtitle-outline]:rounded-full;
+        @apply [&.subtitle-outline]:px-5 [&.subtitle-outline]:py-2 [&.subtitle-outline]:border [&.subtitle-outline]:border-primary/10 [&.subtitle-outline]:rounded-full;
     }
     .area-subtitle.subtitle-outline {
         @apply [&.style-two]:text-heading [&.style-two]:border-heading/15 [&.style-two]:rounded-md;

@@ -644,7 +644,10 @@ if (!function_exists('get_theme_option')) {
         $option_name = $theme_slug === 'default' ? $option_name : "{$option_name}_" . key_snake_case($theme_slug);
         $option = $options[$option_name] ?? null;
 
-        $option_value = $option ? json_decode($option->content, true) : [];
+        $raw = $option
+            ? (is_string($option->content) ? json_decode($option->content, true) : $option->content)
+            : null;
+        $option_value = is_array($raw) ? $raw : [];
 
         if ($parent_key && is_array($option_value) && isset($option_value[$key])) {
             return $option_value[$key];

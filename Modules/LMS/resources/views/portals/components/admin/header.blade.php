@@ -72,9 +72,9 @@
                 onclick="toggleThemeMode()">
                 <i class="ri-contrast-2-line text-[22px] group-[.dark]:before:!content-['\f1bf']"></i>
             </button>
-            <!-- Settings Button -->
+            <!-- Settings Button (Adjust Configurations - hidden per documentation) -->
             <button type="button" aria-label="Offcanvas menu settings" data-offcanvas-id="app-settings-sidebar"
-                class="size-8 flex-center hover:bg-gray-200 dark:hover:bg-dark-icon rounded-md dk-theme-card-square">
+                class="hidden size-8 flex-center hover:bg-gray-200 dark:hover:bg-dark-icon rounded-md dk-theme-card-square">
                 <i class="ri-settings-3-line text-[22px] animate-spin-slow"></i>
             </button>
 
