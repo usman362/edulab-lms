@@ -2,13 +2,13 @@
     $general = $data['genera'] ?? (get_theme_option(key: 'general') ?? []);
 
     $activeThemeSlug = key_snake_case(active_theme_slug());
-    $logo =
-        $data['logo_options'] ??
-        (get_theme_option(key: 'theme_logo_' . $activeThemeSlug) ?? (get_theme_option(key: 'theme_logo') ?? []));
-    $footerLogo = $logo['footer_logo'] ?? '';
+    $themeLogo = $data['logo_options'] ?? (get_theme_option(key: 'theme_logo_' . $activeThemeSlug) ?? (get_theme_option(key: 'theme_logo') ?? []));
+    $backendLogo = get_theme_option(key: 'backend_logo') ?? [];
+    $logo = (!empty($themeLogo['logo']) || !empty($themeLogo['footer_logo'])) ? $themeLogo : $backendLogo;
+    $footerLogoFile = $logo['footer_logo'] ?? $logo['logo'] ?? '';
     $defaultLogo =
-        $logo && fileExists('lms/theme-options', $footerLogo) == true && $footerLogo != ''
-            ? edulab_asset('/lms/theme-options/' . $footerLogo)
+        $footerLogoFile && fileExists('lms/theme-options', $footerLogoFile) == true
+            ? edulab_asset('/lms/theme-options/' . $footerLogoFile)
             : edulab_global_asset('lms/frontend/assets/images/logo/default-logo-dark.svg');
 @endphp
 

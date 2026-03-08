@@ -1,7 +1,7 @@
 {
     "name": "LMS Education",
     "slug": "lms-education",
-    "author": "CodexShaper",
+    "author": "",
     "description": "A modern and clean theme for LMS education.",
     "frontend_layout_prefix": "theme::",
     "dashboard_layout_prefix": "portal::",

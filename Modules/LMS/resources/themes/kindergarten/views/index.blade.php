@@ -1,13 +1,16 @@
 @php
-    $logo =
-        get_theme_option(key: 'theme_logo', theme_slug: 'kindergarten') ?? (get_theme_option(key: 'theme_logo') ?? []);
+    $themeLogo = get_theme_option(key: 'theme_logo', theme_slug: 'kindergarten') ?? get_theme_option(key: 'theme_logo') ?? [];
+    $backendLogo = get_theme_option(key: 'backend_logo') ?? [];
+    $logo = (!empty($themeLogo['logo']) || !empty($themeLogo['favicon'])) ? $themeLogo : $backendLogo;
+    $logoFile = $logo['logo'] ?? null;
+    $footerLogoFile = $logo['footer_logo'] ?? $logoFile;
     $defaultLogo =
-        isset($logo['logo']) && fileExists('lms/theme-options', $logo['logo']) == true
-            ? edulab_asset("lms/theme-options/{$logo['logo']}")
+        $logoFile && fileExists('lms/theme-options', $logoFile) == true
+            ? edulab_asset("lms/theme-options/{$logoFile}")
             : edulab_global_asset('lms/frontend/assets/images/logo/default-logo-dark.svg');
     $footerLogo =
-        isset($logo['footer_logo']) && fileExists('lms/theme-options', $logo['footer_logo']) == true
-            ? edulab_asset("lms/theme-options/{$logo['footer_logo']}")
+        $footerLogoFile && fileExists('lms/theme-options', $footerLogoFile) == true
+            ? edulab_asset("lms/theme-options/{$footerLogoFile}")
             : edulab_global_asset('lms/frontend/assets/images/logo/default-logo-dark.svg');
 
     $favIcon =
@@ -113,10 +116,6 @@
         <x-kindergarten:theme::subscription.subscription-list :subscriptions="$data['subscriptions']" />
     @endif
     <!-- END SUBSCRIPTION AREA -->
-
-    <!-- START LATEST NEWS AND BLOG AREA -->
-    <x-kindergarten:theme::blog.blog :blogs="$data['blogs']" />
-    <!-- END LATEST NEWS AND BLOG AREA -->
 
     <!-- START CTA BANNER -->
     <x-kindergarten:theme::cta.cta />

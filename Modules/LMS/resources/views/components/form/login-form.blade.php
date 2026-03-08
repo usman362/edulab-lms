@@ -45,7 +45,7 @@
         </div>
         <div class="col-span-full">
             <button type="submit"
-                class="btn b-solid btn-secondary-solid !text-heading dark:text-white btn-xl !rounded-full font-bold w-full h-12"
+                class="btn b-solid btn-secondary-solid !text-white btn-xl !rounded-full font-bold w-full h-12"
                 aria-label="Login">
                 {{ translate('Log in') }}
             </button>

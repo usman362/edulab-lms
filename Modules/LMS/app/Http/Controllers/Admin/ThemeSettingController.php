@@ -26,6 +26,22 @@ class ThemeSettingController extends Controller
     }
 
     /**
+     * Blogs settings page.
+     */
+    public function blogsSettings()
+    {
+        return view('portal::admin.blogs-setting.index');
+    }
+
+    /**
+     * Home page slider settings page.
+     */
+    public function homeSliderSettings()
+    {
+        return view('portal::admin.home-slider-setting.index');
+    }
+
+    /**
      * Theme Setting
      *
      * @param  mixed  $request

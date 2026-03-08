@@ -1,7 +1,7 @@
 {
     "name": "E-learning Education",
     "slug": "elearning-education",
-    "author": "CodexShaper",
+    "author": "",
     "description": "A modern and clean theme.",
     "frontend_layout_prefix": "theme::",
     "dashboard_layout_prefix": "portal::",

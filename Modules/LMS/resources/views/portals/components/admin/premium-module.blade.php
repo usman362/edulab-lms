@@ -8,7 +8,7 @@
         @endif
         @if (isset($btn) && $btn == true)
             <a href="{{ $url ?? '#' }}" target="_blank" class="btn b-solid btn-primary-solid font-normal !bg-[#79b530] rounded-[5px] !px-6 mt-5" aria-label="Go to Link">
-                {{ translate($btnText ?? 'Buy on CodeCanyon') }}
+                {{ translate($btnText ?? 'Learn more') }}
             </a>
         @endif
     </div>

@@ -89,7 +89,7 @@
         </div>
         <div class="col-span-full">
             <button type="submit"
-                class=" {{ $class['btn_class'] ?? 'btn b-solid btn-secondary-solid !text-heading btn-xl !rounded-full font-bold w-full' }}"
+                class=" {{ $class['btn_class'] ?? 'btn b-solid btn-secondary-solid !text-white btn-xl !rounded-full font-bold w-full' }}"
                 aria-label="Join as Instructor">
                 {{ translate($btn['text'] ?? 'Join as Instructor') }}
                 @if ($btn['is_show_icon'] ?? true)

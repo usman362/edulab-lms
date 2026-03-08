@@ -5,6 +5,7 @@
         title="Premium Subscription Module"
         description="Get access to exclusive courses for a set duration and enhance your learning experience effortlessly. 🚀"
         btn=true
-        url="https://codecanyon.net/user/codexshaper/portfolio"
+        url="#"
+        btnText="Learn more"
     />
 </x-dashboard-layout>

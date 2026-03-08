@@ -39,14 +39,14 @@
                     {{ translate('GDPR Cookie') }}
                 </button>
                 <button
-                    class="tablinks btn b-outline btn-primary-outline border-primary-200 justify-start !grow shrink-0 lg:w-full text-sm !text-gray-500 dark:!text-white hover:!text-primary hover:!bg-primary-200 dark:hover:!bg-dark-icon [&.active]:bg-primary-200 dark:[&.active]:bg-dark-icon [&.active]:border-transparent [&.active]:!text-primary dk-theme-card-square ac-transition"
+                    class="hidden tablinks btn b-outline btn-primary-outline border-primary-200 justify-start !grow shrink-0 lg:w-full text-sm !text-gray-500 dark:!text-white hover:!text-primary hover:!bg-primary-200 dark:hover:!bg-dark-icon [&.active]:bg-primary-200 dark:[&.active]:bg-dark-icon [&.active]:border-transparent [&.active]:!text-primary dk-theme-card-square ac-transition"
                     onclick="openStep(event, 'tawk-chat')">
                     <i class="ri-kakao-talk-line text-inherit"></i>
                     {{ translate('Tawk Chat') }}
                 </button>
 
                 <button
-                    class="tablinks btn b-outline btn-primary-outline border-primary-200 justify-start !grow shrink-0 lg:w-full text-sm !text-gray-500 dark:!text-white hover:!text-primary hover:!bg-primary-200 dark:hover:!bg-dark-icon [&.active]:bg-primary-200 dark:[&.active]:bg-dark-icon [&.active]:border-transparent [&.active]:!text-primary dk-theme-card-square ac-transition"
+                    class="hidden tablinks btn b-outline btn-primary-outline border-primary-200 justify-start !grow shrink-0 lg:w-full text-sm !text-gray-500 dark:!text-white hover:!text-primary hover:!bg-primary-200 dark:hover:!bg-dark-icon [&.active]:bg-primary-200 dark:[&.active]:bg-dark-icon [&.active]:border-transparent [&.active]:!text-primary dk-theme-card-square ac-transition"
                     onclick="openStep(event, 'mailchimp')">
                     <svg fill="#000000" version="1.1" id="Capa_1" xmlns="http://www.w3.org/2000/svg"
                         xmlns:xlink="http://www.w3.org/1999/xlink" width="18px" height="18px"
@@ -94,21 +94,14 @@
                 </button>
 
                 <button
-                    class="tablinks btn b-outline btn-primary-outline border-primary-200 justify-start !grow shrink-0 lg:w-full text-sm !text-gray-500 dark:!text-white hover:!text-primary hover:!bg-primary-200 dark:hover:!bg-dark-icon [&.active]:bg-primary-200 dark:[&.active]:bg-dark-icon [&.active]:border-transparent [&.active]:!text-primary dk-theme-card-square ac-transition"
-                    onclick="openStep(event, 'poster-settings')">
-                    <i class="ri-advertisement-line text-inherit"></i>
-                    {{ translate('Poster Settings') }}
-                </button>
-
-                <button
-                    class="tablinks btn b-outline btn-primary-outline border-primary-200 justify-start !grow shrink-0 lg:w-full text-sm !text-gray-500 dark:!text-white hover:!text-primary hover:!bg-primary-200 dark:hover:!bg-dark-icon [&.active]:bg-primary-200 dark:[&.active]:bg-dark-icon [&.active]:border-transparent [&.active]:!text-primary dk-theme-card-square ac-transition"
+                    class="hidden tablinks btn b-outline btn-primary-outline border-primary-200 justify-start !grow shrink-0 lg:w-full text-sm !text-gray-500 dark:!text-white hover:!text-primary hover:!bg-primary-200 dark:hover:!bg-dark-icon [&.active]:bg-primary-200 dark:[&.active]:bg-dark-icon [&.active]:border-transparent [&.active]:!text-primary dk-theme-card-square ac-transition"
                     onclick="openStep(event, 'footer')">
                     <i class="ri-pages-line text-inherit"></i>
                     {{ translate('Footer') }}
                 </button>
                 @can('menu.custom-script')
                     <button
-                        class="tablinks btn b-outline btn-primary-outline border-primary-200 justify-start !grow shrink-0 lg:w-full text-sm !text-gray-500 dark:!text-white hover:!text-primary hover:!bg-primary-200 dark:hover:!bg-dark-icon [&.active]:bg-primary-200 dark:[&.active]:bg-dark-icon [&.active]:border-transparent [&.active]:!text-primary dk-theme-card-square ac-transition"
+                        class="hidden tablinks btn b-outline btn-primary-outline border-primary-200 justify-start !grow shrink-0 lg:w-full text-sm !text-gray-500 dark:!text-white hover:!text-primary hover:!bg-primary-200 dark:hover:!bg-dark-icon [&.active]:bg-primary-200 dark:[&.active]:bg-dark-icon [&.active]:border-transparent [&.active]:!text-primary dk-theme-card-square ac-transition"
                         onclick="openStep(event, 'custom-script')">
                         <i class="ri-code-s-slash-line text-inherit"></i>
                         {{ translate('Custom Code') }}
@@ -186,33 +179,6 @@
                             </div>
                         </div>
 
-                        <div class="col-span-full xl:col-auto leading-none">
-                            <div class="leading-none">
-                                <label class="form-label">{{ translate('App Store Link') }}</label>
-                                <input type="text" name="app_store_link" class="form-input"
-                                    value="{{ $setting['app_store_link'] ?? '' }}">
-                            </div>
-                        </div>
-                        <div class="col-span-full xl:col-auto leading-none">
-                            <div class="leading-none">
-                                <label class="form-label">{{ translate('Play Store Link') }}</label>
-                                <input type="text" name="play_store_link" class="form-input"
-                                    value="{{ $setting['play_store_link'] ?? '' }}">
-                            </div>
-                        </div>
-                        <div class="col-span-full">
-                            <div class="leading-none flex items-center gap-3">
-                                <label for="multiple_theme" class="inline-flex items-center cursor-pointer">
-                                    <input type="checkbox" id="multiple_theme"
-                                        {{ isset($setting['is_multiple_theme']) && $setting['is_multiple_theme'] == 'on' ? 'checked' : '' }}
-                                        name="is_multiple_theme" class="appearance-none peer">
-                                    <span class="switcher switcher-primary-solid"></span>
-                                </label>
-                                <div class="text-gray-500 dark:text-dark-text font-medium inline-block">
-                                    {{ translate('Would you like support for users to switch between multiple themes on your website?') }}
-                                </div>
-                            </div>
-                        </div>
                     </div>
 
                     <div class="flex justify-end mt-10">
@@ -836,173 +802,6 @@
                     </div>
                 </div>
             </div>
-            {{-- Poster Settings --}}
-            <div id="poster-settings" class="tabcontent hidden">
-                <!-- Poster Sectin -->
-                <div class="poster-section cardcc">
-                    <div class="card flex-center-between">
-                        <h6 class="leading-none text-xl font-semibold text-heading">
-                            {{ translate('Poster Section') }}
-                        </h6>
-                        <button type="button"
-                            class="btn b-solid btn-primary-solid btn-sm dk-theme-card-square add-poster">
-                            {{ translate('Add New') }}
-                        </button>
-                    </div>
-                    <div class="banner-section">
-                        @php
-                            $poster =
-                                get_theme_option('poster' . active_language()) ?:
-                                get_theme_option('posteren') ?? get_theme_option('postere' . app('default_language'));
-                        @endphp
-                        <form enctype="multipart/form-data" class="add_setting" method="POST"
-                            action="{{ route('theme.setting') }}" data-key="poster{{ active_language() }}">
-                            @csrf
-
-                            <div class="poster-area"
-                                data-length="{{ isset($poster['poster']) ? count($poster['poster']) : 0 }}">
-
-                                @if (isset($poster['poster']))
-                                    @foreach ($poster['poster'] as $key => $poster)
-                                        <div class="card grid grid-cols-2 gap-x-4 gap-y-6 poster-item">
-                                            <div class="col-span-full 2xl:col-auto leading-none">
-                                                <label class="form-label">{{ translate('Title') }}</label>
-                                                <input type="text" name="poster[{{ $key }}][title]"
-                                                    class="form-input" value="{{ $poster['title'] ?? '' }}">
-                                            </div>
-                                            <div class="col-span-full 2xl:col-auto leading-none">
-                                                <label class="form-label">{{ translate('Description') }}</label>
-                                                <input type="text"
-                                                    name="poster[{{ $key }}][description]"
-                                                    class="form-input" value="{{ $poster['description'] ?? '' }}">
-                                            </div>
-                                            <div class="col-span-full 2xl:col-auto leading-none">
-                                                <label class="form-label">{{ translate('Button Text') }}</label>
-                                                <input type="text"
-                                                    name="poster[{{ $key }}][button_label]"
-                                                    class="form-input" value="{{ $poster['button_label'] ?? '' }}">
-                                            </div>
-                                            <div class="col-span-full 2xl:col-auto leading-none">
-                                                <label class="form-label">{{ translate('Button url') }}</label>
-                                                <input type="text" class="form-input"
-                                                    name="poster[{{ $key }}][button_link]"
-                                                    value="{{ $poster['button_link'] ?? '' }}">
-                                            </div>
-                                            @php
-                                                $posterImg = $poster['poster_img'] ?? null;
-
-                                            @endphp
-                                            <div class="col-span-full leading-none">
-                                                <label
-                                                    class="form-label">{{ translate('Poster Background Image') }}</label>
-                                                <label for="bannerImage{{ $key }}"
-                                                    class="dropzone-wrappe file-container ac-bg text-xs leading-none font-semibold mb-3 cursor-pointer w-full h-[200px] flex flex-col items-center justify-center gap-2.5 border border-dashed border-gray-900 rounded-10 dk-theme-card-square">
-
-                                                    <input type="file" class="dropzone theme-setting-image" hidden
-                                                        id="bannerImage{{ $key }}">
-
-                                                    <input type="hidden"
-                                                        name="poster[{{ $key }}][poster_img]"
-                                                        id="oldFile" value="{{ $posterImg ?? '' }}">
-
-                                                    <span class="flex-center flex-col peer-[.uploaded]/file:hidden">
-
-                                                        <img src="{{ edulab_global_asset('lms/assets/images/icons/upload-file.svg') }}"
-                                                            alt="file-icon" class="size-8 lg:size-auto">
-
-                                                        <div class="text-gray-500 dark:text-dark-text mt-2">
-                                                            {{ translate('Choose file') }}
-                                                        </div>
-                                                    </span>
-                                                </label>
-                                                <div class="preview-zone dropzone-preview">
-                                                    <div class="box box-solid">
-                                                        <div class="box-body flex items-center gap-2 flex-wrap">
-                                                            @if ($posterImg && fileExists($poster = 'lms/theme-options', $fileName = $posterImg) == true && $posterImg !== '')
-                                                                <div class="img-thumb-wrapper">
-                                                                    <img id="preview_img" width="120"
-                                                                        src="{{ edulab_asset('/lms/theme-options/' . $posterImg) }}" />
-                                                                </div>
-                                                            @endif
-                                                            <img id="preview_img" src="" width="120">
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <button type="button"
-                                                class="btn b-solid btn-danger-solid dk-theme-card-square max-h-fit shrink-0 delete-poster-item">
-                                                {{ translate('Delete') }}
-                                            </button>
-                                        </div>
-                                    @endforeach
-                                @else
-                                    <div class="card grid grid-cols-2 gap-x-4 gap-y-6 poster-item">
-                                        <div class="col-span-full 2xl:col-auto leading-none">
-                                            <label class="form-label">{{ translate('Title') }}</label>
-                                            <input type="text" name="poster[0][title]" class="form-input"
-                                                value="{{ $poster['title'] ?? '' }}">
-                                        </div>
-                                        <div class="col-span-full 2xl:col-auto leading-none">
-                                            <label class="form-label">{{ translate('Description') }}</label>
-                                            <input type="text" name="poster[0][description]" class="form-input"
-                                                value="{{ $poster['description'] ?? '' }}">
-                                        </div>
-                                        <div class="col-span-full 2xl:col-auto leading-none">
-                                            <label class="form-label">{{ translate('Button Label') }}</label>
-                                            <input type="text" name="poster[0][button_label]" class="form-input"
-                                                value="{{ $poster['button_label'] ?? '' }}">
-                                        </div>
-                                        <div class="col-span-full 2xl:col-auto leading-none">
-                                            <label class="form-label">{{ translate('Button Link') }}</label>
-                                            <input type="text" class="form-input" name="poster[0][button_link]"
-                                                value="{{ $poster['button_link'] ?? '' }}">
-                                        </div>
-                                        @php
-                                            $posterImg = $poster['poster_img'] ?? null;
-                                        @endphp
-                                        <div class="col-span-full leading-none">
-                                            <label
-                                                class="form-label">{{ translate('Poster Background Image') }}</label>
-                                            <label for="bannerImage0"
-                                                class="dropzone-wrappe file-container ac-bg text-xs leading-none font-semibold mb-3 cursor-pointer w-full h-[200px] flex flex-col items-center justify-center gap-2.5 border border-dashed border-gray-900 rounded-10 dk-theme-card-square">
-                                                <input type="file" class="dropzone theme-setting-image" hidden
-                                                    id="bannerImage0">
-                                                <input type="hidden" name="poster[0][poster_img]" id="oldFile"
-                                                    value="{{ $posterImg ?? '' }}">
-                                                <span class="flex-center flex-col peer-[.uploaded]/file:hidden">
-                                                    <img src="{{ edulab_global_asset('lms/assets/images/icons/upload-file.svg') }}"
-                                                        alt="file-icon" class="size-8 lg:size-auto">
-                                                    <div class="text-gray-500 dark:text-dark-text mt-2">
-                                                        {{ translate('Choose file') }}</div>
-                                                </span>
-                                            </label>
-                                            <div class="preview-zone dropzone-preview">
-                                                <div class="box box-solid">
-                                                    <div class="box-body flex items-center gap-2 flex-wrap">
-                                                        @if ($posterImg && fileExists('lms/theme-options', $posterImg) == true && $posterImg !== '')
-                                                            <div class="img-thumb-wrapper">
-                                                                <img id="preview_img" width="120"
-                                                                    src="{{ edulab_asset('/lms/theme-options/' . $posterImg) }}" />
-                                                            </div>
-                                                        @endif
-                                                        <img id="preview_img" src="" width="120">
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                @endif
-                            </div>
-                            <div class="flex justify-end mt-10">
-                                <button type="submit"
-                                    class="btn b-solid btn-primary-solid w-max dk-theme-card-square">
-                                    {{ translate('Save') }}
-                                </button>
-                            </div>
-                        </form>
-                    </div>
-                </div>
-            </div>
             <!-- START FOOTER SETTINGS -->
             <div id="footer" class="tabcontent hidden">
                 <div class="footer-top">
@@ -1167,5 +966,4 @@
         </div>
     </div>
     <input type="hidden" id="imgUploadPath" value="{{ edulab_global_asset('lms/assets/images/icons/upload-file.svg') }}">
-    <input type="hidden" id="imgUploadPathPoster" value="{{ edulab_global_asset('lms/assets/images/icons/upload-file.svg') }}">
 </x-dashboard-layout>

@@ -36,31 +36,7 @@
         </div>
         <!-- Header Right -->
         <div class="flex items-center gap-3">
-            @if (count(app('languages')) > 0)
-                <div
-                    class="flex items-center justify-end space-x-5 divide-x divide-white/15 [&>:not(:first-child)]:pl-5 grow">
-                    <div class="flex items-center">
-                        <form method="get" action="{{ route('language.set') }}" id="language-form">
-                            @csrf
-                            <input type="hidden" name="admin_id"
-                                value="{{ auth('admin')->check() ? auth('admin')->user()->id : null }}">
-                            <input type="hidden" name="user_id"
-                                value="{{ auth()->check() ? auth()->user()->id : null }}">
-                            <select name="locale" aria-label="Choose Language"
-                                onchange="event.preventDefault();
-                                document.getElementById('language-form').submit();"
-                                class="text-gray-500 dark:text-dark-text dark:bg-dark-card-shade font-semibold bg-transparent focus:outline-none cursor-pointer select-none text-sm border dk-border-one px-2 py-2 rounded-md dk-theme-card-square">
-                                @foreach (app('languages') as $language)
-                                    <option value="{{ $language->code }}"
-                                        {{ app()->getLocale() == $language->code ? 'selected' : '' }}>
-                                        {{ $language->name }}
-                                    </option>
-                                @endforeach
-                            </select>
-                        </form>
-                    </div>
-                </div>
-            @endif
+            {{-- Language switcher hidden: only English --}}
             <!-- View Frontend Link -->
             <a href="{{ route('home.index') }}" target="_blank" aria-label="View Site Frontend Link"
                 class="relative size-8 hidden sm:flex-center hover:bg-gray-200 dark:hover:bg-dark-icon rounded-md after:absolute after:-top-1.5 after:border-transparent after:border-[6px] after:!border-t-gray-500 after:invisible after:opacity-0 before:absolute before:bottom-[calc(100%_+_6px)] before:content-['Visit_Website'] before:bg-gray-500 before:w-max before:px-2 before:py-1 before:text-white before:rounded-md before:text-xs before:invisible before:opacity-0 before:duration-200 after:duration-200 hover:before:visible hover:before:opacity-100 hover:after:visible hover:after:opacity-100 dk-theme-card-square">

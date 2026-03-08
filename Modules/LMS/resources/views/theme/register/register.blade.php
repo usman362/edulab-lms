@@ -6,7 +6,7 @@
         <div class="grow min-h-screen h-full w-full lg:w-1/2 pt-32 pb-12 px-3 lg:p-3 flex-center flex-col">
             <h2 class="area-title">{{ translate('Register') }}!</h2>
             <p class="area-description max-w-screen-sm mx-auto text-center mt-5">
-                {{ translate('Discover, learn, and thrive with us. Experience a smooth and rewarding educational adventure.Let\'s get started') }}!
+                {{ translate('Discover, learn, and thrive with us.') }}
             </p>
             <div class="dashkit-tab flex-center gap-2 flex-wrap mt-10" id="userRegisterTab">
                 <button type="button" aria-label="User registration tab for Student"
@@ -96,7 +96,7 @@
                             </div>
                             <div class="col-span-full">
                                 <button type="submit" aria-label="Sign up"
-                                    class="btn b-solid btn-secondary-solid !text-heading dark:text-white btn-xl !rounded-full font-bold w-full h-12">
+                                    class="btn b-solid btn-secondary-solid !text-white btn-xl !rounded-full font-bold w-full h-12">
                                     {{ translate('Sign Up') }}
                                 </button>
                             </div>
@@ -192,7 +192,7 @@
                             </div>
                             <div class="col-span-full">
                                 <button type="submit" aria-label="Sign up"
-                                    class="btn b-solid btn-secondary-solid !text-heading dark:text-white btn-xl !rounded-full font-bold w-full h-12">
+                                    class="btn b-solid btn-secondary-solid !text-white btn-xl !rounded-full font-bold w-full h-12">
                                     {{ translate('Sign Up') }}
                                 </button>
                             </div>
@@ -276,7 +276,7 @@
                             </div>
                             <div class="col-span-full">
                                 <button type="submit" aria-label="Sign up"
-                                    class="btn b-solid btn-secondary-solid !text-heading dark:text-white btn-xl !rounded-full font-bold w-full h-12">
+                                    class="btn b-solid btn-secondary-solid !text-white btn-xl !rounded-full font-bold w-full h-12">
                                     {{ translate('Sign Up') }}
                                 </button>
                             </div>
@@ -284,13 +284,12 @@
                     </form>
                 </div>
             </div>
-            <div
-                class="flex-center w-full max-w-screen-sm py-6 h-max relative text-heading dark:text-white font-normal before:absolute inset-0 before:w-full before:h-px before:bg-border">
-                <span class="relative z-10 px-5 bg-white text-sm">{{ translate('OR') }}</span>
+            <div class="flex-center w-full max-w-screen-sm py-6 h-max relative text-heading dark:text-white font-normal before:absolute inset-0 before:w-full before:h-px before:bg-border">
+                <span class="relative z-10 px-5 bg-white dark:bg-dark-card text-sm">{{ translate('OR') }}</span>
             </div>
-            <div class="text-heading">
+            <div class="text-heading dark:text-white text-center text-sm w-full max-w-screen-sm">
                 {{ translate('Already have an account') }}?
-                <a href="{{ route('login') }}" class="text-primary hover:underline" aria-label="Sign in page">{{ translate('Sign in') }}</a>
+                <a href="{{ route('login') }}" class="text-primary hover:underline font-medium" aria-label="Sign in page">{{ translate('Sign in') }}</a>
             </div>
         </div>
     </div>

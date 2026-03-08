@@ -163,7 +163,7 @@ class ModuleManagerController extends Controller
                 'marketplace' => $moduleConfig['marketplace'] ?? 'envato',
                 'product_name' => $moduleConfig['name'] ?? $request->module,
                 'version' => $moduleConfig['version'] ?? '1.0.0',
-                'author' => $moduleConfig['author'] ?? 'CodexShaper',
+                'author' => $moduleConfig['author'] ?? '',
                 'description' => $moduleConfig['description'] ?? 'No description provided.',
                 'license' => $moduleConfig['license'] ?? 'Commercial'
             ]);
@@ -188,7 +188,7 @@ class ModuleManagerController extends Controller
                     'marketplace' => $moduleConfig['marketplace'] ?? 'envato',
                     'product_name' => $moduleConfig['name'] ?? $request->module,
                     'version' => $moduleConfig['version'] ?? '1.0.0',
-                    'author' => $moduleConfig['author'] ?? 'CodexShaper',
+                    'author' => $moduleConfig['author'] ?? '',
                     'description' => $moduleConfig['description'] ?? 'No description provided.',
                     'license' => $moduleConfig['license'] ?? 'Commercial'
                 ];

@@ -173,8 +173,12 @@ class HomeRepository extends BaseRepository
 
         // Blogs.
         if (in_array('blogs', $sections)) {
-
-            $blogItem = $sections['blog_item'] ??   3;
+            $blogsSettings = get_theme_option(key: 'blogs_settings') ?? [];
+            $blogItem = $sections['blog_item'] ?? ($blogsSettings['home_blog_item'] ?? 3);
+            $blogItem = (int) $blogItem;
+            if ($blogItem < 1 || $blogItem > 20) {
+                $blogItem = 3;
+            }
             $blogResponse = BlogRepository::get(
                 options: [
                     'where' => ['status' => 1],

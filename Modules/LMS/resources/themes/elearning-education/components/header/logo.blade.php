@@ -1,6 +1,8 @@
  @php
      $activeThemeSnake = key_snake_case(active_theme_slug());
-     $logo = get_theme_option(key: 'theme_logo_' . $activeThemeSnake) ?? get_theme_option(key: 'theme_logo');
+     $themeLogoOption = get_theme_option(key: 'theme_logo_' . $activeThemeSnake) ?? get_theme_option(key: 'theme_logo');
+     $backendLogo = get_theme_option(key: 'backend_logo') ?? [];
+     $logo = (!empty($themeLogoOption['logo']) || !empty($themeLogoOption['favicon'])) ? $themeLogoOption : $backendLogo;
      $defaultLogo = $defaultLogo ?? edulab_global_asset('lms/frontend/assets/images/logo/default-logo-dark.svg');
      $themeLogo =
          isset($logo['logo']) && fileExists($folder = 'lms/theme-options', $fileName = $logo['logo']) == true

@@ -15,7 +15,7 @@
         title="{{ isset($page) ? 'Page Edit' : 'Page Create' }}" page-to=" Page" />
 
 
-    @if (is_active('page.translate') === 'active')
+    @if (is_active('page.translate') === 'active' && count(app('languages')) > 1)
         <div class="flex items-center justify-end gap-4 mb-2">
             <h2 class="card-title">{{ translate('Translate Language') }}</h2>
             <form method="GET" class="sm:block" id="change-translate-language">

@@ -64,7 +64,7 @@ return [
         'Subscription' => [
             'name' => 'Subscription',
             'version' => '1.0.0',
-            'author' => 'CodexShaper',
+            'author' => '',
             'description' => 'Subscription module for managing user subscriptions, plans, and payments.',
             'license' => 'Commercial',
             'marketplace' => 'envato',

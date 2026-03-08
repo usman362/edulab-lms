@@ -1,15 +1,17 @@
 @php
-    $logo =
-        get_theme_option(key: 'theme_logo', theme_slug: 'elearning-education') ??
-        (get_theme_option(key: 'theme_logo') ?? []);
+    $themeLogo = get_theme_option(key: 'theme_logo', theme_slug: 'elearning-education') ?? get_theme_option(key: 'theme_logo') ?? [];
+    $backendLogo = get_theme_option(key: 'backend_logo') ?? [];
+    $logo = (!empty($themeLogo['logo']) || !empty($themeLogo['favicon'])) ? $themeLogo : $backendLogo;
+    $logoFile = $logo['logo'] ?? null;
+    $footerLogoFile = $logo['footer_logo'] ?? $logoFile;
     $defaultLogo =
-        isset($logo['logo']) && fileExists('lms/theme-options', $logo['logo']) == true
-            ? edulab_asset("lms/theme-options/{$logo['logo']}")
+        $logoFile && fileExists('lms/theme-options', $logoFile) == true
+            ? edulab_asset("lms/theme-options/{$logoFile}")
             : edulab_global_asset('lms/frontend/assets/images/logo/default-logo-dark.svg');
 
     $footerLogo =
-        isset($logo['footer_logo']) && fileExists('lms/theme-options', $logo['footer_logo']) == true
-            ? edulab_asset("lms/theme-options/{$logo['footer_logo']}")
+        $footerLogoFile && fileExists('lms/theme-options', $footerLogoFile) == true
+            ? edulab_asset("lms/theme-options/{$footerLogoFile}")
             : edulab_global_asset('lms/frontend/assets/images/logo/default-logo-dark.svg');
 
     $favIcon =
@@ -110,19 +112,8 @@
     <x-elearning-education:theme::testimonial.testimonial-two :testimonials="$data['testimonials']" />
     <!-- END TESTIMONIAL AREA -->
 
-    <!-- START POSTER AREA -->
-    <x-elearning-education:theme::poster.poster-banner />
-    <!-- END POSTER AREA -->
-
     <!-- START POPULAR AREA -->
     <x-elearning-education:theme::course.popular-course :courses="$data['courses']" />
     <!-- END POPULAR AREA -->
 
-    <!-- START BUNDLE COURSE AREA -->
-    <x-elearning-education:theme::course.bundle-course :bundles="$data['bundles']" />
-    <!-- END BUNDLE COURSE AREA -->
-
-    <!-- START BLOG AREA -->
-    <x-elearning-education:theme::blog.recent-blog :blogs="$data['blogs']" />
-    <!-- END BLOG AREA -->
 </x-frontend-layout>

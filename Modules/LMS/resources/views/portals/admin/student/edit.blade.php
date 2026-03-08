@@ -11,7 +11,7 @@
     <x-slot:title> {{ translate('Edit Student') }} </x-slot:title>
     <x-portal::admin.breadcrumb back-url="{{ route('student.index') }}" title="Edit" page-to="Student" />
 
-    @if (is_active('student.translate') === 'active')
+    @if (is_active('student.translate') === 'active' && count(app('languages')) > 1)
     <div class="flex items-center justify-end gap-4 mb-2">
         <h2 class="card-title">{{ translate('Translate Language') }}</h2>
         <form method="GET" class="sm:block" id="change-translate-language">

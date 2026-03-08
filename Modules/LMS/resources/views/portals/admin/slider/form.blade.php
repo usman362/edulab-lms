@@ -10,7 +10,7 @@
 
     <x-portal::admin.breadcrumb back-url="{{ route('slider.index') }}"
         title="{{ isset($slider) ? 'Edit' : 'Create' }} Slider" page-to="Slider" />
-    @if (is_active('slider.translate') === 'active')
+    @if (is_active('slider.translate') === 'active' && count(app('languages')) > 1)
         <div class="flex items-center justify-end gap-4 mb-2">
             <h2 class="card-title">{{ translate('Translate Language') }}</h2>
             <form method="GET" class="sm:block" id="change-translate-language">
@@ -54,17 +54,22 @@
                         value="{{ $translations['sub_title'] ?? $slider->sub_title ?? '' }}" class="form-input">
                 </div>
                 @if (is_active('slider.translate') !== 'active')
+                    @php
+                        $defaultHero = get_default_hero();
+                        $heroId = $defaultHero ? $defaultHero->id : (isset($slider) ? $slider->hero_id : null);
+                    @endphp
                     <div class="leading-none mt-4">
                         <label class="form-label">{{ translate('Hero') }} <span
                                 class="require-field"><b>*</b></span></label>
-                        <select name="hero_id" class="singleSelect">
-                            <option selected disabled> {{ translate('Select Hero') }}</option>
-                            @foreach (get_heroes() as $hero)
-                                <option value="{{ $hero->id }}"
-                                    {{ isset($slider) && $hero->id == $slider->hero_id ? 'selected' : '' }}>
-                                    {{ $hero->title }}</option>
-                            @endforeach
-                        </select>
+                        @if ($defaultHero)
+                            <input type="hidden" name="hero_id" value="{{ $heroId ?? $defaultHero->id }}">
+                            <div class="form-input bg-gray-100 dark:bg-dark-card-two cursor-not-allowed select-none" aria-readonly="true">
+                                {{ $defaultHero->title }}
+                            </div>
+                        @else
+                            <input type="hidden" name="hero_id" value="">
+                            <p class="text-sm text-gray-500 dark:text-dark-text">{{ translate('No hero available.') }}</p>
+                        @endif
                         <span class="text-danger error-text hero_id_err"></span>
                     </div>
                 @endif

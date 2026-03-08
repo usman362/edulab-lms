@@ -1,7 +1,7 @@
 {
     "name": "Digital Education",
     "slug": "digital-education",
-    "author": "CodexShaper",
+    "author": "",
     "description": "A modern and clean theme for digital education.",
     "frontend_layout_prefix": "theme::",
     "dashboard_layout_prefix": "portal::",

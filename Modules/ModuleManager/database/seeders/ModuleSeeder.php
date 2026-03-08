@@ -25,8 +25,8 @@ class ModuleSeeder extends Seeder
                 'requires' => [],
                 'type' => 'core',
                 'version' => '1.0.0',
-                'author' => 'CodexShaper',
-                'email' => 'codexshaper@gmail.com',
+                'author' => '',
+                'email' => '',
                 "keywords" => [
                     "lms",
                     "learning management",
@@ -53,8 +53,8 @@ class ModuleSeeder extends Seeder
                 'requires' => [],
                 'type' => 'core',
                 'version' => '1.0.0',
-                'author' => 'CodexShaper',
-                'email' => 'codexshaper@gmail.com',
+                'author' => '',
+                'email' => '',
                 "keywords" => [
                     "modules", 
                     "module manager", 
@@ -80,8 +80,8 @@ class ModuleSeeder extends Seeder
                 'requires' => [],
                 'type' => 'core',
                 'version' => '1.0.0',
-                'author' => 'CodexShaper',
-                'email' => 'codexshaper@gmail.com',
+                'author' => '',
+                'email' => '',
                 "keywords" => [
                     "roles", 
                     "permissions", 

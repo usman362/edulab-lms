@@ -66,10 +66,16 @@ if (!function_exists('fileExists')) {
      */
     function fileExists($folder,  $fileName): bool
     {
-        if (empty($fileName)) {
+        if (is_array($fileName)) {
+            $fileName = $fileName['path'] ?? $fileName['file'] ?? $fileName[0] ?? '';
+        }
+        if (is_array($folder)) {
+            $folder = $folder['path'] ?? $folder[0] ?? '';
+        }
+        if (empty($fileName) || empty($folder) || ! is_string($fileName) || ! is_string($folder)) {
             return false;
         }
-        
+
         $disk = is_tenant_context() ? 'local' : 'LMS';
         $filePath = "public/{$folder}/{$fileName}";
         return Storage::disk($disk)->exists($filePath);
@@ -1975,11 +1981,6 @@ if (!function_exists('get_menus')) {
                 'is_active' => is_active('course.bundle') || is_active('instructor.list') || is_active('organization.list'),
                 'childs' => [
                     [
-                        'name' => translate('Course Bundle'),
-                        'url' => route('bundle.list'),
-                        'is_active' => is_active('bundle.list'),
-                    ],
-                    [
                         'name' => translate('Instructor'),
                         'url' => route('instructor.list'),
                         'is_active' => is_active('instructor.list'),
@@ -1991,27 +1992,9 @@ if (!function_exists('get_menus')) {
 
                     ],
                     [
-                        'name' => translate('Blogs'),
-                        'url' => route('blog.list'),
-                        'is_active' => is_active('blog.list'),
-
-                    ],
-                    [
                         'name' => translate('About Us'),
                         'url' => route('about.us'),
                         'is_active' => is_active('about.us'),
-
-                    ],
-                    [
-                        'name' => translate('Privacy & Policy'),
-                        'url' => route('privacy.policy'),
-                        'is_active' => is_active('privacy.policy'),
-
-                    ],
-                    [
-                        'name' => translate('Terms & Condition'),
-                        'url' => route('terms.condition'),
-                        'is_active' => is_active('terms.condition'),
 
                     ],
                 ]
@@ -2027,6 +2010,32 @@ if (!function_exists('get_menus')) {
     }
 }
 
+if (!function_exists('strip_footer_excluded_links')) {
+    /**
+     * Remove from HTML footer menu links for News, Help, FAQ, Course Bundle (and blog/bundle/faq/help URLs).
+     *
+     * @param string $html
+     * @return string
+     */
+    function strip_footer_excluded_links($html)
+    {
+        if (!is_string($html) || trim($html) === '') {
+            return $html;
+        }
+        $patterns = [
+            '/<a\s[^>]*href\s*=\s*["\'][^"\']*(?:blog|blogs|bundle|bundles|faq|help)[^"\']*["\'][^>]*>[\s\S]*?<\/a>/iu',
+            '/<a\s[^>]*>[\s\S]*?\bNews\b[\s\S]*?<\/a>/iu',
+            '/<a\s[^>]*>[\s\S]*?\bHelp\b[\s\S]*?<\/a>/iu',
+            '/<a\s[^>]*>[\s\S]*?\bFAQ\b[\s\S]*?<\/a>/iu',
+            '/<a\s[^>]*>[\s\S]*?Course\s*Bundle[\s\S]*?<\/a>/iu',
+        ];
+        $result = $html;
+        foreach ($patterns as $pattern) {
+            $result = preg_replace($pattern, '', $result);
+        }
+        return $result;
+    }
+}
 
 if (!function_exists('assets')) {
     /**
@@ -2070,6 +2079,17 @@ if (!function_exists('get_heroes')) {
     function get_heroes()
     {
         return Hero::get();
+    }
+}
+
+if (!function_exists('get_default_hero')) {
+    /**
+     * Get the default hero for sliders (used when only one hero option is allowed).
+     */
+    function get_default_hero()
+    {
+        return Hero::where('title', 'Default Hero Slider')->first()
+            ?? Hero::first();
     }
 }
 

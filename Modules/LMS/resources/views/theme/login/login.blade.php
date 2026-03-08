@@ -10,16 +10,13 @@
 
     <div class="min-w-full min-h-screen flex items-center">
         <div class="grow min-h-screen h-full w-full lg:w-1/2 p-3 bg-primary-50 hidden lg:flex-center">
-            <img src="{{ edulab_global_asset('lms/frontend/assets/images/auth/auth-loti.svg') }}" alt="loti">
+            <img data-src="{{ edulab_global_asset('lms/frontend/assets/images/auth/auth-loti.svg') }}" alt="loti">
         </div>
         <div class="grow min-h-screen h-full w-full lg:w-1/2 pt-32 pb-12 px-3 lg:p-3 flex-center flex-col">
-            <h2 class="area-title">Sign In!</h2>
+            <h2 class="area-title">{{ translate('Sign In') }}!</h2>
             <p class="area-description max-w-screen-sm mx-auto text-center mt-5">
-                Discover, learn, and thrive with us.
-                Experience a smooth and rewarding educational adventure.
-                Let's get started!
+                {{ translate('Discover, learn, and thrive with us.') }}
             </p>
-
 
             <div class="dashkit-tab flex-center gap-2 flex-wrap mt-10" id="userRegisterTab">
                 <button type="button" aria-label="Login tab for Student"
@@ -83,7 +80,7 @@
 
                             <div class="col-span-full">
                                 <button type="submit" aria-label="Login"
-                                    class="btn b-solid btn-secondary-solid !text-heading dark:text-white btn-xl !rounded-full font-bold w-full h-12">
+                                    class="btn b-solid btn-secondary-solid !text-white btn-xl !rounded-full font-bold w-full h-12">
                                     Log in
                                 </button>
                             </div>
@@ -91,13 +88,12 @@
                     </form>
                 </div>
             </div>
-            <div
-                class="flex-center w-full max-w-screen-sm py-6 h-max relative text-heading dark:text-white font-normal before:absolute inset-0 before:w-full before:h-px before:bg-border">
-                <span class="relative z-10 px-5 bg-white text-sm">OR</span>
+            <div class="flex-center w-full max-w-screen-sm py-6 h-max relative text-heading dark:text-white font-normal before:absolute inset-0 before:w-full before:h-px before:bg-border">
+                <span class="relative z-10 px-5 bg-white dark:bg-dark-card text-sm">OR</span>
             </div>
-            <div class="text-heading">
+            <div class="text-heading dark:text-white text-center text-sm w-full max-w-screen-sm">
                 Don't have an account yet?
-                <a href="{{ route('register.page') }}" class="text-primary hover:underline"
+                <a href="{{ route('register.page') }}" class="text-primary hover:underline font-medium"
                     aria-label="Sign up page">Sign up</a>
             </div>
         </div>

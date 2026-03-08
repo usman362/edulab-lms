@@ -26,11 +26,6 @@
                     </a>
                     <ul class="flex flex-col">
                         <li>
-                            <a href="{{ route('bundle.list') }}" aria-label="Menu link" class="sub-menu-link">
-                                {{ translate('Course Bundle') }}
-                            </a>
-                        </li>
-                        <li>
                             <a href="{{ route('instructor.list') }}" aria-label="Menu link" class="sub-menu-link">
                                 {{ translate('Instructor') }}
                             </a>
@@ -41,11 +36,6 @@
                             </a>
                         </li>
                     </ul>
-                </li>
-                <li>
-                    <a href="{{ route('blog.list') }}" aria-label="Menu link" class="inline-block w-full py-3 hover:text-primary [&.active]:text-primary custom-transition">
-                        {{ translate('Blogs') }}
-                    </a>
                 </li>
                 <li>
                     <a href="{{ route('contact.page') }}" aria-label="Menu link" class="inline-block w-full py-3 hover:text-primary [&.active]:text-primary custom-transition">

@@ -1,5 +1,13 @@
 @php
-    $logoName = get_theme_option(key: 'footer_logo', parent_key: 'theme_logo') ?? null;
+    $themeLogo = get_theme_option(key: 'theme_logo') ?? [];
+    $backendLogo = get_theme_option(key: 'backend_logo') ?? [];
+    $logoName = !empty($themeLogo['footer_logo']) ? $themeLogo['footer_logo'] : (!empty($themeLogo['logo']) ? $themeLogo['logo'] : (get_theme_option(key: 'footer_logo', parent_key: 'theme_logo') ?? null));
+    if (empty($logoName)) {
+        $logoName = get_theme_option(key: 'logo', parent_key: 'theme_logo') ?? null;
+    }
+    if (empty($logoName) && !empty($backendLogo['logo'])) {
+        $logoName = $backendLogo['logo'];
+    }
     $footerLogo =
         $logoName && fileExists('lms/theme-options', $logoName) == true
             ? edulab_asset("lms/theme-options/{$logoName}")
@@ -38,7 +46,7 @@
                 <!-- FOOTER WIDGET TWO -->
                 <div class="col-span-full md:col-span-6 lg:col-span-2">
                     <h6 class="text-white text-xl font-bold leading-none">{{ $top['two_title'] ?? '' }}</h6>
-                    <div class="footer-widget-one"> {!! clean($top['two_menu'] ?? '') !!}</div>
+                    <div class="footer-widget-one"> {!! clean(strip_footer_excluded_links($top['two_menu'] ?? '')) !!}</div>
                 </div>
             @endif
 
@@ -46,7 +54,7 @@
                 <!-- FOOTER WIDGET THREE -->
                 <div class="col-span-full md:col-span-6 lg:col-span-2">
                     <h6 class="text-white text-xl font-bold leading-none">{{ $top['three_title'] ?? '' }}</h6>
-                    <div class="footer-widget-one"> {!! clean($top['three_menu'] ?? '') !!}</div>
+                    <div class="footer-widget-one"> {!! clean(strip_footer_excluded_links($top['three_menu'] ?? '')) !!}</div>
                 </div>
             @endif
 

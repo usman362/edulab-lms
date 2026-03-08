@@ -13,7 +13,7 @@
     <x-portal::admin.breadcrumb back-url="{{ route('support-ticket.category.index') }}"
         title="{{ isset($supportCategory) ? 'Edit' : 'Create' }} Support Category" page-to="Support" />
 
-    @if (is_active('support-ticket.category.translate') === 'active')
+    @if (is_active('support-ticket.category.translate') === 'active' && count(app('languages')) > 1)
         <div class="flex items-center justify-end gap-4 mb-2">
             <h2 class="card-title">{{ translate('Translate Language') }}</h2>
             <form method="GET" class="sm:block" id="change-translate-language">

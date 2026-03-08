@@ -161,7 +161,7 @@ class DashboardController extends Controller
                 ];
             }
             // $response = Http::asForm()->post(
-            //     'http://license.codexshaper.com/api/purchase/verify',
+            //     config('services.license_api_url', '') . '/api/purchase/verify',
             //     [
             //         'license_code' => $request->license_code,
             //         'email' => $request->email,

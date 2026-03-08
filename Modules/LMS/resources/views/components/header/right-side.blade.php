@@ -31,7 +31,7 @@
     @endphp
 @endauth
 
-@if ($isShowLanguage)
+@if (false && $isShowLanguage && count(app('languages')) > 1)
     <div class="flex items-center justify-end space-x-5 divide-x divide-white/15 [&>:not(:first-child)]:pl-5 grow">
         @if (count(app('languages')) > 0)
             <div class="flex items-center">
@@ -106,7 +106,7 @@
     @endauth
     @if (!Auth::guard('admin')->check() && !Auth::guard('web')->check() && ($register['is_show'] ?? true))
         <a href="{{ $register['url'] ?? route('auth.register') }}" aria-label="Registration"
-            class="{{ $register['link_class'] ?? 'hidden md:flex btn b-solid btn-secondary-solid h-11 !rounded-full !text-heading font-semibold' }}">
+            class="{{ $register['link_class'] ?? 'hidden md:flex btn b-solid btn-secondary-solid h-11 !rounded-full !text-white font-semibold' }}">
             {{ translate($register['label'] ?? 'Sign up') }}
             @if ($register['show_icon'] ?? true)
                 <span class="hidden md:block">

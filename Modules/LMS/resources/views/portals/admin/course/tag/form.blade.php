@@ -12,7 +12,7 @@ if ($tag && $locale) {
     <!-- BREADCRUMB -->
     <x-portal::admin.breadcrumb back-url="{{ route('tag.index') }}" title="{{ isset($tag) ? 'Edit' : 'Create' }}"
         page-to="Tag" />
-    @if (is_active('tag.translate') === 'active')
+    @if (is_active('tag.translate') === 'active' && count(app('languages')) > 1)
     <div class="flex items-center justify-end gap-4 mb-2">
         <h2 class="card-title">{{ translate('Translate Language') }}</h2>
         <form method="GET" class="sm:block" id="change-translate-language">

@@ -15,7 +15,7 @@ if ($category && $locale) {
     <x-portal::admin.breadcrumb back-url="{{ route('blog.category.index') }}"
         title="{{ isset($category) ? 'Edit' : 'Create' }}" page-to="Category" />
 
-    @if (is_active('blog.category.translate') === 'active')
+    @if (is_active('blog.category.translate') === 'active' && count(app('languages')) > 1)
     <div class="flex items-center justify-end gap-4 mb-2">
         <h2 class="card-title">{{ translate('Translate Language') }}</h2>
         <form method="GET" class="sm:block" id="change-translate-language">

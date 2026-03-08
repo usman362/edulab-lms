@@ -317,6 +317,8 @@ Route::group(
 
 
         Route::get('backend-setting', [ThemeSettingController::class,  'backendSetting'])->name('backend-setting.index');
+        Route::get('blogs-settings', [ThemeSettingController::class, 'blogsSettings'])->name('blogs-settings.index');
+        Route::get('home-slider-settings', [ThemeSettingController::class, 'homeSliderSettings'])->name('home-slider-settings.index');
         Route::get('site-language', [LanguageController::class, 'siteLanguage'])->name('site.language');
         Route::get('site-language/translate/{id}', [LanguageController::class, 'translate'])->name('site.language.translate');
 

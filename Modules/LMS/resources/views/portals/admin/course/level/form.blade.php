@@ -12,7 +12,7 @@ if ($level && $locale) {
     <!-- BREADCRUMB -->
     <x-portal::admin.breadcrumb title="{{ isset($level) ? 'Edit' : 'Create' }}" page-to="Level"
         back-url="{{ route('level.index') }}" />
-    @if (is_active('level.translate') === 'active')
+    @if (is_active('level.translate') === 'active' && count(app('languages')) > 1)
     <div class="flex items-center justify-end gap-4 mb-2">
         <h2 class="card-title">{{ translate('Translate Language') }}</h2>
         <form method="GET" class="sm:block" id="change-translate-language">

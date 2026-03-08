@@ -10,6 +10,7 @@ class SetDefaultSettingsCommand extends Command
     protected $signature = 'lms:set-settings 
                             {--app_name= : Application name} 
                             {--contact_email= : Contact email}
+                            {--primary_color=#0d9488 : Primary color (hex, used on frontend)}
                             {--max_devices=2 : Max devices per user (1 or 2)}
                             {--currency=USD-$ : Currency code}
                             {--time_zone=UTC : Time zone}
@@ -22,6 +23,10 @@ class SetDefaultSettingsCommand extends Command
     {
         $appName = $this->option('app_name') ?: config('app.name', 'LMS');
         $contactEmail = $this->option('contact_email') ?: 'admin@gmail.com';
+        $primaryColor = $this->option('primary_color') ?: '#0d9488';
+        if (!preg_match('/^#[0-9A-Fa-f]{6}$/', $primaryColor)) {
+            $primaryColor = '#0d9488';
+        }
         $maxDevices = (int) ($this->option('max_devices') ?: 2);
         $maxDevices = in_array($maxDevices, [1, 2], true) ? $maxDevices : 2;
         $currency = $this->option('currency') ?: 'USD-$';
@@ -34,11 +39,15 @@ class SetDefaultSettingsCommand extends Command
 
         $content['app_name'] = $appName;
         $content['contact_email'] = $contactEmail;
+        $content['primary_color'] = $primaryColor;
         $content['max_devices_per_user'] = $maxDevices;
         $content['currency'] = $currency;
         $content['time_zone'] = $timeZone;
         $content['date_format'] = $dateFormat;
         $content['platform_fee'] = $platformFee;
+        $content['footer_copyright'] = $content['footer_copyright'] ?? '';
+        $content['footer_menu'] = $content['footer_menu'] ?? '';
+        $content['footer_show_bottom'] = $content['footer_show_bottom'] ?? '1';
 
         ThemeSetting::updateOrCreate(
             ['key' => 'backend_general'],
@@ -55,6 +64,7 @@ class SetDefaultSettingsCommand extends Command
             [
                 ['Application Name', $appName],
                 ['Contact Email', $contactEmail],
+                ['Primary Color', $primaryColor],
                 ['Max devices per user', (string) $maxDevices],
                 ['Currency', $currency],
                 ['Time Zone', $timeZone],

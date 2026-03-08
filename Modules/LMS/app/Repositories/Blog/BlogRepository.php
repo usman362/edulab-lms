@@ -188,10 +188,14 @@ class BlogRepository extends BaseRepository
 
 
         // Fetch the results with necessary relations and status filter
+        $blogsSettings = get_theme_option(key: 'blogs_settings') ?? [];
+        $perPage = (int) ($blogsSettings['posts_per_page'] ?? 9);
+        $perPage = $perPage >= 1 && $perPage <= 50 ? $perPage : 9;
+
         return $blogs->with('adminAuthor', 'author', 'translations')
             ->where('status', 1)
             ->latest()
-            ->paginate(6);
+            ->paginate($perPage);
     }
 
     /**

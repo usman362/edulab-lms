@@ -6,7 +6,11 @@
 
     $socials = get_theme_option(key: 'socials', parent_key: 'social') ?? [];
     $menus = $data['menus'] ?? get_menus();
-    $childMenus = $menus['course_bundle']['childs'] ?? [];
+    $childMenus = collect($menus['course_bundle']['childs'] ?? [])->filter(function ($item) {
+        $name = $item['name'] ?? '';
+        $excluded = [translate('News'), translate('Help'), translate('FAQ'), translate('Course Bundle'), 'News', 'Help', 'FAQ', 'Course Bundle'];
+        return !in_array($name, $excluded, true) && !str_contains(strtolower($item['url'] ?? ''), 'blog') && !str_contains(strtolower($item['url'] ?? ''), 'bundle') && !str_contains(strtolower($item['url'] ?? ''), 'faq') && !str_contains(strtolower($item['url'] ?? ''), 'help');
+    })->values()->all();
 
 @endphp
 
@@ -40,10 +44,6 @@
                                 </li>
                             @endif
                         @endforeach
-
-                        @php
-                            $childMenus = $menus['course_bundle']['childs'] ?? [];
-                        @endphp
 
                         @foreach ($childMenus as $key => $menu)
                             @php

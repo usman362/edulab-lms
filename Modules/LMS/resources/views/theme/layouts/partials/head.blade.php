@@ -1,6 +1,8 @@
 @php
     $backendSetting = get_theme_option(key: 'backend_general') ?? [];
-    $logo = $data['logo_options'] ?? get_theme_option(key: 'theme_logo');
+    $backendLogo = get_theme_option(key: 'backend_logo') ?? [];
+    $themeLogo = $data['logo_options'] ?? get_theme_option(key: 'theme_logo') ?? [];
+    $logo = !empty($themeLogo['logo']) || !empty($themeLogo['favicon']) ? $themeLogo : $backendLogo;
 
     $defaultFavIcon =
         isset($logo['favicon']) && fileExists('lms/theme-options', $logo['favicon']) == true
@@ -11,6 +13,10 @@
     $customScript = get_theme_option('custom_script') ?? [];
     $customCss = $customScript['custom_css'] ?? '';
     $customJs = $customScript['custom_js'] ?? '';
+    $primaryColor = $backendSetting['primary_color'] ?? '#0d9488';
+    if (!preg_match('/^#[0-9A-Fa-f]{6}$/', $primaryColor)) {
+        $primaryColor = '#0d9488';
+    }
 @endphp
 
 <!DOCTYPE html>
@@ -37,4 +43,10 @@
             {!! $customCss !!}
         </style>
     @endif
+    <style>
+        :root {
+            --color-primary: {{ $primaryColor }};
+            --color-secondary: {{ $primaryColor }};
+        }
+    </style>
 </head>

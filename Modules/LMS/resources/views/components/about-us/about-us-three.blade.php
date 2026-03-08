@@ -27,7 +27,7 @@
                     </p>
                     {!! clean($aboutUs['add_description'] ?? '') !!}
                     <a href=" {{ route('about.us') }} "
-                        class="btn b-solid btn-secondary-solid btn-lg !text-heading mt-11"
+                        class="btn b-solid btn-secondary-solid btn-lg !text-white mt-11"
                         aria-label="View More Details">
                         {{ translate('View More Details') }}
                     </a>

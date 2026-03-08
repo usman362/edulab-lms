@@ -6,7 +6,11 @@
 
     $socials = get_theme_option(key: 'socials', parent_key: 'social') ?? [];
     $menus = $data['menus'] ?? get_menus();
-    $childMenus = $menus['course_bundle']['childs'] ?? [];
+    $childMenus = collect($menus['course_bundle']['childs'] ?? [])->filter(function ($item) {
+        $name = $item['name'] ?? '';
+        $excluded = [translate('News'), translate('Help'), translate('FAQ'), translate('Course Bundle'), 'News', 'Help', 'FAQ', 'Course Bundle'];
+        return !in_array($name, $excluded, true) && !str_contains(strtolower($item['url'] ?? ''), 'blog') && !str_contains(strtolower($item['url'] ?? ''), 'bundle') && !str_contains(strtolower($item['url'] ?? ''), 'faq') && !str_contains(strtolower($item['url'] ?? ''), 'help');
+    })->values()->all();
 @endphp
 
 <div class="pt-[300px] pb-24 lg:pb-32 bg-[url('../../assets/images/footer/footer-bg-line.png')] bg-no-repeat bg-center relative z-[1]">

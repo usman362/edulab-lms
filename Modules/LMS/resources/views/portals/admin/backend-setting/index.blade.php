@@ -46,7 +46,7 @@
                     <a href="{{ route('cache.optimize') }}" class="btn b-solid btn-primary-solid"
                         title="{{ translate('Best for production performance') }}.">{{ translate('Optimize Cache') }}</a>
                     <a href="{{ route('storage.link') }}"
-                        class="btn b-solid btn-secondary-solid">{{ translate('Storage Link') }}</a>
+                        class="btn b-solid btn-secondary-solid !text-white">{{ translate('Storage Link') }}</a>
                 </div>
                 @php
                     $backendSetting = get_theme_option(key: 'backend_general') ?? [];
@@ -95,11 +95,25 @@
                                 value="{{ $backendSetting['contact_email'] ?? '' }}">
                         </div>
                         <div class="leading-none mt-6">
-                            <label class="form-label"> {{ translate('Contact Email') }} </label>
-                            <input type="text" name="contact_email"
-                                placeholder="{{ translate('Enter Your Contact Email') }}" class="form-input"
-                                value="{{ $backendSetting['contact_email'] ?? '' }}">
+                            <label class="form-label"> {{ translate('Primary Color') }} </label>
+                            <div class="flex items-center gap-3">
+                                <input type="color" id="primary_color_picker" class="h-10 w-14 cursor-pointer rounded border border-gray-300 dark:border-dark-border"
+                                    value="{{ $backendSetting['primary_color'] ?? '#0d9488' }}" title="{{ translate('Theme primary color (frontend)') }}">
+                                <input type="text" name="primary_color" id="primary_color_hex" class="form-input w-32 font-mono text-sm"
+                                    value="{{ $backendSetting['primary_color'] ?? '#0d9488' }}" placeholder="#0d9488" maxlength="7">
+                            </div>
+                            <p class="text-sm text-gray-500 dark:text-dark-text mt-1">{{ translate('Used for frontend theme (buttons, links).') }}</p>
                         </div>
+                        <script>
+                            document.addEventListener('DOMContentLoaded', function() {
+                                var picker = document.getElementById('primary_color_picker');
+                                var hex = document.getElementById('primary_color_hex');
+                                if (picker && hex) {
+                                    picker.addEventListener('input', function() { hex.value = picker.value; });
+                                    hex.addEventListener('input', function() { if (/^#[0-9A-Fa-f]{6}$/.test(hex.value)) picker.value = hex.value; });
+                                }
+                            });
+                        </script>
                         <div class="leading-none mt-6">
                             <label class="form-label"> {{ translate('Max devices per user') }} </label>
                             <select class="form-input" name="max_devices_per_user">
@@ -159,6 +173,22 @@
                                 <option value="j M, Y"
                                     {{ old('date_format', $backendGeneral['date_format'] ?? null) == 'j M, Y' ? 'selected' : '' }}>
                                     30 Oct, 2023</option>
+                            </select>
+                        </div>
+                        <div class="leading-none mt-6">
+                            <label class="form-label"> {{ translate('Footer copyright') }} </label>
+                            <textarea name="footer_copyright" class="form-input" rows="2" placeholder="e.g. &copy; {{ date('Y') }} Your Site. All rights reserved.">{{ $backendSetting['footer_copyright'] ?? '' }}</textarea>
+                            <p class="text-sm text-gray-500 dark:text-dark-text mt-1">{{ translate('Shown in frontend footer. Leave empty to hide or use theme option.') }}</p>
+                        </div>
+                        <div class="leading-none mt-6">
+                            <label class="form-label"> {{ translate('Footer menu (links HTML)') }} </label>
+                            <textarea name="footer_menu" class="form-input" rows="2" placeholder="e.g. &lt;a href=&quot;/about-us&quot;&gt;About&lt;/a&gt; &lt;a href=&quot;/contact&quot;&gt;Contact&lt;/a&gt;">{{ $backendSetting['footer_menu'] ?? '' }}</textarea>
+                        </div>
+                        <div class="leading-none mt-6">
+                            <label class="form-label"> {{ translate('Show footer bottom bar') }} </label>
+                            <select class="form-input" name="footer_show_bottom">
+                                <option value="1" {{ !isset($backendSetting['footer_show_bottom']) || $backendSetting['footer_show_bottom'] !== '0' ? 'selected' : '' }}>{{ translate('Yes') }}</option>
+                                <option value="0" {{ isset($backendSetting['footer_show_bottom']) && $backendSetting['footer_show_bottom'] == '0' ? 'selected' : '' }}>{{ translate('No') }}</option>
                             </select>
                         </div>
                     </div>

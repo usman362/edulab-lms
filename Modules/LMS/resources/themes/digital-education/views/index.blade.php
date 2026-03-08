@@ -2,15 +2,20 @@
     $logo_options =
         get_theme_option(key: 'theme_logo', theme_slug: 'digital-education') ??
         (get_theme_option(key: 'theme_logo') ?? []);
-
+    $backendLogo = get_theme_option(key: 'backend_logo') ?? [];
+    if (empty($logo_options['logo']) && empty($logo_options['favicon'])) {
+        $logo_options = $backendLogo;
+    }
+    $logoFile = $logo_options['logo'] ?? null;
+    $footerLogoFile = $logo_options['footer_logo'] ?? $logoFile;
     $defaultLogo =
-        isset($logo_options['logo']) && fileExists('lms/theme-options', $logo_options['logo']) == true
-            ? edulab_asset("lms/theme-options/{$logo_options['logo']}")
+        $logoFile && fileExists('lms/theme-options', $logoFile) == true
+            ? edulab_asset("lms/theme-options/{$logoFile}")
             : edulab_global_asset('lms/frontend/assets/images/logo/default-logo-dark.svg');
 
     $footerLogo =
-        isset($logo_options['footer_logo']) && fileExists('lms/theme-options', $logo_options['footer_logo']) == true
-            ? edulab_asset("lms/theme-options/{$logo_options['footer_logo']}")
+        $footerLogoFile && fileExists('lms/theme-options', $footerLogoFile) == true
+            ? edulab_asset("lms/theme-options/{$footerLogoFile}")
             : edulab_global_asset('lms/frontend/assets/images/logo/default-logo-dark.svg');
 
     $favIcon =
@@ -107,10 +112,6 @@
     <x-digital-education:theme::course.new-course :courses="$data['courses']" :course-categories="$data['course_categories']" />
     <!-- END OUR NEW COURSE AREA -->
 
-    <!-- START OUR NEW COURSE AREA -->
-    <x-digital-education:theme::course.bundle-course :bundles="$data['bundles']" />
-    <!-- END OUR NEW COURSE AREA -->
-
     <!-- START CATEGORY AREA -->
     <x-digital-education:theme::category.top-category :categories="$data['categories']" />
     <!-- END CATEGORY AREA -->
@@ -122,10 +123,6 @@
     <!-- START CONTACT AREA -->
     <x-digital-education:theme::contact.contact />
     <!-- END CONTACT AREA -->
-
-    <!-- START BLOG AREA -->
-    <x-digital-education:theme::blog.blog :blogs="$data['blogs']" />
-    <!-- END BLOG AREA -->
 
     <!-- START SUBSCRIPTION AREA -->
     @if (module_enable_check('subscription'))

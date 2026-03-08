@@ -207,27 +207,12 @@ class HomeController extends Controller
 
     public function policyContent()
     {
-        $page = Page::where('url', 'privacy-policy')->first();
-        if (!$page) {
-            return view('theme::404');
-        }
-        // no need to translate function because this title translation into breadcrumb card
-
-        $title = "Privacy and Policy";
-
-
-        return view('theme::page', compact('title', 'page'));
+        abort(404);
     }
 
     public function termsCondition()
     {
-        // no need to translate function because this title translation into breadcrumb card
-        $title = "Terms and Condition";
-        $page = Page::where('url', 'terms-conditions')->first();
-        if (!$page) {
-            return view('theme::404');
-        }
-        return view('theme::page', compact('title', 'page'));
+        abort(404);
     }
 
     public function categoryList()
