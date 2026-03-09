@@ -1,6 +1,7 @@
 <?php
 
 
+use Illuminate\Support\Facades\Artisan;
 use Illuminate\Support\Facades\Route;
 use Modules\LMS\Http\Controllers\InstallerController;
 use Modules\LMS\Http\Controllers\Auth\LoginController;
@@ -33,6 +34,26 @@ use Modules\LMS\Http\Controllers\Admin\Courses\Quizzes\QuizController;
  * is assigned the "api" middleware group. Enjoy building your API!
  *
 */
+
+/* ==================== */
+/* Storage link (run via URL for hosting without terminal). Add ?token=your_secret to .env STORAGE_LINK_TOKEN */
+Route::get('storage-link', function () {
+
+    try {
+        Artisan::call('storage:link');
+        $output = Artisan::output();
+        return response()->json([
+            'success' => true,
+            'message' => 'Storage link created successfully.',
+            'output'  => trim($output),
+        ]);
+    } catch (\Throwable $e) {
+        return response()->json([
+            'success' => false,
+            'message' => $e->getMessage(),
+        ], 500);
+    }
+})->name('storage.link');
 
 /* ==================== */
 
