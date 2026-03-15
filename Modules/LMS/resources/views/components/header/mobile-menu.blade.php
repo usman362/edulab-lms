@@ -17,25 +17,28 @@
                 </li>
                 <li>
                     <a href="{{ route('course.list') }}" aria-label="Menu link" class="inline-block w-full py-3 hover:text-primary [&.active]:text-primary custom-transition">
-                        {{ translate('Course') }}
+                        {{ translate('Programs') }}
                     </a>
                 </li>
                 <li>
-                    <a href="#" class="inline-block w-full py-3 hover:text-primary [&.active]:text-primary custom-transition">
-                        {{ translate('Pages') }}
+                    <a href="{{ route('about.us') }}" aria-label="Menu link" class="inline-block w-full py-3 hover:text-primary [&.active]:text-primary custom-transition">
+                        {{ translate('About') }}
                     </a>
-                    <ul class="flex flex-col">
-                        <li>
-                            <a href="{{ route('instructor.list') }}" aria-label="Menu link" class="sub-menu-link">
-                                {{ translate('Instructor') }}
-                            </a>
-                        </li>
-                        <li>
-                            <a href="{{ route('organization.list') }}" aria-label="Menu link" class="sub-menu-link">
-                                {{ translate('Organization') }}
-                            </a>
-                        </li>
-                    </ul>
+                </li>
+                <li>
+                    <a href="{{ url('/page/online-platform') }}" aria-label="Menu link" class="inline-block w-full py-3 hover:text-primary [&.active]:text-primary custom-transition">
+                        {{ translate('Online Platform') }}
+                    </a>
+                </li>
+                <li>
+                    <a href="{{ url('/page/free-resources') }}" aria-label="Menu link" class="inline-block w-full py-3 hover:text-primary [&.active]:text-primary custom-transition">
+                        {{ translate('Free Resources') }}
+                    </a>
+                </li>
+                <li>
+                    <a href="{{ url('/page/workshop') }}" aria-label="Menu link" class="inline-block w-full py-3 hover:text-primary [&.active]:text-primary custom-transition">
+                        {{ translate('Workshop') }}
+                    </a>
                 </li>
                 <li>
                     <a href="{{ route('contact.page') }}" aria-label="Menu link" class="inline-block w-full py-3 hover:text-primary [&.active]:text-primary custom-transition">

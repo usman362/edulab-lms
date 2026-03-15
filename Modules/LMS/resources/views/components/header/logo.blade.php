@@ -12,6 +12,6 @@
     $logo = $defaultLogo ?? $mainLogo;
 @endphp
 <!-- LOGO -->
-<a href="{{ route('home.index') }}" class="flex-center">
-    <img data-src="{{ $logo }}" alt="Header logo" class="max-w-24 sm:max-w-40">
+<a href="{{ route('home.index') }}" class="flex-center shrink-0">
+    <img data-src="{{ $logo }}" src="{{ $logo }}" alt="Header logo" style="max-height:48px;width:auto;" class="object-contain">
 </a>

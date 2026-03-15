@@ -105,14 +105,12 @@
         @endif
     @endauth
     @if (!Auth::guard('admin')->check() && !Auth::guard('web')->check() && ($register['is_show'] ?? true))
-        <a href="{{ $register['url'] ?? route('auth.register') }}" aria-label="Registration"
+        <a href="{{ route('contact.page') }}" aria-label="Enquire Now"
             class="{{ $register['link_class'] ?? 'hidden md:flex btn b-solid btn-secondary-solid h-11 !rounded-full !text-white font-semibold' }}">
-            {{ translate($register['label'] ?? 'Sign up') }}
-            @if ($register['show_icon'] ?? true)
-                <span class="hidden md:block">
-                    <i class="{{ $register['link_icon'] ?? 'ri-arrow-right-up-line' }}"></i>
-                </span>
-            @endif
+            {{ translate('Enquire Now') }}
+            <span class="hidden md:block">
+                <i class="ri-arrow-right-up-line"></i>
+            </span>
         </a>
     @endif
 </div>

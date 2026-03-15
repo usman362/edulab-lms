@@ -25,8 +25,9 @@
 <head>
     <meta charset="utf-8">
     <meta http-equiv="x-ua-compatible" content="ie=edge">
-    <title>{{ $backendSetting['app_name'] ?? translate('LMS') }}</title>
-    <meta name="description" content="web development agency">
+    <title>{{ $backendSetting['app_name'] ?? translate('Ace Academics') }} — Expert Tutoring in Brisbane</title>
+    <meta name="description" content="{{ $backendSetting['site_description'] ?? 'Ace Academics — Achieve academic excellence with expert tutors in Brisbane. Selective School, NAPLAN, ATAR & Scholarship Exam Preparation.' }}">
+    <meta name="keywords" content="{{ $backendSetting['site_keywords'] ?? 'tutoring, Brisbane, ATAR, NAPLAN, selective school, scholarship, UCAT, Ace Academics' }}">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <meta name="csrf-token" content="{{ csrf_token() }}">
     <link rel="shortcut icon" type="image/x-icon" href="{{ $favIcon }}">

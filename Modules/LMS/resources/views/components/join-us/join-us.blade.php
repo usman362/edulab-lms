@@ -4,12 +4,12 @@
         <div class="grid grid-cols-12 gap-7">
             <div class="col-span-full lg:col-span-7 self-end relative">
                 <div class="area-subtitle">
-                    {{ translate('Intro') }}
+                    {{ translate('Get Started') }}
                 </div>
                 <h2 class="area-title mt-2">
-                    {{ translate('Become an ') }}
+                    {{ translate('Join Ace ') }}
                     <span class="title-highlight-one">
-                        {{ translate('Instructor') }}
+                        {{ translate('Academics') }}
                     </span>
                 </h2>
                 <div class="mt-10 rounded-2xl overflow-hidden">

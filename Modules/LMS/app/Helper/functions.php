@@ -1970,34 +1970,30 @@ if (!function_exists('get_menus')) {
                 'is_active' => is_active('home.index'),
                 'childs' => [],
             ],
-            'course_list' => [
-                'name' => translate('Course'),
+            'programs' => [
+                'name' => translate('Programs'),
                 'url' => route('course.list'),
-                'is_active' => is_active('course.list')
+                'is_active' => is_active('course.list'),
             ],
-            'course_bundle' => [
-                'name' => translate('Pages'),
-                'url' => '#',
-                'is_active' => is_active('course.bundle') || is_active('instructor.list') || is_active('organization.list'),
-                'childs' => [
-                    [
-                        'name' => translate('Instructor'),
-                        'url' => route('instructor.list'),
-                        'is_active' => is_active('instructor.list'),
-                    ],
-                    [
-                        'name' => translate('Organization'),
-                        'url' => route('organization.list'),
-                        'is_active' => is_active('organization.list'),
-
-                    ],
-                    [
-                        'name' => translate('About Us'),
-                        'url' => route('about.us'),
-                        'is_active' => is_active('about.us'),
-
-                    ],
-                ]
+            'about' => [
+                'name' => translate('About'),
+                'url' => route('about.us'),
+                'is_active' => is_active('about.us'),
+            ],
+            'online_platform' => [
+                'name' => translate('Online Platform'),
+                'url' => url('/page/online-platform'),
+                'is_active' => request()->is('page/online-platform'),
+            ],
+            'free_resources' => [
+                'name' => translate('Free Resources'),
+                'url' => url('/page/free-resources'),
+                'is_active' => request()->is('page/free-resources'),
+            ],
+            'workshop' => [
+                'name' => translate('Workshop'),
+                'url' => url('/page/workshop'),
+                'is_active' => request()->is('page/workshop'),
             ],
             'contact' => [
                 'name' => translate('Contact'),

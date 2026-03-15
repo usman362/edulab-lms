@@ -21,7 +21,7 @@
                                 <path d="M15.5713 1.71411L8.49989 6.74983L1.42847 1.71411" stroke="#5F3EED"
                                     stroke-width="1.5" stroke-linecap="square" stroke-linejoin="round" />
                             </svg>
-                            <a href="mailto:example@gmail.com" aria-label="Company mail"
+                            <a href="mailto:{{ $general['email'] ?? 'admin@aceacademic.com.au' }}" aria-label="Company mail"
                                 class="text-sm !leading-none font-semibold text-white/80 hover:text-white custom-transition">
                                 {{ $general['email'] }}</a>
                         </div>

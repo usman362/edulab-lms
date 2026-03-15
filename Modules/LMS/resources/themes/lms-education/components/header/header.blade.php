@@ -15,7 +15,7 @@
                 <x-dynamic-component component='{{ "{$theme}:theme::header.logo" }}' :theme="$theme" :default-logo="$data['default_logo'] ?? null" />
                 <x-dynamic-component component='{{ "{$theme}:theme::header.menu-one" }}' :menus="$data['menus'] ?? []" :theme="$theme" :class="$data['menu_class'] ?? []" />
                 <!-- ACTIONS -->
-                <div class="self-end flex items-center gap-5">
+                <div class="self-end flex items-center gap-3 shrink-0">
                     <!-- SEARCH -->
                     @if( $search['is_show'] ?? true )
                         <x-dynamic-component component='{{ "default:theme::header.search" }}' :theme="$theme" :class="$data['search_class'] ?? []" />

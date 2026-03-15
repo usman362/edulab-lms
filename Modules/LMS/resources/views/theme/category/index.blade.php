@@ -1,8 +1,8 @@
 <x-frontend-layout>
     <x-theme::breadcrumbs.breadcrumb-one 
-        pageTitle="{{ translate('Categories') }}" 
-        ageRoute="{{ route('category.list') }}"
-        pageName="{{ translate('Categories') }}" 
+        pageTitle="{{ translate('Our Programs') }}"
+        pageRoute="{{ route('category.list') }}"
+        pageName="{{ translate('Programs') }}" 
     />
     <div class="container">
         <div class="grid grid-cols-12 gap-4 xl:gap-6">

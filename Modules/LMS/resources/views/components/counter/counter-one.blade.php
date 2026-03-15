@@ -2,11 +2,11 @@
     $counter = get_theme_option(key: 'counter') ?? [];
     $totalExperience = $counter['total_experience'] ?? 1;
     $totalCourse = get_all_course('approved')->count() ?? [];
-    $totalCourseText = $totalCourse > 0 ? 'Course' : 'Courses';
+    $totalCourseText = $totalCourse > 1 ? 'Programs' : 'Program';
     $totalTutor = get_all_instructor()->count() ?? [];
     $totalTutorText = $totalTutor > 1 ? 'Expert Tutors' : 'Expert Tutor';
     $totalStudent = get_all_student()->count() ?? [];
-    $totalStudentText = $totalStudent > 1 ? 'Satisfied Students' : 'Satisfied Student';
+    $totalStudentText = $totalStudent > 1 ? 'Happy Students' : 'Happy Student';
 @endphp
 <!-- counter -->
 <div class="container max-w-[1600px] my-16 sm:my-24 lg:my-[120px]">

@@ -231,6 +231,18 @@ class HomeController extends Controller
         return view('theme::about-us.index');
     }
 
+    /**
+     * Display a dynamic page by URL slug (from pages table).
+     */
+    public function dynamicPage($url)
+    {
+        $page = Page::where('url', $url)->first();
+        if (!$page) {
+            abort(404);
+        }
+        return view('theme::page.show', compact('page'));
+    }
+
 
     public function addWishlist(Request $request)
     {

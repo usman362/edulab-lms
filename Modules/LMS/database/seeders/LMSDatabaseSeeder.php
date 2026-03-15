@@ -27,6 +27,7 @@ class LMSDatabaseSeeder extends Seeder
                 PaymentSeeder::class,
                 AiServiceTypeSeeder::class,
                 CurrencySeeder::class,
+                AceAcademicsSeeder::class,
 
             ]
         );

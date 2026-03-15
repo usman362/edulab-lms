@@ -7,7 +7,7 @@
 
     if ($totalInstructors > 0) {
         $instructorRoute = route('instructor.list');
-        $instructorBtnText = 'More Instructors';
+        $instructorBtnText = 'Meet All Tutors';
     }
 
     if (isAdmin() && $totalInstructors < 1) {
@@ -22,11 +22,11 @@
         <div class="grid grid-cols-12 gap-4 items-center">
             <div class="col-span-full md:col-span-7 xl:col-span-6 md:pr-20">
                 <div class="area-subtitle">
-                    {{ translate('Our Team Member') }}
+                    {{ translate('Our Team') }}
                 </div>
                 <h2 class="area-title mt-2">
-                    {{ translate('Meet Our Best') }}
-                    <span class="title-highlight-one"> {{ translate('Instructors') }} </span>
+                    {{ translate('Meet Our Expert') }}
+                    <span class="title-highlight-one"> {{ translate('Tutors') }} </span>
                 </h2>
             </div>
             @if ($instructorRoute && $instructorBtnText)

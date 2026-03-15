@@ -56,6 +56,62 @@ Route::get('storage-link', function () {
 })->name('storage.link');
 
 /* ==================== */
+/* Run AceAcademicsSeeder via URL (for hosting without terminal) */
+/* Usage: yourdomain.com/run-seed?token=AceAcademics2024 */
+Route::get('run-seed', function () {
+    $token = request()->query('token');
+    if ($token !== 'AceAcademics2024') {
+        abort(403, 'Invalid token.');
+    }
+    try {
+        Artisan::call('db:seed', [
+            '--class' => 'Modules\\LMS\\Database\\Seeders\\AceAcademicsSeeder',
+            '--force' => true,
+        ]);
+        return response()->json([
+            'success' => true,
+            'message' => 'AceAcademicsSeeder ran successfully. Caches cleared.',
+        ]);
+    } catch (\Throwable $e) {
+        return response()->json([
+            'success' => false,
+            'message' => $e->getMessage(),
+            'trace' => $e->getTraceAsString(),
+        ], 500);
+    }
+});
+
+/* ==================== */
+/* Git Pull via URL (for cPanel hosting without terminal) */
+/* Usage: yourdomain.com/git-pull?token=AceAcademics2024 */
+Route::get('git-pull', function () {
+    $token = request()->query('token');
+    if ($token !== 'AceAcademics2024') {
+        abort(403, 'Invalid token.');
+    }
+    try {
+        $output = [];
+        $returnCode = 0;
+        $basePath = base_path();
+
+        // Git pull
+        exec("cd {$basePath} && git pull 2>&1", $output, $returnCode);
+        $pullOutput = implode("\n", $output);
+
+        return response()->json([
+            'success' => $returnCode === 0,
+            'git_pull' => $pullOutput,
+            'caches' => 'All caches cleared.',
+        ]);
+    } catch (\Throwable $e) {
+        return response()->json([
+            'success' => false,
+            'message' => $e->getMessage(),
+        ], 500);
+    }
+});
+
+/* ==================== */
 
 Route::group(['middleware' => ['checkInstaller']], function () {
     // Home
@@ -117,6 +173,7 @@ Route::group(['middleware' => ['checkInstaller']], function () {
         Route::post('contact', 'store')->name('contact.store');
     });
 
+    Route::get('page/{url}', [HomeController::class, 'dynamicPage'])->name('page.show');
     Route::get('organizations', [OrganizationController::class, 'index'])->name('organization.list');
     Route::get('checkout', [CheckoutController::class, 'checkoutPage'])->name('checkout.page');
     Route::group(['middleware' => ['auth', 'device.limit']], function () {

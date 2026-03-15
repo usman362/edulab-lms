@@ -1,6 +1,6 @@
 <x-frontend-layout>
-    <x-theme::breadcrumbs.breadcrumb-one pageTitle="Our Courses" pageRoute="{{ route('course.list') }}"
-        pageName="Courses" />
+    <x-theme::breadcrumbs.breadcrumb-one pageTitle="Our Programs" pageRoute="{{ route('course.list') }}"
+        pageName="Programs" />
     <!-- START INNER CONTENT AREA -->
     <div class="container">
         <div class="grid grid-cols-12 gap-5">

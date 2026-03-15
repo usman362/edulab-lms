@@ -7,7 +7,7 @@
 
     if (  $totalCategories > 0 ) {
         $categoryRoute = 'category.list';
-        $categoryBtnText = 'View All Category';
+        $categoryBtnText = 'View All Programs';
     }
 
     if (isAdmin() &&  $totalCategories < 1) {
@@ -21,12 +21,12 @@
         <div class="grid grid-cols-12 gap-4 items-center">
             <div class="col-span-full md:col-span-7 xl:col-span-6 md:pr-20">
                 <div class="area-subtitle">
-                    {{ translate('Top Category') }}
+                    {{ translate('Our Programs') }}
                 </div>
                 <h2 class="area-title mt-2">
-                    {{ translate('Optimize Your Brain for Peak') }}
+                    {{ translate('Expert Tutoring for Academic') }}
                     <span class="title-highlight-one">
-                        {{ translate('Performance') }}
+                        {{ translate('Excellence') }}
                     </span>
                 </h2>
             </div>

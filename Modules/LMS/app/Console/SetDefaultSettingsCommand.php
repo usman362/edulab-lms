@@ -22,7 +22,7 @@ class SetDefaultSettingsCommand extends Command
     public function handle(): int
     {
         $appName = $this->option('app_name') ?: config('app.name', 'LMS');
-        $contactEmail = $this->option('contact_email') ?: 'admin@gmail.com';
+        $contactEmail = $this->option('contact_email') ?: 'admin@aceacademic.com.au';
         $primaryColor = $this->option('primary_color') ?: '#0d9488';
         if (!preg_match('/^#[0-9A-Fa-f]{6}$/', $primaryColor)) {
             $primaryColor = '#0d9488';

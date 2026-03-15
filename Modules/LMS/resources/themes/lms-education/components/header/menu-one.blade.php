@@ -9,13 +9,13 @@
 @endphp
 
 <nav class="hidden lg:flex-center">
-    <ul class="flex items-center gap-x-5 gap-y-2 flex-wrap leading-none text-heading font-medium">
+    <ul class="flex items-center gap-x-2 xl:gap-x-4 gap-y-2 flex-wrap leading-none text-heading font-medium text-sm">
         @foreach ($menus as $menu)
             <li
                 class="flex-center {{ isset($menu['childs']) && count($menu['childs']) > 0 ? 'relative group/has-menu' : '' }}">
 
                 <a href="{{ $menu['url'] ?? '#' }}" aria-label="Menu link"
-                    class="inline-block px-2 py-3 hover:text-primary [&.active]:text-primary custom-transition effect-nav-menu {{ $menu['is_active'] ?? '' }}">{{ $menu['name'] ?? translate('No name') }}
+                    class="inline-block px-1.5 xl:px-2 py-3 hover:text-primary [&.active]:text-primary custom-transition effect-nav-menu whitespace-nowrap {{ $menu['is_active'] ?? '' }}">{{ $menu['name'] ?? translate('No name') }}
                 </a>
 
                 @if (isset($menu['childs']) && $menu['childs'])
