@@ -1974,6 +1974,28 @@ if (!function_exists('get_menus')) {
                 'name' => translate('Programs'),
                 'url' => route('course.list'),
                 'is_active' => is_active('course.list'),
+                'childs' => [
+                    [
+                        'name' => translate('Acceleration Class'),
+                        'url' => route('category.course', 'acceleration-class'),
+                        'is_active' => request()->is('category-course/acceleration-class') ? 'active' : '',
+                    ],
+                    [
+                        'name' => translate('UCAT Excellence'),
+                        'url' => route('category.course', 'ucat-excellence'),
+                        'is_active' => request()->is('category-course/ucat-excellence') ? 'active' : '',
+                    ],
+                    [
+                        'name' => translate('Selective Exam Preparation'),
+                        'url' => route('category.course', 'selective-exam-preparation'),
+                        'is_active' => request()->is('category-course/selective-exam-preparation') ? 'active' : '',
+                    ],
+                    [
+                        'name' => translate('View All Programs'),
+                        'url' => route('course.list'),
+                        'is_active' => is_active('course.list'),
+                    ],
+                ],
             ],
             'about' => [
                 'name' => translate('About'),

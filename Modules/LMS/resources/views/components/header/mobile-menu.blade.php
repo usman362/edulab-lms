@@ -16,9 +16,32 @@
                     </a>
                 </li>
                 <li>
-                    <a href="{{ route('course.list') }}" aria-label="Menu link" class="inline-block w-full py-3 hover:text-primary [&.active]:text-primary custom-transition">
-                        {{ translate('Programs') }}
-                    </a>
+                    <button onclick="let sub=this.nextElementSibling;let icon=this.querySelector('i');sub.classList.toggle('hidden');icon.classList.toggle('rotate-180');" class="flex items-center justify-between w-full py-3 hover:text-primary custom-transition">
+                        <span>{{ translate('Programs') }}</span>
+                        <i class="ri-arrow-down-s-line transition-transform duration-200"></i>
+                    </button>
+                    <ul class="hidden pl-4 border-l border-gray-200">
+                        <li>
+                            <a href="{{ route('category.course', 'acceleration-class') }}" class="inline-block w-full py-2 text-sm hover:text-primary custom-transition">
+                                {{ translate('Acceleration Class') }}
+                            </a>
+                        </li>
+                        <li>
+                            <a href="{{ route('category.course', 'ucat-excellence') }}" class="inline-block w-full py-2 text-sm hover:text-primary custom-transition">
+                                {{ translate('UCAT Excellence') }}
+                            </a>
+                        </li>
+                        <li>
+                            <a href="{{ route('category.course', 'selective-exam-preparation') }}" class="inline-block w-full py-2 text-sm hover:text-primary custom-transition">
+                                {{ translate('Selective Exam Preparation') }}
+                            </a>
+                        </li>
+                        <li>
+                            <a href="{{ route('course.list') }}" class="inline-block w-full py-2 text-sm hover:text-primary custom-transition font-semibold">
+                                {{ translate('View All Programs') }}
+                            </a>
+                        </li>
+                    </ul>
                 </li>
                 <li>
                     <a href="{{ route('about.us') }}" aria-label="Menu link" class="inline-block w-full py-3 hover:text-primary [&.active]:text-primary custom-transition">
