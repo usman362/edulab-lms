@@ -17,15 +17,55 @@ use Modules\LMS\Models\Auth\Instructor;
 use Modules\LMS\Models\Courses\Level;
 use Modules\LMS\Models\Courses\Subject;
 use Modules\LMS\Models\User;
+use Illuminate\Support\Facades\Storage;
+use Illuminate\Support\Facades\Http;
 
 class AceAcademicsSeeder extends Seeder
 {
+    /**
+     * Old site image URLs from aceacademic.com.au (Squarespace CDN)
+     */
+    private array $oldSiteImages = [
+        'hero_classroom' => 'https://images.squarespace-cdn.com/content/v1/68b8f49c3f4f4f26c6ed961f/3c748c3a-ecdd-4ffd-9b2a-d233b94ad7d7/adi+smiling+with+students.jpg?format=2500w',
+        'turhan' => 'https://images.squarespace-cdn.com/content/v1/68b8f49c3f4f4f26c6ed961f/493f1c38-f433-4f08-940e-70c4aba8f8e3/turhan.jpg?format=1000w',
+        'adi_distinguished' => 'https://images.squarespace-cdn.com/content/v1/68b8f49c3f4f4f26c6ed961f/fff51e36-82a6-45d9-a780-36e60df2f471/Adi+Distinguished.jpg?format=1000w',
+        'ace_logo' => 'https://images.squarespace-cdn.com/content/v1/68b8f49c3f4f4f26c6ed961f/e619d02c-5078-4bb1-ad23-4adb8f600e17/ChatGPT+Image+Sep+9%2C+2025%2C+04_30_11+PM.png?format=1500w',
+        'ace_logo_footer' => 'https://images.squarespace-cdn.com/content/v1/68b8f49c3f4f4f26c6ed961f/42fe64c7-3d9a-4de9-ab6b-addefe396497/Logo.png?format=2500w',
+    ];
+
+    /**
+     * Download an image from URL and save to LMS storage.
+     * Returns the filename if successful, empty string if failed.
+     */
+    private function downloadImage(string $url, string $folder, string $filename): string
+    {
+        try {
+            $disk = is_tenant_context() ? 'local' : 'LMS';
+            $path = "public/{$folder}/{$filename}";
+
+            // Skip if already exists
+            if (Storage::disk($disk)->exists($path)) {
+                return $filename;
+            }
+
+            $response = Http::timeout(30)->get($url);
+            if ($response->successful()) {
+                Storage::disk($disk)->put($path, $response->body());
+                return $filename;
+            }
+        } catch (\Exception $e) {
+            // Silently fail — slider will show placeholder
+        }
+        return '';
+    }
+
     /**
      * Seed the Ace Academics LMS with brand-specific content
      * matching the old site at aceacademic.com.au exactly.
      */
     public function run(): void
     {
+        $this->downloadOldSiteImages();
         $this->seedHeroSliders();
         $this->seedCategories();
         $this->seedTestimonials();
@@ -38,8 +78,28 @@ class AceAcademicsSeeder extends Seeder
     }
 
     /**
+     * Download all images from the old aceacademic.com.au site
+     * and store them in the LMS storage directories.
+     */
+    private function downloadOldSiteImages(): void
+    {
+        // Download hero slider images
+        $this->downloadImage($this->oldSiteImages['hero_classroom'], 'lms/sliders', 'ace-classroom.jpg');
+        $this->downloadImage($this->oldSiteImages['adi_distinguished'], 'lms/sliders', 'ace-adi-distinguished.jpg');
+        $this->downloadImage($this->oldSiteImages['turhan'], 'lms/sliders', 'ace-turhan.jpg');
+
+        // Download logos
+        $this->downloadImage($this->oldSiteImages['ace_logo'], 'lms/logo', 'ace-logo.png');
+        $this->downloadImage($this->oldSiteImages['ace_logo_footer'], 'lms/logo', 'ace-logo-footer.png');
+
+        // Download instructor photos
+        $this->downloadImage($this->oldSiteImages['turhan'], 'lms/instructors', 'turhan.jpg');
+        $this->downloadImage($this->oldSiteImages['adi_distinguished'], 'lms/instructors', 'adi-distinguished.jpg');
+    }
+
+    /**
      * Seed hero sliders for homepage banner.
-     * Old site hero: "Effort to Excellence. That's how you ACE it." + "Discover More"
+     * Old site hero: "Effort to Excellence. That's how you ACE it." + classroom photo background
      */
     private function seedHeroSliders(): void
     {
@@ -60,7 +120,7 @@ class AceAcademicsSeeder extends Seeder
                 'sub_title' => "That's how you ACE it.",
                 'highlight_text' => 'ACE it.',
                 'description' => 'Helping students build confidence, achieve top results, and perform when it matters most.',
-                'image' => '',
+                'image' => 'ace-classroom.jpg',
                 'buttons' => json_encode([
                     'name' => 'Discover More',
                     'link' => '/courses',
@@ -73,7 +133,7 @@ class AceAcademicsSeeder extends Seeder
                 'sub_title' => 'Expert Tutors, Proven Results',
                 'highlight_text' => 'Proven Results',
                 'description' => 'From school entry exams to university-level preparation, we provide structured programs that build confidence and deliver results.',
-                'image' => '',
+                'image' => 'ace-adi-distinguished.jpg',
                 'buttons' => json_encode([
                     'name' => 'Discover More',
                     'link' => '/courses',
@@ -86,7 +146,7 @@ class AceAcademicsSeeder extends Seeder
                 'sub_title' => 'NAPLAN, ICAS & School Assessments',
                 'highlight_text' => 'School Assessments',
                 'description' => 'Study systems that support long-term success. High School Assessments & ATAR Externals.',
-                'image' => '',
+                'image' => 'ace-turhan.jpg',
                 'buttons' => json_encode([
                     'name' => 'Discover More',
                     'link' => '/courses',
