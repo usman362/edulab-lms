@@ -23,3 +23,4 @@ public/lms/frontend/assets/css/output.min.css
 *.zip
 
 /Modules/LMS/storage
+public/demo.sql
