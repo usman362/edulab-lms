@@ -31,6 +31,9 @@
                         {{ translate('Courses') }}
                     </span>
                 </h2>
+                <p class="area-description mt-2 text-sm text-gray-500">
+                    {{ translate('BSHS Selective Exam Preparation, UCAT Excellence, Year 5-10 Math Class and more') }}
+                </p>
             </div>
 
             @if ($courseRoute && $courseBtnText)

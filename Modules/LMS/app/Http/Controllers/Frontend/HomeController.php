@@ -231,6 +231,11 @@ class HomeController extends Controller
         return view('theme::about-us.index');
     }
 
+    public function workshop()
+    {
+        return view('theme::workshop.index');
+    }
+
     /**
      * Display a dynamic page by URL slug (from pages table).
      */

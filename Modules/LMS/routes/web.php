@@ -117,6 +117,7 @@ Route::group(['middleware' => ['checkInstaller']], function () {
     // Home
     Route::group(['controller' => HomeController::class], function () {
         Route::get('/about-us',  'aboutUs')->name('about.us');
+        Route::get('/workshop',  'workshop')->name('workshop.page');
         Route::get('/category-course/{slug}',  'categoryCourse')->name('category.course');
         Route::get('success',  'success')->name('success');
         Route::get('verify-mail/{id}/{hash}',  'verificationMail')->name('mail.verify');

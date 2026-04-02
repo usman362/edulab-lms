@@ -25,9 +25,9 @@
                 <button type="button" aria-label="Login tab for Instructor"
                     class="dashkit-tab-btn btn b-light btn-primary-light btn-lg h-11 !rounded-full text-[14px] sm:text-[16px] md:text-[18px] [&.active]:bg-primary [&.active]:text-white  login-credentials"
                     id="asStudetn" data-email="instructor@gmail.com" data-password="123456">Instructor</button>
-                <button type="button" aria-label="Login tab for Oranization"
+                <button type="button" aria-label="Login tab for Organisation"
                     class="dashkit-tab-btn btn b-light btn-primary-light btn-lg h-11 !rounded-full text-[14px] sm:text-[16px] md:text-[18px] [&.active]:bg-primary [&.active]:text-white  login-credentials"
-                    id="asStudetn" data-email="organization@gmail.com" data-password="123456">Oranization</button>
+                    id="asStudetn" data-email="organization@gmail.com" data-password="123456">Organisation</button>
                 <button type="button" aria-label="Login tab for Admin"
                     class="dashkit-tab-btn btn b-light btn-primary-light btn-lg h-11 !rounded-full text-[14px] sm:text-[16px] md:text-[18px] [&.active]:bg-primary [&.active]:text-white  active login-credentials"
                     id="admin">Admin</button>

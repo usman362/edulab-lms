@@ -1,7 +1,7 @@
 @php
     $headerClass = $data['header_class'] ?? 'bg-white py-4 sticky-header';
     $headerWrapperClass = $data['header_wrapper_class'] ?? 'flex items-center';
-    $rightActionsWrapperClass = $data['right_actions_wrapper_class'] ?? 'ms-auto flex items-center gap-5';
+    $rightActionsWrapperClass = $data['right_actions_wrapper_class'] ?? 'ms-auto flex items-center gap-3';
     $components = $data['components'] ?? [];
     $innerHeaderTop = $components['inner-header-top'] ?? 'default';
     $search = $data['search'] ?? [];
@@ -24,11 +24,30 @@
                 :class="$data['menu_class'] ?? []" />
             <!-- ACTIONS -->
             <div class="{{ $rightActionsWrapperClass }}">
-                <!-- SEARCH -->
+                <!-- SEARCH (icon toggle, not inline input to avoid overlap) -->
                 @if ($search['is_show'] ?? true)
-                    <x-dynamic-component component='{{ "{$theme}:theme::header.search" }}' :theme="$theme"
-                        :class="$data['search_class'] ?? []" />
+                    <div class="hidden lg:block shrink-0 relative" x-data="{ open: false }">
+                        <button type="button" @click="open = !open" aria-label="Toggle search"
+                            class="btn-icon size-10 b-light btn-primary-light !rounded-full">
+                            <i class="ri-search-line text-lg"></i>
+                        </button>
+                        <form action="{{ route('course.list') }}" method="GET"
+                            x-show="open" x-transition @click.away="open = false"
+                            class="absolute top-full right-0 rtl:right-auto rtl:left-0 mt-2 z-50 bg-white shadow-lg rounded-lg p-2 w-72">
+                            <input type="search" name="q" placeholder="{{ translate('Search courses...') }}"
+                                class="form-input rounded-full text-sm w-full" autofocus>
+                        </form>
+                    </div>
                 @endif
+
+                <!-- ONLINE PLATFORM BUTTON -->
+                <a href="{{ url('/page/online-platform') }}" aria-label="Online Platform"
+                    class="hidden lg:flex btn b-solid btn-primary-solid h-10 !rounded-full !text-white font-semibold text-sm px-4 shadow-md hover:shadow-lg custom-transition"
+                    style="background: linear-gradient(135deg, var(--color-primary), #e52524); border: none;">
+                    <i class="ri-computer-line mr-1.5"></i>
+                    {{ translate('Online Platform') }}
+                </a>
+
                 <x-dynamic-component component='{{ "{$theme}:theme::header.right-side" }}' :theme="$theme"
                     :data="$data" />
 

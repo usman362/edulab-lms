@@ -20,7 +20,7 @@
     <div class="container">
         <!-- HEADER -->
         <div class="grid grid-cols-12 gap-4 items-center">
-            <div class="col-span-full text-center max-w-[594px] mx-auto">
+            <div class="col-span-full text-center max-w-[700px] mx-auto">
                 <div class="area-subtitle">
                     {{ translate('Coming Soon') }}
                 </div>
@@ -30,6 +30,9 @@
                         {{ translate('Programs') }}
                     </span>
                 </h2>
+                <p class="area-description mt-3 text-sm text-gray-500">
+                    {{ translate('Interview Preparation, Advance Mathematics, Advance Physics and more') }}
+                </p>
             </div>
         </div>
         <!-- BODY -->

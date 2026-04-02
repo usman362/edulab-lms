@@ -105,9 +105,9 @@
         @endif
     @endauth
     @if (!Auth::guard('admin')->check() && !Auth::guard('web')->check() && ($register['is_show'] ?? true))
-        <a href="{{ route('contact.page') }}" aria-label="Enquire Now"
+        <a href="{{ route('register.page') }}?user_type=instructor" aria-label="Become a Tutor"
             class="{{ $register['link_class'] ?? 'hidden md:flex btn b-solid btn-secondary-solid h-11 !rounded-full !text-white font-semibold' }}">
-            {{ translate('Enquire Now') }}
+            {{ translate('Become a Tutor') }}
             <span class="hidden md:block">
                 <i class="ri-arrow-right-up-line"></i>
             </span>

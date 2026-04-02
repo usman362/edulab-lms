@@ -58,8 +58,40 @@
                 </div>
             @endif
 
+            <!-- FOOTER WIDGET - QUICK LINKS (with Workshop) -->
+            <div class="col-span-full md:col-span-6 lg:col-span-2">
+                <h6 class="text-white text-xl font-bold leading-none">{{ translate('Quick Links') }}</h6>
+                <ul class="mt-5 space-y-3">
+                    <li>
+                        <a href="{{ route('about.us') }}" class="text-white/70 hover:text-white custom-transition text-sm">
+                            {{ translate('About Us') }}
+                        </a>
+                    </li>
+                    <li>
+                        <a href="{{ route('course.list') }}" class="text-white/70 hover:text-white custom-transition text-sm">
+                            {{ translate('Programs') }}
+                        </a>
+                    </li>
+                    <li>
+                        <a href="{{ route('workshop.page') }}" class="text-white/70 hover:text-white custom-transition text-sm">
+                            {{ translate('Workshop') }}
+                        </a>
+                    </li>
+                    <li>
+                        <a href="{{ route('contact.page') }}" class="text-white/70 hover:text-white custom-transition text-sm">
+                            {{ translate('Contact') }}
+                        </a>
+                    </li>
+                    <li>
+                        <a href="{{ route('register.page') }}?user_type=instructor" class="text-white/70 hover:text-white custom-transition text-sm">
+                            {{ translate('Become a Tutor') }}
+                        </a>
+                    </li>
+                </ul>
+            </div>
+
             @if (isset($top['five_status']))
-                <!-- FOOTER WIDGET FOUR -->
+                <!-- FOOTER WIDGET - NEWSLETTER -->
                 <div class="col-span-full lg:col-span-4">
                     <h6 class="text-white text-xl font-bold leading-none"> {{ $top['five_title'] ?? '' }}</h6>
                     <x-theme::subscription.subscription-form :data="$data ?? []" />

@@ -37,6 +37,7 @@
     <link rel="stylesheet" href="{{ edulab_global_asset('lms/assets/css/vendor/toastr.min.css') }}">
     <link rel="stylesheet" href="{{ edulab_global_asset('lms/frontend/assets/vendor/css/swiper-bundle.min.css') }}">
     <script src="{{ edulab_global_asset('lms/frontend/assets/vendor/js/lozad.min.js') }}"></script>
+    <script defer src="https://cdnjs.cloudflare.com/ajax/libs/alpinejs/3.14.3/cdn.min.js"></script>
     <link rel="stylesheet"
         href="{{ edulab_global_asset('lms/frontend/assets/css/output.min.css?v=' . asset_version('lms/frontend/assets/css/output.min.css')) }}">
     @if ($customCss)
