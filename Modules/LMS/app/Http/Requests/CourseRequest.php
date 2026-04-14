@@ -15,22 +15,22 @@ class CourseRequest extends FormRequest
     {
         return [
             //
-            'title' => Request()->form_key == 'basic' ? 'required|string' : '',
-            'category_id' => Request()->form_key == 'basic' ? 'required' : '',
-            'short_description' => Request()->form_key == 'basic' ? 'required' : '',
-            'description' => Request()->form_key == 'basic' ? 'required' : '',
-            'duration' => Request()->form_key == 'basic' ? 'required' : '',
-            'time_zone_id' => Request()->form_key == 'basic' ? 'required' : '',
-            'video_src_type' => Request()->form_key == 'basic' ? 'required' : '',
-            'subject_id' => Request()->form_key == 'basic' ? 'required' : '',
+            'title' => Request()->form_key == 'basic' ? 'nullable|string' : '',
+            'category_id' => Request()->form_key == 'basic' ? 'nullable' : '',
+            'short_description' => Request()->form_key == 'basic' ? 'nullable' : '',
+            'description' => Request()->form_key == 'basic' ? 'nullable' : '',
+            'duration' => Request()->form_key == 'basic' ? 'nullable' : '',
+            'time_zone_id' => Request()->form_key == 'basic' ? 'nullable' : '',
+            'video_src_type' => Request()->form_key == 'basic' ? 'nullable' : '',
+            'subject_id' => Request()->form_key == 'basic' ? 'nullable' : '',
 
-            'thumbnail' => Request()->form_key == 'basic' ? (isset(Request()->course_id) ? (isset(Request()->thumbnail) ? 'required|image|mimes:jpg,jpeg,png,bmp,tiff,webp,svg' : '') : 'required|image|mimes:jpg,jpeg,png,bmp,tiff,webp,svg') : '',
+            'thumbnail' => Request()->form_key == 'basic' ? (isset(Request()->course_id) ? (isset(Request()->thumbnail) ? 'nullable|image|mimes:jpg,jpeg,png,bmp,tiff,webp,svg' : '') : 'nullable|image|mimes:jpg,jpeg,png,bmp,tiff,webp,svg') : '',
 
 
             // 'demo_url' =>  Request()->form_key == "basic" ? 'required' : "",
-            'levels' => Request()->form_key == 'basic' ? 'required|array' : '',
-            'instructors' => Request()->form_key == 'basic' ? 'required|array' : '',
-            'languages' => Request()->form_key == 'basic' ? 'required|array' : '',
+            'levels' => Request()->form_key == 'basic' ? 'nullable|array' : '',
+            'instructors' => Request()->form_key == 'basic' ? 'nullable|array' : '',
+            'languages' => Request()->form_key == 'basic' ? 'nullable|array' : '',
             'preview_image' => Request()->form_key == 'media' ? (isset(Request()->course_id) ? '' : 'required|array') : '',
             'price' => Request()->form_key == 'pricing' ? 'required' : '',
             'discounted_price' => Request()->form_key == 'pricing' ? (Request()->discount_flag == 'on' ? 'required' : '') : '',

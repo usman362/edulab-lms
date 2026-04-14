@@ -379,7 +379,7 @@ $(function () {
             $(ansList).html(`
             <div class="mt-10 mb-11">
                 <label for="quiz-grade" class="form-label">${writeCorrectWord} (_______).</label>
-                <input type="text" class="form-input choices-input" name=answers[]" >
+                <input type="text" class="form-input choices-input" name="answers[]" >
             </div>`);
             choicesInput();
         }

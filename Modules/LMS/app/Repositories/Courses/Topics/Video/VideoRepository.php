@@ -49,7 +49,7 @@ class VideoRepository extends BaseRepository
         // Check for uploaded video file and set validation rules
         if ($request->hasFile('video')) {
             static::$rules['save'] = [
-                'video' => 'required|file|mimes:mp4,mov,ogg,qt,flv,mkv|max:20000',
+                'video' => 'required|file|mimes:mp4,mov,ogg,qt,flv,mkv|max:512000',
                 'chapter_id' => 'required',
                 'title' => 'required',
             ];

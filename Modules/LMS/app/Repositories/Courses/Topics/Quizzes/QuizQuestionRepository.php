@@ -50,7 +50,7 @@ class QuizQuestionRepository extends BaseRepository
         // Determine which file type is being uploaded and set rules accordingly.
         match ($requestType) {
             'image' => static::$rules['save'] = 'required|image|mimes:jpg,svg,jpeg,png,webp',
-            'video' => static::$rules['save'] = 'required|file|mimes:mp4,mov,ogg,qt|max:20000',
+            'video' => static::$rules['save'] = 'required|file|mimes:mp4,mov,ogg,qt|max:512000',
             default => null,
         };
 

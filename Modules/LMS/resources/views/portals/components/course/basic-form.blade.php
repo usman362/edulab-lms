@@ -26,7 +26,6 @@
                 <div class="leading-none">
                     <label for="courseTitle" class="form-label">
                         {{ translate('How about a course title') }}
-                        <span class="text-danger" title="{{ translate('This field is required') }}"><b>*</b></span>
                     </label>
                     <input type="text" name="title" value="{{ $translations['title'] ?? ($course->title ?? '') }}"
                         placeholder="{{ translate('Course Title') }}" class="form-input">
@@ -36,7 +35,6 @@
                 <div class="leading-none mt-6">
                     <label for="courseCategory" class="form-label">
                         {{ translate('Courses category') }}
-                        <span class="text-danger" title="{{ translate('This field is required') }}"><b>*</b></span>
                     </label>
                     <select name="category_id" id="courseCategory"
                         class="list-border-primary px-5 py-[17.5px] wide leading-none border border-input-border rounded-10 text-gray-900 font-spline_sans [&.open]:border-primary-400">
@@ -74,7 +72,6 @@
                     <div class="leading-none mt-6">
                         <label class="form-label">
                             {{ translate('Instructor') }}
-                            <span class="text-danger" title="{{ translate('This field is required') }}"><b>*</b></span>
                         </label>
                         <select class="js-example-basic-single" name="instructors[]" id="instructorOption" multiple>
                             <option disabled>{{ translate('Select Instructor') }}</option>
@@ -106,7 +103,6 @@
                 <div class="leading-none mt-6">
                     <label for="courseLevel" class="form-label">
                         {{ translate('Courses level') }}
-                        <span class="text-danger" title="{{ translate('This field is required') }}"><b>*</b></span>
                     </label>
                     <select name="levels[]" multiple="true" id="courseLevel"
                         class="level-list list-border-primary px-5 py-[17.5px] wide leading-none border border-input-border rounded-10 text-gray-900 font-spline_sans [&.open]:border-primary-400">
@@ -128,7 +124,6 @@
                 <div class="leading-none mt-6">
                     <label class="form-label">
                         {{ translate('Course Demo Video Source') }}
-                        <span class="text-danger" title="{{ translate('This field is required') }}"><b>*</b></span>
                     </label>
                     <select class="singleSelect" name="video_src_type" id="source-type-select">
                         <option disabled selected>{{ translate('Select Source Type') }}</option>
@@ -144,16 +139,12 @@
                         @if (isset($course, $src_type) && $src_type !== 'local')
                             <label class="form-label">
                                 {{ translate('Video url') }}
-                                <span class="text-danger"
-                                    title="{{ translate('This field is required') }}"><b>*</b></span>
                             </label>
                             <input type="url" class="form-input" placeholder="{{ translate('Video url') }}"
                                 value="{{ $course->demo_url ?? '' }}" name="demo_url" autocomplete="off" />
                         @elseif (isset($course) && $src_type == 'local')
                             <label class="form-label">
                                 {{ translate('Upload File') }}
-                                <span class="text-danger"
-                                    title="{{ translate('This field is required') }}"><b>*</b></span>
                             </label>
                             <div class="border border-input-border rounded-md px-2 py-1.5">
                                 <input type="file" class="w-full" name="short_video">
@@ -176,7 +167,6 @@
                 <div class="leading-none mt-6">
                     <label for="subject" class="form-label">
                         {{ translate('Subject') }}
-                        <span class="text-danger" title="{{ translate('This field is required') }}"><b>*</b></span>
                     </label>
                     <select name="subject_id" id="subject"
                         class="singleSelect list-border-primary px-5 py-[17.5px] wide leading-none border border-input-border rounded-10 text-gray-900 font-spline_sans [&.open]:border-primary-400">
@@ -196,7 +186,6 @@
                 <div class="leading-none">
                     <label for="courseLanguage" class="form-label">
                         {{ translate('Language') }}
-                        <span class="text-danger" title="{{ translate('This field is required') }}"><b>*</b></span>
                     </label>
                     <select name="languages[]" multiple="true" id="courseLanguage"
                         class="language-list list-border-primary px-5 py-[17.5px] wide leading-none border border-input-border rounded-10 text-gray-900 font-spline_sans [&.open]:border-primary-400">
@@ -213,7 +202,6 @@
                 <div class="leading-none mt-6">
                     <label for="zone" class="form-label">
                         {{ translate('Time Zone') }}
-                        <span class="text-danger" title="{{ translate('This field is required') }}"><b>*</b></span>
                     </label>
                     <select name="time_zone_id"
                         class="zone-list list-border-primary px-5 py-[17.5px] wide leading-none border border-input-border rounded-10 text-gray-900 font-spline_sans [&.open]:border-primary-400">
@@ -229,7 +217,6 @@
                 <div class="leading-none mt-6">
                     <label for="courseDuration" class="form-label">
                         {{ translate('Course duration') }}
-                        <span class="text-danger" title="{{ translate('This field is required') }}"><b>*</b></span>
                     </label>
                     <input type="text" id="courseDuration" name="duration" value="{{ $course->duration ?? '' }}"
                         placeholder="{{ translate('Topic duration') }}" class="form-input">
@@ -239,7 +226,6 @@
                 <div class="leading-none mt-6">
                     <label for="courseDuration" class="form-label">
                         {{ translate('Short Description') }}
-                        <span class="text-danger" title="{{ translate('This field is required') }}"><b>*</b></span>
                     </label>
                     <textarea name="short_description" class="form-input" rows="6">{{ $translations['short_description'] ?? ($course->short_description ?? '') }}</textarea>
                     <span class="text-xs text-danger inline-block mt-1"><strong>{{ translate('Recommended') }}
@@ -253,7 +239,6 @@
             <div class="col-span-full lg:col-span-{{ isset($course) ? '12' : '8' }} card">
                 <label class="form-label">
                     {{ translate('Description') }}
-                    <span class="text-danger" title="{{ translate('This field is required') }}"><b>*</b></span>
                 </label>
                 <textarea name="description" class="summernote">{!! clean($translations['description'] ?? ($course->description ?? '')) !!}</textarea>
                 <span class="text-danger error-text description_err"></span>
@@ -262,7 +247,6 @@
                 <div class="col-span-full lg:col-span-4 card">
                     <p class="text-xs text-gray-500 dark:text-dark-text leading-none font-semibold mb-3">
                         {{ translate('Thumbnail') }}(300 x300 )
-                        <span class="text-danger" title="{{ translate('This field is required') }}"><b>*</b></span>
                     </p>
                     <label for="thumbnail"
                         class="dropzone-wrappe file-container ac-bg text-xs leading-none font-semibold mb-3 cursor-pointer w-full h-[200px] flex flex-col items-center justify-center gap-2.5 border border-dashed border-gray-900 rounded-10 dk-theme-card-square">
