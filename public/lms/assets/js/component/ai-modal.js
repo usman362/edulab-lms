@@ -8,6 +8,11 @@ class DraggableModal {
         this.positionStorageKey = positionStorageKey;
         this.visibilityStorageKey = visibilityStorageKey;
 
+        // Abort init if the modal element isn't present on this page
+        if (!this.modal) {
+            return;
+        }
+
         // Initialize
         this.init();
     }
@@ -150,6 +155,9 @@ class VerticalDraggable {
     constructor(elementSelector, draggerSelector) {
         this.element = document.querySelector(elementSelector);
         this.dragger = document.querySelector(draggerSelector);
+        if (!this.element || !this.dragger) {
+            return;
+        }
         this.init();
     }
 

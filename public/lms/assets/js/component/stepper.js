@@ -138,6 +138,11 @@ function stepActivation(currentStepperIndex) {
     stepperStepButton[currentStepperIndex]?.classList.add("active");
 
     fieldsets[currentStepperIndex].classList.add("!block");
+
+    // Re-init rich-text editor on the step that just became visible
+    if (typeof window.initSummernote === "function") {
+        window.initSummernote(fieldsets[currentStepperIndex]);
+    }
 }
 
 stepperStepButton.forEach((stepBtn, i) => {

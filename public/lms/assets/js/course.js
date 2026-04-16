@@ -61,7 +61,8 @@ $(function () {
     $(document).on("click", ".add-faq", function () {
         let key = $(this).closest(".faq-item").find(".faq-area").data("length");
         key++;
-        $(".faq-area").append(
+        let $faqArea = $(this).closest(".faq-item").find(".faq-area");
+        $faqArea.append(
             ` <div class="flex gap-4">
                 <div class="grow flex flex-col gap-2">
                     <input type="text" placeholder="${FaqQuestion}" name="faqs[${key}][title]" class="form-input">
@@ -73,7 +74,11 @@ $(function () {
             </div>
          `
         );
-        $(this).closest(".faq-item").find(".faq-area").data("length", key);
+        $faqArea.data("length", key);
+        // Initialize summernote on the newly added textarea
+        if (typeof window.initSummernote === "function") {
+            window.initSummernote($faqArea);
+        }
     });
 
     $(document).on("click", ".add-outcomes", function () {
@@ -487,6 +492,10 @@ $(function () {
                 if (data.status == "success") {
                     $(locationContent).html(data.data);
                     $(".sniper-loader").hide();
+                    // Re-initialize rich-text editor on newly injected content
+                    if (typeof window.initSummernote === "function") {
+                        window.initSummernote(locationContent);
+                    }
                 }
             },
             error: function (data) {

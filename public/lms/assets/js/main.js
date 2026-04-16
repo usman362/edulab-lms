@@ -15,10 +15,13 @@ window.addEventListener("load", function () {
     hideLoader();
 
     if (this.document.getElementById("app-drawer")) {
-        document
-            .getElementById("app-menu-scrollbar")
-            .querySelector(".scrollbar-track-x")
-            .remove();
+        var _menuScrollbar = document.getElementById("app-menu-scrollbar");
+        var _trackX = _menuScrollbar
+            ? _menuScrollbar.querySelector(".scrollbar-track-x")
+            : null;
+        if (_trackX) {
+            _trackX.remove();
+        }
     }
 });
 
@@ -35,6 +38,10 @@ mob.forEach(function (obtn) {
     const comid = obtn.getAttribute("data-offcanvas-id");
     const com = document.querySelector(`#${comid}`);
     const cominner = document.querySelector(`.${comid}-inner`);
+    // Skip this offcanvas wiring if its panel/inner aren't in the DOM on this page
+    if (!com || !cominner) {
+        return;
+    }
     const comclose = com.querySelector(`.${comid}-close`);
 
     obtn.addEventListener("click", () => {
@@ -336,40 +343,49 @@ $(function () {
 });
 
 //======== summmernote
-$(".summernote").summernote({
-    placeholder: `${textAreaPlaceholder}...`,
-    tabsize: 2,
-    height: 220,
-    toolbar: [
-        ["style", ["style"]],
-        ["fontsize", ["fontsize"]],
-        ["font", ["bold", "italic", "underline", "clear"]],
-        ["fontname", ["fontname"]],
-        ["color", ["color"]],
-        ["para", ["paragraph"]],
-        ["height", ["height"]],
-        ["insert", ["hr", "link"]],
-    ],
-    styleTags: ["p", "h1", "h2", "h3", "h4", "h5", "h6"],
-    lineHeights: ["0.5", "1.0", "1.1", "1.2", "1.3", "1.4"],
-    fontSizes: [
-        "8",
-        "9",
-        "10",
-        "11",
-        "12",
-        "13",
-        "14",
-        "15",
-        "16",
-        "18",
-        "24",
-        "36",
-        "48",
-        "64",
-        "82",
-        "150",
-    ],
+// Global reusable initializer. Safe to call multiple times — skips already-initialized elements.
+window.initSummernote = function (scope) {
+    var $targets = scope ? $(scope).find(".summernote") : $(".summernote");
+    $targets.each(function () {
+        var $el = $(this);
+        // Skip if already has a summernote editor attached
+        if ($el.next(".note-editor").length || $el.hasClass("note-codable")) {
+            return;
+        }
+        $el.summernote({
+            placeholder:
+                (typeof textAreaPlaceholder !== "undefined"
+                    ? textAreaPlaceholder
+                    : "Write here") + "...",
+            tabsize: 2,
+            height: 220,
+            toolbar: [
+                ["style", ["style"]],
+                ["fontsize", ["fontsize"]],
+                ["font", ["bold", "italic", "underline", "clear"]],
+                ["fontname", ["fontname"]],
+                ["color", ["color"]],
+                ["para", ["paragraph"]],
+                ["height", ["height"]],
+                ["insert", ["hr", "link"]],
+            ],
+            styleTags: ["p", "h1", "h2", "h3", "h4", "h5", "h6"],
+            lineHeights: ["0.5", "1.0", "1.1", "1.2", "1.3", "1.4"],
+            fontSizes: [
+                "8", "9", "10", "11", "12", "13", "14", "15",
+                "16", "18", "24", "36", "48", "64", "82", "150",
+            ],
+        });
+    });
+};
+
+// Initial run on page load
+$(function () {
+    window.initSummernote();
+    // Safety re-run after all deferred/async scripts & modals settle in DOM
+    setTimeout(function () {
+        window.initSummernote();
+    }, 300);
 });
 
 /** print error message
