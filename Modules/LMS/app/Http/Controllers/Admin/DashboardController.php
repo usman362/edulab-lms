@@ -79,8 +79,33 @@ class DashboardController extends Controller
     }
     public function storageLink()
     {
-        Artisan::call('storage:link');
-        toastr()->success(translate('storage link Successfully'));
+        try {
+            $target = storage_path('app/public');
+            $link   = public_path('storage');
+
+            if (file_exists($link)) {
+                toastr()->info(translate('Storage link already exists'));
+                return redirect()->back();
+            }
+
+            if (function_exists('symlink')) {
+                @symlink($target, $link);
+            } elseif (function_exists('exec')) {
+                @exec('ln -s ' . escapeshellarg($target) . ' ' . escapeshellarg($link));
+            } else {
+                toastr()->error(translate('symlink() and exec() are both disabled on this server. Please create the storage symlink manually via cPanel File Manager or contact your host.'));
+                return redirect()->back();
+            }
+
+            if (file_exists($link)) {
+                toastr()->success(translate('storage link Successfully'));
+            } else {
+                toastr()->error(translate('Could not create storage link. Please create it manually via cPanel File Manager.'));
+            }
+        } catch (\Throwable $e) {
+            toastr()->error(translate('Storage link failed: ') . $e->getMessage());
+        }
+
         return redirect()->back();
     }
     public function licenseRemoveForm()
