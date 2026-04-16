@@ -23,15 +23,18 @@
     <!-- END HEADER AREA -->
     <main>
         <div class="flex mb-16 sm:mb-24 lg:mb-[120px]">
+            <!-- COURSE CONTENT AREA (LEFT SIDEBAR — Khan Academy style) -->
+            <x-theme::course.topic-sidebar :course="$course" :data="$data" :auth="$auth ?? false" :purchaseCheck="$purchaseCheck ?? false" />
+
             <!-- START COURSE VIDEO AREA -->
-            <div class="relative p-3 mt-[theme('spacing.header')] w-[100%] lg:w-[calc(100%_-_19.5rem)] xl:w-[calc(100%_-_28.6rem)] overflow-hidden z-10">
+            <div class="relative p-3 mt-[theme('spacing.header')] w-[100%] lg:w-[calc(100%_-_19.5rem)] xl:w-[calc(100%_-_22rem)] lg:ml-[19.5rem] xl:ml-[22rem] rtl:lg:ml-0 rtl:xl:ml-0 rtl:lg:mr-[19.5rem] rtl:xl:mr-[22rem] overflow-hidden z-10">
                 <div class="relative overflow-hidden">
                     <!-- COURSE CONTENT BUTTON FOR SMALL DEVICE -->
-                    <div class="flex-center lg:hidden shrink-0 absolute top-0 right-0 translate-x-[128px] hover:translate-x-0 z-10 custom-transition">
+                    <div class="flex-center lg:hidden shrink-0 absolute top-0 left-0 -translate-x-[128px] hover:translate-x-0 z-10 custom-transition">
                         <button type="button" aria-label="Course off-canvas drawer"
                             data-offcanvas-id="course-content-drawer"
                             class="btn b-solid bg-heading !text-white font-normal border border-gray-500 rounded-none">
-                            <i class="ri-arrow-left-line"></i>
+                            <i class="ri-arrow-right-line"></i>
                             {{ translate('Course Content') }}
                         </button>
                     </div>
@@ -86,8 +89,6 @@
                     </div>
                 </div>
             </div>
-            <!-- COURSE CONTENT AREA -->
-            <x-theme::course.topic-sidebar :course="$course" :data="$data" :auth="$auth ?? false" :purchaseCheck="$purchaseCheck ?? false" />
         </div>
     </main>
 

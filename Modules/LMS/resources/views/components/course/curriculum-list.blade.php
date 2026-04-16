@@ -7,56 +7,79 @@
         $chapterId = $chapter->id;
         $select_chapter_id = $data['chapter_id'] ?? null;
         $start_topic_id = $data['topic_id'] ?? null;
-        $showClass = $select_chapter_id == $chapterId ? 'panel-show' : ($loop->first ? 'panel-show' : '');
+        // Open the chapter that contains the current topic, otherwise the first chapter
+        $showClass = $select_chapter_id == $chapterId ? 'panel-show' : ($loop->first && !$select_chapter_id ? 'panel-show' : '');
+        $topicCount = $chapter?->topics?->count() ?? 0;
     @endphp
-    <!-- CHAPTER ITEM -->
-    <div class="bg-white border-y border-border rounded-sm lms-accordion select-none">
-        <div
-            class="bg-primary-50 px-3 py-3 cursor-pointer lms-accordion-button  {{ $showClass }} group/accordion peer/accordion">
-            <h5
-                class="text-sm text-heading dark:text-white font-bold flex items-start justify-between gap-2 grow after:shrink-0 after:right-2.5 after:top-2.5 after:content-['\ea4e'] after:font-remix">
-                {{ $chapter->title }}
-            </h5>
-            <div class="text-xs text-primary font-light mt-1.5 leading-none">
-                {{ $chapter?->topics?->count() . ' ' . translate('Lesson') }}
+
+    {{-- CHAPTER (UNIT) BLOCK --}}
+    <div class="lms-accordion select-none border-b border-slate-100">
+        {{-- CHAPTER HEADER --}}
+        <div class="px-5 py-3 cursor-pointer lms-accordion-button {{ $showClass }} group/accordion peer/accordion hover:bg-slate-50 transition">
+            <div class="flex items-start justify-between gap-3">
+                <div class="min-w-0 flex-1">
+                    <div class="text-[10px] uppercase tracking-wider text-slate-500 font-semibold">
+                        {{ translate('Unit') }} {{ $key + 1 }}
+                    </div>
+                    <h5 class="text-sm text-heading font-bold mt-0.5 leading-snug">
+                        {{ $chapter->title }}
+                    </h5>
+                    <div class="text-xs text-slate-500 mt-1">
+                        {{ $topicCount }} {{ $topicCount === 1 ? translate('Lesson') : translate('Lessons') }}
+                    </div>
+                </div>
+                <i class="ri-arrow-down-s-line text-slate-500 text-lg mt-0.5 shrink-0 transition-transform group-[.panel-show]/accordion:rotate-180"></i>
             </div>
         </div>
-        <div class="lms-accordion-panel peer-[.panel-show]/accordion:block hidden">
+
+        {{-- CHAPTER LESSONS --}}
+        <div class="lms-accordion-panel peer-[.panel-show]/accordion:block hidden bg-white">
             @foreach ($chapter->topics as $key => $chapterTopic)
                 @php
                     $topic = $chapterTopic?->topicable ?? null;
+                    $slug = $topic?->topic_type?->slug;
                 @endphp
-                @if ($topic?->topic_type?->slug == 'video')
-                    <x-theme::course.curriculum-item.item :start_topic_id="$start_topic_id" :chapter_id="$chapterId" :topic="$topic"
-                        :course="$course" icon='<i class="ri-file-video-line text-sm"></i>'
-                        sideBarShow="{{ $sideBarShow }}" :key="$key" :auth="$auth ?? false"
-                        :purchaseCheck=$purchaseCheck />
-                @endif
 
-                @if ($topic?->topic_type?->slug == 'reading')
-                    <x-theme::course.curriculum-item.item :start_topic_id="$start_topic_id" :chapter_id="$chapterId" :topic="$topic"
-                        :course="$course" icon='' sideBarShow="{{ $sideBarShow }}" :key="$key"
+                @if ($slug === 'video')
+                    <x-theme::course.curriculum-item.item
+                        :start_topic_id="$start_topic_id" :chapter_id="$chapterId" :topic="$topic"
+                        :course="$course"
+                        icon='<i class="ri-play-circle-line"></i>'
+                        type_label="{{ translate('Video') }}"
+                        sideBarShow="{{ $sideBarShow }}" :key="$key"
                         :auth="$auth ?? false" :purchaseCheck=$purchaseCheck />
-                @endif
-
-                @if ($topic?->topic_type?->slug == 'supplement')
-                    <x-theme::course.curriculum-item.item :start_topic_id="$start_topic_id" :chapter_id="$chapterId" :topic="$topic"
-                        :course="$course" icon='<i class="ri-file-text-line text-sm"></i>'
-                        sideBarShow="{{ $sideBarShow }}" :key="$key" :auth="$auth ?? false"
-                        :purchaseCheck=$purchaseCheck />
-                @endif
-
-                @if ($topic?->topic_type?->slug == 'assignment')
-                    <x-theme::course.curriculum-item.item :start_topic_id="$start_topic_id" :chapter_id="$chapterId" :topic="$topic"
-                        :course="$course" icon='<i class="ri-a-b text-sm "></i>' sideBarShow="{{ $sideBarShow }}"
-                        :key="$key" :auth="$auth ?? false" :purchaseCheck=$purchaseCheck />
-                @endif
-
-                @if ($topic?->topic_type?->slug == 'quiz')
-                    <x-theme::course.curriculum-item.item :start_topic_id="$start_topic_id" :chapter_id="$chapterId" :topic="$topic"
-                        :course="$course" icon='<i class="ri-questionnaire-line text-sm"></i>'
-                        sideBarShow="{{ $sideBarShow }}" :key="$key" :auth="$auth ?? false"
-                        :purchaseCheck=$purchaseCheck />
+                @elseif ($slug === 'reading')
+                    <x-theme::course.curriculum-item.item
+                        :start_topic_id="$start_topic_id" :chapter_id="$chapterId" :topic="$topic"
+                        :course="$course"
+                        icon='<i class="ri-book-open-line"></i>'
+                        type_label="{{ translate('Reading') }}"
+                        sideBarShow="{{ $sideBarShow }}" :key="$key"
+                        :auth="$auth ?? false" :purchaseCheck=$purchaseCheck />
+                @elseif ($slug === 'supplement')
+                    <x-theme::course.curriculum-item.item
+                        :start_topic_id="$start_topic_id" :chapter_id="$chapterId" :topic="$topic"
+                        :course="$course"
+                        icon='<i class="ri-file-text-line"></i>'
+                        type_label="{{ translate('Supplement') }}"
+                        sideBarShow="{{ $sideBarShow }}" :key="$key"
+                        :auth="$auth ?? false" :purchaseCheck=$purchaseCheck />
+                @elseif ($slug === 'assignment')
+                    <x-theme::course.curriculum-item.item
+                        :start_topic_id="$start_topic_id" :chapter_id="$chapterId" :topic="$topic"
+                        :course="$course"
+                        icon='<i class="ri-edit-box-line"></i>'
+                        type_label="{{ translate('Assignment') }}"
+                        sideBarShow="{{ $sideBarShow }}" :key="$key"
+                        :auth="$auth ?? false" :purchaseCheck=$purchaseCheck />
+                @elseif ($slug === 'quiz')
+                    <x-theme::course.curriculum-item.item
+                        :start_topic_id="$start_topic_id" :chapter_id="$chapterId" :topic="$topic"
+                        :course="$course"
+                        icon='<i class="ri-questionnaire-line"></i>'
+                        type_label="{{ translate('Quiz') }}"
+                        sideBarShow="{{ $sideBarShow }}" :key="$key"
+                        :auth="$auth ?? false" :purchaseCheck=$purchaseCheck />
                 @endif
             @endforeach
         </div>

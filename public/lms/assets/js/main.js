@@ -44,64 +44,34 @@ mob.forEach(function (obtn) {
     }
     const comclose = com.querySelector(`.${comid}-close`);
 
-    obtn.addEventListener("click", () => {
-        if (com.classList.contains(...["invisible", "opacity-0"])) {
-            com.classList.remove(...["invisible", "opacity-0"]);
-        }
+    // Detect drawer direction based on initial translate class so the
+    // same handler works for right-side (translate-x-full) and left-side
+    // (-translate-x-full) drawers. Captured once at init.
+    const hiddenClasses = cominner.classList.contains("-translate-x-full")
+        ? ["-translate-x-full", "rtl:translate-x-full"]
+        : ["translate-x-full", "rtl:-translate-x-full"];
 
-        if (
-            cominner.classList.contains(
-                ...["translate-x-full", "rtl:-translate-x-full"]
-            )
-        ) {
-            cominner.classList.remove(
-                ...["translate-x-full", "rtl:-translate-x-full"]
-            );
-        }
+    function openDrawer() {
+        com.classList.remove("invisible", "opacity-0");
+        cominner.classList.remove(...hiddenClasses);
         body.classList.add("overflow-hidden");
-    });
+    }
+
+    function closeDrawer() {
+        com.classList.add("invisible", "opacity-0");
+        cominner.classList.add(...hiddenClasses);
+        body.classList.remove("overflow-hidden");
+    }
+
+    obtn.addEventListener("click", openDrawer);
 
     if (comclose) {
-        comclose.addEventListener("click", () => {
-            if (!com.classList.contains(...["invisible", "opacity-0"])) {
-                com.classList.add(...["invisible", "opacity-0"]);
-            }
-
-            if (
-                !cominner.classList.contains(
-                    ...["translate-x-full", "rtl:-translate-x-full"]
-                )
-            ) {
-                cominner.classList.add(
-                    ...["translate-x-full", "rtl:-translate-x-full"]
-                );
-            }
-
-            if (body.classList.contains("overflow-hidden")) {
-                body.classList.remove("overflow-hidden");
-            }
-        });
+        comclose.addEventListener("click", closeDrawer);
     }
 
     com.addEventListener("click", function (e) {
         if (e.target === this && e.target !== cominner) {
-            if (!com.classList.contains(...["invisible", "opacity-0"])) {
-                com.classList.add(...["invisible", "opacity-0"]);
-            }
-
-            if (
-                !cominner.classList.contains(
-                    ...["translate-x-full", "rtl:-translate-x-full"]
-                )
-            ) {
-                cominner.classList.add(
-                    ...["translate-x-full", "rtl:-translate-x-full"]
-                );
-            }
-
-            if (body.classList.contains("overflow-hidden")) {
-                body.classList.remove("overflow-hidden");
-            }
+            closeDrawer();
         }
     });
 });
