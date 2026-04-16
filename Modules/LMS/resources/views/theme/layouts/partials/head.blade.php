@@ -50,5 +50,13 @@
             --color-primary: {{ $primaryColor }};
             --color-secondary: {{ $primaryColor }};
         }
+
+        header img {
+            max-height: 75px !important;
+        }
+
+        nav {
+            padding-left: 100px !important;
+        }
     </style>
 </head>
