@@ -1,7 +1,12 @@
+<style>
+    /* Khan Academy-style left sidebar width (inline to avoid Tailwind JIT dependency) */
+    .kh-course-sidebar { width: 19.5rem; }
+    @media (min-width: 1280px) { .kh-course-sidebar { width: 22rem; } }
+</style>
 <div id="course-content-drawer"
     class="bg-black/50 fixed size-full inset-0 invisible opacity-0 duration-300 z-[99] lg:bg-transparent lg:visible lg:opacity-100 lg:z-auto">
     <div
-        class="course-content-drawer-inner bg-white fixed top-[theme('spacing.header')] left-0 rtl:left-auto rtl:right-0 bottom-0 -translate-x-full rtl:translate-x-full lg:translate-x-0 rtl:lg:translate-x-0 shrink-0 flex flex-col w-[19.5rem] xl:w-[22rem] duration-500 border-r border-slate-200 rtl:border-r-0 rtl:border-l">
+        class="course-content-drawer-inner kh-course-sidebar bg-white fixed top-[theme('spacing.header')] left-0 rtl:left-auto rtl:right-0 bottom-0 -translate-x-full rtl:translate-x-full lg:translate-x-0 rtl:lg:translate-x-0 shrink-0 flex flex-col duration-500 border-r border-slate-200 rtl:border-r-0 rtl:border-l">
         {{-- SIDEBAR HEADER --}}
         <div class="px-5 py-4 border-b border-slate-200 flex-center-between shrink-0">
             <div class="min-w-0">

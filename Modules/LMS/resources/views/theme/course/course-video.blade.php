@@ -21,13 +21,24 @@
         ],
     ])
     <!-- END HEADER AREA -->
+    <style>
+        /* Khan Academy-style left sidebar offsets (kept inline to avoid Tailwind JIT build dependency) */
+        @media (min-width: 1024px) {
+            .kh-main-with-sidebar { margin-left: 19.5rem !important; width: calc(100% - 19.5rem) !important; }
+            [dir="rtl"] .kh-main-with-sidebar { margin-left: 0 !important; margin-right: 19.5rem !important; }
+        }
+        @media (min-width: 1280px) {
+            .kh-main-with-sidebar { margin-left: 22rem !important; width: calc(100% - 22rem) !important; }
+            [dir="rtl"] .kh-main-with-sidebar { margin-right: 22rem !important; }
+        }
+    </style>
     <main>
         <div class="flex mb-16 sm:mb-24 lg:mb-[120px]">
             <!-- COURSE CONTENT AREA (LEFT SIDEBAR — Khan Academy style) -->
             <x-theme::course.topic-sidebar :course="$course" :data="$data" :auth="$auth ?? false" :purchaseCheck="$purchaseCheck ?? false" />
 
             <!-- START COURSE VIDEO AREA -->
-            <div class="relative p-3 mt-[theme('spacing.header')] w-[100%] lg:w-[calc(100%_-_19.5rem)] xl:w-[calc(100%_-_22rem)] lg:ml-[19.5rem] xl:ml-[22rem] rtl:lg:ml-0 rtl:xl:ml-0 rtl:lg:mr-[19.5rem] rtl:xl:mr-[22rem] overflow-hidden z-10">
+            <div class="kh-main-with-sidebar relative p-3 mt-[theme('spacing.header')] w-full overflow-hidden z-10">
                 <div class="relative overflow-hidden">
                     <!-- COURSE CONTENT BUTTON FOR SMALL DEVICE -->
                     <div class="flex-center lg:hidden shrink-0 absolute top-0 left-0 -translate-x-[128px] hover:translate-x-0 z-10 custom-transition">
