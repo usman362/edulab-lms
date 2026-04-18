@@ -112,31 +112,32 @@
 </div>
 <!-- End Course Topic Modal -->
 
-<script>
-    (function () {
-        // When user clicks a topic-type card, set hidden <select> value and trigger change
-        // so existing course.js handler (.on('change', '.topic-type-list', ...)) runs.
-        $(document).on("click", ".topic-type-card", function () {
-            var slug = $(this).data("topic-slug");
-            if (!slug) return;
+@push('js')
+    <script>
+        (function () {
+            // When user clicks a topic-type card, set hidden <select> value and trigger change
+            // so existing course.js handler (.on('change', '.topic-type-list', ...)) runs.
+            $(document).on("click", ".topic-type-card", function () {
+                var slug = $(this).data("topic-slug");
+                if (!slug) return;
 
-            // Visual highlight on chosen card
-            $(".topic-type-card").removeClass("border-primary-500 ring-2 ring-primary-200");
-            $(this).addClass("border-primary-500 ring-2 ring-primary-200");
+                // Visual highlight on chosen card
+                $(".topic-type-card").removeClass("border-primary-500 ring-2 ring-primary-200");
+                $(this).addClass("border-primary-500 ring-2 ring-primary-200");
 
-            // Drive the select that course.js watches
-            var $sel = $(".topic-type-list");
-            if ($sel.val() !== slug) {
-                $sel.val(slug).trigger("change");
-            } else {
-                // Same slug re-clicked → still trigger so the form reloads
-                $sel.trigger("change");
-            }
-        });
+                // Drive the select that course.js watches
+                var $sel = $(".topic-type-list");
+                if ($sel.val() !== slug) {
+                    $sel.val(slug).trigger("change");
+                } else {
+                    $sel.trigger("change");
+                }
+            });
 
-        // Reset card selection whenever the modal is reopened via "Add Topic" button
-        $(document).on("click", ".add-topic-form", function () {
-            $(".topic-type-card").removeClass("border-primary-500 ring-2 ring-primary-200");
-        });
-    })();
-</script>
+            // Reset card selection whenever the modal is reopened via "Add Topic" button
+            $(document).on("click", ".add-topic-form", function () {
+                $(".topic-type-card").removeClass("border-primary-500 ring-2 ring-primary-200");
+            });
+        })();
+    </script>
+@endpush

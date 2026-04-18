@@ -89,20 +89,19 @@
 </div>
 
 {{-- Auto-trigger the answer area when the "Add Question" button opens the modal --}}
-<script>
-    (function () {
-        $(document).on("click", ".add-question", function () {
-            // Course.js handler already clears + sets quizId. We just need to
-            // ensure the answer area is built for the default selection.
-            setTimeout(function () {
-                var $sel = $("#editQuiz .quiz-type-list");
-                if ($sel.length && !$sel.val()) {
-                    $sel.val("single-choice");
-                }
-                // Trigger change so course.js populates answer inputs
-                $sel.trigger("change");
-            }, 50);
-        });
-    })();
-</script>
+@push('js')
+    <script>
+        (function () {
+            $(document).on("click", ".add-question", function () {
+                setTimeout(function () {
+                    var $sel = $("#editQuiz .quiz-type-list");
+                    if ($sel.length && !$sel.val()) {
+                        $sel.val("single-choice");
+                    }
+                    $sel.trigger("change");
+                }, 50);
+            });
+        })();
+    </script>
+@endpush
 <!-- End Add Question Modal -->
