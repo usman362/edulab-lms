@@ -349,42 +349,53 @@ $(function () {
         $(".answer-list-area").html("");
     });
 
+    function buildAnswerRow(idx, quizType) {
+        const correctInput =
+            quizType === "multiple-choice"
+                ? `<input type="checkbox" id="correctans${idx}" name="answers[${idx}][correct]" class="appearance-none peer"> <div class="switcher switcher-primary-solid"></div>`
+                : `<input type="radio" id="correctans${idx}" name="answers[${idx}][correct]" class="radio radio-primary question-type-single">`;
+        return `<li class="border border-input-border rounded-lg p-3 removeable-parent bg-white">
+            <div class="flex gap-2 relative">
+                <textarea name="answers[${idx}][name]" placeholder="${answerOption} ${idx + 1}" id="searchInput" data-search-type="answer" class="form-input search-suggestion" rows="1"></textarea>
+                <button type="button" class="btn b-outline btn-danger-outline btn-sm max-h-10 remove-parent-button" title="Remove option">
+                    <i class="ri-close-line text-inherit text-[13px]"></i>
+                </button>
+                <div class="search-show"></div>
+            </div>
+            <div class="leading-none flex items-center gap-2 mt-2">
+                <label for="correctans${idx}" class="inline-flex items-center cursor-pointer">${correctInput}</label>
+                <div class="text-gray-500 dark:text-dark-text text-sm font-medium inline-block">${checkIfCorrect}</div>
+            </div>
+        </li>`;
+    }
+
     $(document).on("change", ".quiz-type-list", function () {
         let ansList = $(".answer-list-area").html("");
         let quizType = $(this).val();
         if (quizType == "multiple-choice" || quizType == "single-choice") {
-            $(ansList).html(`<div class="mt-10">
-                <button type="button" class="btn b-solid btn-primary-solid addQuizAns" data-quiztype="${quizType}">${addAnswer}</button>
-                <ul class="flex flex-col gap-2 mt-5 quiz-ans-container" data-length="1">
-                    <li class="border border-input-border rounded-lg p-2 removeable-parent">
-                        <div class="flex gap-2 relative">
-                            <textarea name="answers[0][name]" placeholder="${answerOption}" id="searchInput" data-search-type="answer" class="form-input search-suggestion" rows="1"></textarea>
-                            
-                            <button type="button"
-                                class="btn b-outline btn-danger-outline btn-sm max-h-10 remove-parent-button">
-                                <i class="ri-close-line text-inherit text-[13px]"></i>
-                            </button>
-                            <div class="search-show"></div>
-                        </div>
-                        <div class="leading-none flex items-center gap-2 mt-2">
-                            <label for="correntans1" class="inline-flex items-center cursor-pointer">
-                                ${
-                                    quizType == "multiple-choice"
-                                        ? '<input type="checkbox" id="correntans1" name="answers[0][correct]" class="appearance-none peer"> <div class="switcher switcher-primary-solid"></div>'
-                                        : '<input type="radio" id="correntans1" name="answers[0][correct]" class="radio radio-primary question-type-single">'
-                                }
-                            
-                            </label>
-                            <div class="text-gray-500 dark:text-dark-text font-medium inline-block">${checkIfCorrect}</div>
-                        </div>
-                    </li>
+            // Start with 2 pre-rendered options so the user can just type & tick
+            const initialCount = 2;
+            let rowsHtml = "";
+            for (let i = 0; i < initialCount; i++) {
+                rowsHtml += buildAnswerRow(i, quizType);
+            }
+            $(ansList).html(`<div class="mt-6">
+                <div class="flex items-center justify-between mb-3">
+                    <label class="form-label mb-0">Answer Options <span class="text-xs text-gray-500 font-normal">(tick the correct one${quizType === "multiple-choice" ? "s" : ""})</span></label>
+                    <button type="button" class="btn b-outline btn-primary-outline btn-sm addQuizAns inline-flex items-center gap-1" data-quiztype="${quizType}">
+                        <i class="ri-add-line"></i> ${addAnswer}
+                    </button>
+                </div>
+                <ul class="flex flex-col gap-2 quiz-ans-container" data-length="${initialCount}">
+                    ${rowsHtml}
                 </ul>
             </div>`);
         } else if (quizType == "fill-in-blank") {
             $(ansList).html(`
-            <div class="mt-10 mb-11">
-                <label for="quiz-grade" class="form-label">${writeCorrectWord} (_______).</label>
-                <input type="text" class="form-input choices-input" name="answers[]" >
+            <div class="mt-6">
+                <label class="form-label">${writeCorrectWord} (_______).</label>
+                <input type="text" class="form-input choices-input" name="answers[]" placeholder="Type the correct word(s) and press Enter">
+                <p class="text-xs text-gray-500 mt-1">Tip: press Enter after each correct word. You can add up to 3.</p>
             </div>`);
             choicesInput();
         }
