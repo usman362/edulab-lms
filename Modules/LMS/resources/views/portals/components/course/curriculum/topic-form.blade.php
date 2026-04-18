@@ -29,17 +29,39 @@
     ];
 @endphp
 
+<style>
+    /* Guarantee proper scroll in the Add Topic modal without depending on Tailwind JIT arbitrary values */
+    #addCourseTopic .kh-topic-modal-scroll {
+        max-height: calc(100vh - 4rem);
+        overflow-y: auto;
+        overflow-x: hidden;
+    }
+    #addCourseTopic .kh-topic-grid {
+        display: grid;
+        grid-template-columns: repeat(1, minmax(0, 1fr));
+        gap: 0.75rem;
+    }
+    @media (min-width: 640px) {
+        #addCourseTopic .kh-topic-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+    }
+    @media (min-width: 1024px) {
+        #addCourseTopic .kh-topic-grid { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+    }
+    /* Smaller card so 5 options fit without making modal too tall */
+    #addCourseTopic .topic-type-card { min-height: 72px; }
+</style>
 <!-- Start Course Topic Modal -->
 <div id="addCourseTopic" tabindex="-1"
-    class="fixed inset-0 z-modal flex-center w-full md:inset-0 h-[calc(100%-1rem)] max-h-full hidden">
-    <div class="p-4 w-full max-w-3xl max-h-full">
+    class="fixed inset-0 z-modal w-full hidden overflow-y-auto"
+    style="padding: 1rem 0;">
+    <div class="p-4 w-full max-w-3xl mx-auto">
         <div class="relative bg-white dark:bg-dark-card-two rounded-lg dk-theme-card-square shadow">
             <button type="button" data-modal-hide="addCourseTopic"
                 class="absolute top-3 end-2.5 hover:bg-gray-200 dark:hover:bg-dark-icon rounded-lg size-8 flex-center z-10">
                 <i class="ri-close-fill text-gray-500 dark:text-dark-text text-xl leading-none"></i>
             </button>
 
-            <div class="max-h-[85vh] overflow-auto">
+            <div class="kh-topic-modal-scroll">
                 <div class="p-5 md:p-6">
 
                     {{-- HEADER --}}
@@ -59,7 +81,7 @@
                         </div>
 
                         {{-- VISUAL CARDS (easier than dropdown) --}}
-                        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3">
+                        <div class="kh-topic-grid">
                             @foreach (get_all_topic_type() as $topicType)
                                 @php
                                     $meta = $topicMeta[$topicType->slug] ?? [
@@ -69,17 +91,17 @@
                                     ];
                                 @endphp
                                 <button type="button"
-                                    class="topic-type-card group text-left border border-gray-200 dark:border-dark-border rounded-lg p-4 hover:border-primary-500 hover:shadow-md transition-all bg-white dark:bg-dark-card-two"
+                                    class="topic-type-card group text-left border border-gray-200 dark:border-dark-border rounded-lg p-3 hover:border-primary-500 hover:shadow-md transition-all bg-white dark:bg-dark-card-two"
                                     data-topic-slug="{{ $topicType->slug }}">
-                                    <div class="flex items-start gap-3">
-                                        <div class="size-10 rounded-lg flex-center shrink-0 {{ $meta['color'] }} group-hover:scale-110 transition-transform">
-                                            <i class="{{ $meta['icon'] }} text-xl"></i>
+                                    <div class="flex items-start gap-2.5">
+                                        <div class="size-9 rounded-lg flex-center shrink-0 {{ $meta['color'] }}">
+                                            <i class="{{ $meta['icon'] }} text-lg"></i>
                                         </div>
                                         <div class="min-w-0 flex-1">
                                             <div class="font-semibold text-heading dark:text-white text-sm leading-none">
                                                 {{ $topicType->name }}
                                             </div>
-                                            <p class="text-xs text-gray-500 dark:text-dark-text mt-1.5 leading-snug">
+                                            <p class="text-[11px] text-gray-500 dark:text-dark-text mt-1 leading-snug">
                                                 {{ $meta['description'] }}
                                             </p>
                                         </div>
