@@ -10,13 +10,8 @@ class ExamController extends Controller
 {
     public function examStart($type, $exam_type_id, $courseId, Request $request)
     {
-        if ($type === 'quiz' && !$request->has('difficulty')) {
-            return view('theme::exam.quiz.select-difficulty', [
-                'type' => $type,
-                'exam_type_id' => $exam_type_id,
-                'course_id' => $courseId,
-            ]);
-        }
+        // Quiz difficulty selector screen removed — all questions load directly
+        // and each question shows its difficulty as an inline tag instead.
 
         $result = ExamRepository::startExam($type, $exam_type_id, $courseId, $request);
 

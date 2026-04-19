@@ -313,6 +313,18 @@
                         btn.addEventListener("click", () => render(btn));
                     });
 
+                    // Robust Continue-Learning click: force navigation even if a
+                    // delegated handler somewhere calls preventDefault on anchors.
+                    if (el.continueBtn) {
+                        el.continueBtn.addEventListener("click", function (e) {
+                            var url = el.continueBtn.getAttribute("href") || el.continueBtn.href;
+                            if (url && url !== "#") {
+                                e.preventDefault();
+                                window.location.href = url;
+                            }
+                        });
+                    }
+
                     // Auto-select first on load
                     render(items[0]);
                 })();
