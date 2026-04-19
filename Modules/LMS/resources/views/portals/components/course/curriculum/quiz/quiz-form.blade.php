@@ -1,10 +1,29 @@
+<style>
+    /* Guarantee scrollable modal without relying on Tailwind JIT */
+    #editQuiz .kh-quiz-modal-scroll {
+        max-height: calc(100vh - 10rem);
+        overflow-y: auto;
+        overflow-x: hidden;
+        padding-right: 4px;
+    }
+    #editQuiz .kh-quiz-grid-3 {
+        display: grid;
+        grid-template-columns: repeat(1, minmax(0, 1fr));
+        gap: 1rem;
+    }
+    @media (min-width: 768px) {
+        #editQuiz .kh-quiz-grid-3 { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+    }
+</style>
+
 <!-- Start Add Question Modal (Simplified UX) -->
 <div id="editQuiz" tabindex="-1"
-    class="fixed inset-0 z-modal flex-center w-full md:inset-0 h-[calc(100%-1rem)] max-h-full hidden">
-    <div class="p-4 w-full max-w-2xl max-h-full">
+    class="fixed inset-0 z-modal w-full hidden overflow-y-auto"
+    style="padding: 1rem 0;">
+    <div class="p-4 w-full max-w-2xl mx-auto">
         <div class="relative bg-white dark:bg-dark-card-two rounded-lg dk-theme-card-square shadow">
             <button type="button" data-modal-hide="editQuiz"
-                class="absolute top-3 end-2.5 hover:bg-gray-200 dark:hover:bg-dark-icon rounded-lg size-8 flex-center">
+                class="absolute top-3 end-2.5 hover:bg-gray-200 dark:hover:bg-dark-icon rounded-lg size-8 flex-center z-10">
                 <i class="ri-close-fill text-gray-500 dark:text-dark-text text-xl leading-none"></i>
             </button>
             <div class="p-4 md:p-5">
@@ -21,7 +40,7 @@
                     @csrf
                     <input type="hidden" name="quiz_id" id="quizId">
 
-                    <div class="max-h-[80vh] overflow-auto space-y-4">
+                    <div class="kh-quiz-modal-scroll space-y-4">
                         {{-- QUESTION TITLE --}}
                         <div class="relative">
                             <label for="quiz-question" class="form-label">
@@ -35,7 +54,7 @@
                         </div>
 
                         {{-- MARK + TYPE + DIFFICULTY in one row --}}
-                        <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+                        <div class="kh-quiz-grid-3">
                             <div>
                                 <label for="quiz-grade" class="form-label">
                                     {{ translate('Marks') }} <span class="text-danger">*</span>
