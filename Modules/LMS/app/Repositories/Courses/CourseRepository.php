@@ -859,9 +859,12 @@ class CourseRepository extends BaseRepository
         if (isset($request->course_id)) {
             $this->filterByCourseId($courses, $request->course_id);
         }
-        if (empty($request->instructors)) {
-            $this->filterByVerifiedInstructors($courses);
-        }
+        // Verified-instructor filter relaxed (2026-04): previously courses were hidden if
+        // they didn't have at least one verified instructor, which led to an empty course
+        // list when admins hadn't yet verified tutors. All approved courses are now shown.
+        // if (empty($request->instructors)) {
+        //     $this->filterByVerifiedInstructors($courses);
+        // }
 
         $courses->with($realtions)
             ->where('status', CourseStatus::APPROVED)

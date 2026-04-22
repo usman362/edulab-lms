@@ -104,9 +104,9 @@
     <x-lms-education:theme::category.top-category-three :categories="$data['categories']" />
     <!-- END CATEGORY AREA -->
 
-    <!-- START POPULAR COURSE AREA -->
-    <x-lms-education:theme::course.popular-course-three :courses="$data['courses']" />
-    <!-- END POPULAR COURSE AREA -->
+    {{-- START POPULAR COURSE AREA (hidden per client request — 2026-04) --}}
+    {{-- <x-lms-education:theme::course.popular-course-three :courses="$data['courses']" /> --}}
+    {{-- END POPULAR COURSE AREA --}}
 
 
     <!-- START TESTIMONIAL AREA -->
@@ -117,9 +117,9 @@
     <x-lms-education:theme::instructor.top-instructor-three :instructors="$data['instructors']" />
     <!-- END INSTRUCTOR AREA -->
 
-    <!-- START UPCOMING COURSE AREA -->
-    <x-lms-education:theme::course.upcoming-course-three :courses="$data['courses']" />
-    <!-- END UPCOMING COURSE AREA -->
+    {{-- START UPCOMING COURSE AREA (hidden per client request — 2026-04; enable later when needed) --}}
+    {{-- <x-lms-education:theme::course.upcoming-course-three :courses="$data['courses']" /> --}}
+    {{-- END UPCOMING COURSE AREA --}}
 
     <!-- START ORGANIZATION AREA -->
     <x-lms-education:theme::organization.organization-list-three :organizations="$data['organizations']" />

@@ -23,6 +23,7 @@
         action="{{ route('user.submit.quiz.answer', ['quiz_id' => $quizId, 'question_id' => $question['id'], 'type' => $question['question_type']]) }}"
         id="{{ $question['id'] }}" method="POST"
         class="col-span-full lg:col-span-1 bg-white rounded-20 shadow-sm p-7 border border-primary-200 relative">
+        @csrf
 
         <!-- QUESTION META TAGS (top-right) -->
         <div style="position:absolute; top:.75rem; right:.75rem; display:flex; gap:.375rem; flex-wrap:wrap; justify-content:flex-end;">

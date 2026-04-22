@@ -1,6 +1,6 @@
 <!-- START INNER HERO AREA -->
-<div class="bg-transparent relative overflow-hidden mb-16 sm:mb-24 lg:mb-[120px]">
-    <div class="container py-[70px] relative">
+<div class="bg-transparent relative overflow-hidden mb-6 sm:mb-8 lg:mb-10">
+    <div class="container py-10 lg:py-12 relative">
         <h1 class="area-title xl:text-5xl text-center lg:text-left rtl:lg:text-right">{{ isset($pageTitle) && $pageTitle ? translate($pageTitle) : '' }}</h1>
         <!-- BREADCRUMB -->
         <ul class="flex items-center bg-white px-4 py-3 lg:px-6 lg:py-3.5 mx-0 lg:mx-3 gap-1.5 *:flex-center *:gap-1.5 leading-none absolute bottom-0 left-1/2 -translate-x-1/2 lg:left-auto rtl:lg:left-0 lg:right-0 rtl:lg:right-auto lg:translate-x-0 rounded-t-2xl w-max">

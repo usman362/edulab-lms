@@ -1976,6 +1976,11 @@ if (!function_exists('get_menus')) {
                 'is_active' => is_active('course.list'),
                 'childs' => [
                     [
+                        'name' => translate('Tutoring for Year 5-12'),
+                        'url' => route('category.course', 'tutoring-for-year-5-12'),
+                        'is_active' => request()->is('category-course/tutoring-for-year-5-12') ? 'active' : '',
+                    ],
+                    [
                         'name' => translate('Acceleration Class'),
                         'url' => route('category.course', 'acceleration-class'),
                         'is_active' => request()->is('category-course/acceleration-class') ? 'active' : '',
@@ -2002,11 +2007,8 @@ if (!function_exists('get_menus')) {
                 'url' => route('about.us'),
                 'is_active' => is_active('about.us'),
             ],
-            'online_platform' => [
-                'name' => translate('Online Platform'),
-                'url' => url('/page/online-platform'),
-                'is_active' => request()->is('page/online-platform'),
-            ],
+            // 'online_platform' menu item removed per client request (2026-04).
+            // The Online Platform CTA is still available as a top-right button in the header.
             'free_resources' => [
                 'name' => translate('Free Resources'),
                 'url' => url('/page/free-resources'),

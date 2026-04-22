@@ -187,11 +187,26 @@ class HomeController extends Controller
      *
      * @param  string  $slug
      */
-    public function categoryCourse($slug)
+    public function categoryCourse($slug, Request $request)
     {
-        $courses = $this->home->courseCategory($slug);
-        $data = view('theme::components.frontend.cards.course-card-one', compact('courses'))->render();
-        return response()->json(['status' => 'success', 'data' => $data]);
+        // Legacy AJAX usage (e.g. category tab switcher on home) — return JSON
+        if ($request->ajax()) {
+            $courses = $this->home->courseCategory($slug);
+            $data = view('theme::components.frontend.cards.course-card-one', compact('courses'))->render();
+            return response()->json(['status' => 'success', 'data' => $data]);
+        }
+
+        // Direct browser hit (Programs menu tile, e.g. /category-course/ucat-excellence)
+        // — redirect to the full course listing pre-filtered by this category so users
+        // see a proper page instead of raw JSON / server error.
+        $category = \Modules\LMS\Models\Category::where('slug', $slug)->first();
+
+        if ($category) {
+            return redirect()->route('course.list', ['categories' => [$category->id]]);
+        }
+
+        // Unknown slug — just fall back to the generic course listing.
+        return redirect()->route('course.list');
     }
 
     /**
