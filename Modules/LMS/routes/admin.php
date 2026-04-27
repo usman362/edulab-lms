@@ -16,6 +16,7 @@ use Modules\LMS\Http\Controllers\Admin\Courses\TagController;
 use Modules\LMS\Http\Controllers\Admin\Forum\ForumController;
 use Modules\LMS\Http\Controllers\Admin\NotificationController;
 use Modules\LMS\Http\Controllers\Admin\ThemeSettingController;
+use Modules\LMS\Http\Controllers\Admin\WorkshopEventController;
 use Modules\LMS\Http\Controllers\Admin\Coupon\CouponController;
 use Modules\LMS\Http\Controllers\Admin\Courses\LevelController;
 use Modules\LMS\Http\Controllers\Admin\PaymentMethodController;
@@ -319,6 +320,7 @@ Route::group(
         Route::get('backend-setting', [ThemeSettingController::class,  'backendSetting'])->name('backend-setting.index');
         Route::get('blogs-settings', [ThemeSettingController::class, 'blogsSettings'])->name('blogs-settings.index');
         Route::get('home-slider-settings', [ThemeSettingController::class, 'homeSliderSettings'])->name('home-slider-settings.index');
+        Route::get('home-section-settings', [ThemeSettingController::class, 'homeSectionSettings'])->name('home-section-settings.index');
         Route::get('site-language', [LanguageController::class, 'siteLanguage'])->name('site.language');
         Route::get('site-language/translate/{id}', [LanguageController::class, 'translate'])->name('site.language.translate');
 
@@ -345,6 +347,13 @@ Route::group(
         Route::resource('faq', FaqController::class);
         Route::resource('page', PageController::class)->only('index', 'edit', 'update');
         Route::get('translate/{id}/translate/{locale}', [PageController::class, 'edit'])->name('page.translate');
+
+        Route::group(['prefix' => 'workshop-event', 'as' => 'workshop-event.'], function () {
+            Route::get('/', [WorkshopEventController::class, 'index'])->name('index');
+            Route::post('/', [WorkshopEventController::class, 'store'])->name('store');
+            Route::put('/{id}', [WorkshopEventController::class, 'update'])->name('update');
+            Route::delete('/{id}', [WorkshopEventController::class, 'destroy'])->name('destroy');
+        });
 
         Route::resource('hero', HeroController::class);
         Route::put('hero/restore/{id}', [HeroController::class, 'restore'])->name('hero.restore');

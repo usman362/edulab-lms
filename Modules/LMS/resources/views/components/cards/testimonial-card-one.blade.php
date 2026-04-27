@@ -1,6 +1,6 @@
 @php
     $profileImagePath = 'lms/testimonials/' . $testimonial->profile_image;
-    $defaultProfileImage = 'lms/frontend/assets/images/370x396.svg';
+    $defaultProfileImage = 'lms/frontend/assets/images/placeholder/profile.jpg';
     $profileImageSrc =
         fileExists('lms/testimonials', $testimonial->profile_image) && $testimonial->profile_image != ''
             ? edulab_asset($profileImagePath)

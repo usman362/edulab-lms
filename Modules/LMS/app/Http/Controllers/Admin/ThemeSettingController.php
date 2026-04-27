@@ -42,6 +42,14 @@ class ThemeSettingController extends Controller
     }
 
     /**
+     * Home page sections settings page (visibility toggles, program tiles, video URL).
+     */
+    public function homeSectionSettings()
+    {
+        return view('portal::admin.home-section-setting.index');
+    }
+
+    /**
      * Theme Setting
      *
      * @param  mixed  $request

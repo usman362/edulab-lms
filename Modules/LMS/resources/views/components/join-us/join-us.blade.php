@@ -19,9 +19,18 @@
                             <div class="swiper-slide">
                                 <div
                                     class="flex-center relative video-wrapper w-full h-[430px] rounded-2xl overflow-hidden">
+                                    @php
+                                        $homeSections = get_theme_option(key: 'home_sections') ?? [];
+                                        $videoSrc = $homeSections['join_us_video'] ?? '';
+                                        if ($videoSrc && !preg_match('#^https?://#', $videoSrc)) {
+                                            $videoSrc = edulab_global_asset(ltrim($videoSrc, '/'));
+                                        }
+                                        if (!$videoSrc) {
+                                            $videoSrc = edulab_global_asset('lms/frontend/assets/video/video.mp4');
+                                        }
+                                    @endphp
                                     <video class="size-full object-cover rounded-2xl cursor-pointer">
-                                        <source src="{{ edulab_global_asset('lms/frontend/assets/video/video.mp4') }}"
-                                            type="video/mp4">
+                                        <source src="{{ $videoSrc }}" type="video/mp4">
                                     </video>
                                     <!-- CONTROLLER -->
                                     <div
@@ -38,9 +47,18 @@
                             <div class="swiper-slide">
                                 <div
                                     class="flex-center relative video-wrapper w-full h-[430px] rounded-2xl overflow-hidden">
+                                    @php
+                                        $homeSections = get_theme_option(key: 'home_sections') ?? [];
+                                        $videoSrc = $homeSections['join_us_video'] ?? '';
+                                        if ($videoSrc && !preg_match('#^https?://#', $videoSrc)) {
+                                            $videoSrc = edulab_global_asset(ltrim($videoSrc, '/'));
+                                        }
+                                        if (!$videoSrc) {
+                                            $videoSrc = edulab_global_asset('lms/frontend/assets/video/video.mp4');
+                                        }
+                                    @endphp
                                     <video class="size-full object-cover rounded-2xl cursor-pointer">
-                                        <source src="{{ edulab_global_asset('lms/frontend/assets/video/video.mp4') }}"
-                                            type="video/mp4">
+                                        <source src="{{ $videoSrc }}" type="video/mp4">
                                     </video>
                                     <!-- CONTROLLER -->
                                     <div

@@ -38,110 +38,134 @@
         </div>
     </div>
 
-    <!-- OUR MISSION & VALUES -->
+    <!-- OUR MISSION & VALUES (tile layout) -->
     <div class="bg-primary-50 py-16 sm:py-24">
         <div class="container">
-            <div class="text-center max-w-3xl mx-auto mb-12">
-                <div class="area-subtitle">{{ translate('Our Mission') }}</div>
-                <h2 class="area-title mt-2">
+            <!-- MISSION TILE -->
+            <div class="bg-white rounded-3xl shadow-md border border-primary-100 p-8 lg:p-12 max-w-4xl mx-auto mb-14 text-center relative overflow-hidden">
+                <span class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-primary/10 text-primary text-xs font-bold uppercase tracking-wider">
+                    <i class="ri-flag-line"></i> {{ translate('Our Mission') }}
+                </span>
+                <h2 class="area-title mt-4">
                     {{ translate('Effort to Excellence.') }}
                     <span class="title-highlight-one">{{ translate("That's how you ACE it.") }}</span>
                 </h2>
-                <p class="area-description mt-5">
+                <p class="area-description mt-5 leading-relaxed">
                     {{ translate('Ace Academics was built on a simple principle: effort, when applied with the right structure, leads to excellence. That is why we focus on proven strategies, consistent feedback, and a learning environment where students feel challenged and supported.') }}
                 </p>
+                <span class="absolute -top-10 -right-10 size-40 rounded-full bg-primary/5 -z-0"></span>
+                <span class="absolute -bottom-12 -left-12 size-48 rounded-full bg-amber-100/40 -z-0"></span>
             </div>
 
-            <div class="grid grid-cols-1 md:grid-cols-3 gap-7">
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-6 lg:gap-8">
                 <!-- Value 1 -->
-                <div class="bg-white rounded-2xl p-8 shadow-sm hover:shadow-lg custom-transition">
+                <div class="group bg-white rounded-2xl p-7 shadow-sm hover:shadow-xl hover:-translate-y-1 custom-transition border border-gray-100 relative overflow-hidden">
                     <div class="flex-center size-14 rounded-xl bg-primary/10 mb-5">
                         <i class="ri-lightbulb-line text-2xl text-primary"></i>
                     </div>
-                    <h5 class="text-heading font-bold text-lg">{{ translate('Structured Learning') }}</h5>
+                    <h5 class="text-heading font-bold text-lg group-hover:text-primary custom-transition">{{ translate('Structured Learning') }}</h5>
                     <p class="text-gray-500 mt-3 leading-relaxed text-sm">
                         {{ translate('Every program at Ace Academics is designed with a clear structure — weekly planning frameworks, subject-specific strategies, and continuous performance tracking so students always know where they stand and what to focus on next.') }}
                     </p>
+                    <span class="absolute bottom-0 left-0 right-0 h-1 bg-primary scale-x-0 group-hover:scale-x-100 origin-left custom-transition"></span>
                 </div>
                 <!-- Value 2 -->
-                <div class="bg-white rounded-2xl p-8 shadow-sm hover:shadow-lg custom-transition">
+                <div class="group bg-white rounded-2xl p-7 shadow-sm hover:shadow-xl hover:-translate-y-1 custom-transition border border-gray-100 relative overflow-hidden">
                     <div class="flex-center size-14 rounded-xl bg-red-50 mb-5">
                         <i class="ri-user-heart-line text-2xl text-red-500"></i>
                     </div>
-                    <h5 class="text-heading font-bold text-lg">{{ translate('Personalised Support') }}</h5>
+                    <h5 class="text-heading font-bold text-lg group-hover:text-red-500 custom-transition">{{ translate('Personalised Support') }}</h5>
                     <p class="text-gray-500 mt-3 leading-relaxed text-sm">
                         {{ translate('We understand that every student learns differently. Our tutors work one-on-one and in small groups to identify each student\'s unique strengths and areas for improvement, tailoring their approach accordingly.') }}
                     </p>
+                    <span class="absolute bottom-0 left-0 right-0 h-1 bg-red-500 scale-x-0 group-hover:scale-x-100 origin-left custom-transition"></span>
                 </div>
                 <!-- Value 3 -->
-                <div class="bg-white rounded-2xl p-8 shadow-sm hover:shadow-lg custom-transition">
+                <div class="group bg-white rounded-2xl p-7 shadow-sm hover:shadow-xl hover:-translate-y-1 custom-transition border border-gray-100 relative overflow-hidden">
                     <div class="flex-center size-14 rounded-xl bg-amber-50 mb-5">
                         <i class="ri-trophy-line text-2xl text-amber-500"></i>
                     </div>
-                    <h5 class="text-heading font-bold text-lg">{{ translate('Proven Results') }}</h5>
+                    <h5 class="text-heading font-bold text-lg group-hover:text-amber-500 custom-transition">{{ translate('Proven Results') }}</h5>
                     <p class="text-gray-500 mt-3 leading-relaxed text-sm">
                         {{ translate('Our students consistently achieve outstanding results — from ATAR 99.95 to medicine admissions and selective school placements. We measure success not just by grades, but by the confidence and skills students develop along the way.') }}
                     </p>
+                    <span class="absolute bottom-0 left-0 right-0 h-1 bg-amber-500 scale-x-0 group-hover:scale-x-100 origin-left custom-transition"></span>
                 </div>
             </div>
         </div>
     </div>
 
-    <!-- WHAT WE OFFER -->
+    <!-- WHAT WE OFFER (tile layout, matches home programs tiles) -->
     <div class="container py-16 sm:py-24">
         <div class="text-center max-w-3xl mx-auto mb-12">
-            <div class="area-subtitle">{{ translate('What We Offer') }}</div>
-            <h2 class="area-title mt-2">
+            <span class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-primary/10 text-primary text-xs font-bold uppercase tracking-wider">
+                <i class="ri-stack-line"></i> {{ translate('What We Offer') }}
+            </span>
+            <h2 class="area-title mt-3">
                 {{ translate('Comprehensive Academic') }}
                 <span class="title-highlight-one">{{ translate('Programs') }}</span>
             </h2>
         </div>
 
-        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
-            <div class="text-center p-6 rounded-2xl border border-gray-100 hover:shadow-lg custom-transition group">
-                <div class="flex-center size-16 rounded-2xl bg-primary/10 mx-auto mb-4 group-hover:bg-primary group-hover:text-white custom-transition">
-                    <i class="ri-book-open-line text-3xl text-primary group-hover:text-white custom-transition"></i>
-                </div>
-                <h6 class="font-bold text-heading">{{ translate('Tutoring for Year 5-12') }}</h6>
-                <p class="text-gray-500 text-sm mt-2">{{ translate('Maths, English, Science and more') }}</p>
-            </div>
-            <div class="text-center p-6 rounded-2xl border border-gray-100 hover:shadow-lg custom-transition group">
-                <div class="flex-center size-16 rounded-2xl bg-red-50 mx-auto mb-4 group-hover:bg-red-500 custom-transition">
-                    <i class="ri-rocket-line text-3xl text-red-500 group-hover:text-white custom-transition"></i>
-                </div>
-                <h6 class="font-bold text-heading">{{ translate('Acceleration Class') }}</h6>
-                <p class="text-gray-500 text-sm mt-2">{{ translate('Advanced programs beyond grade level') }}</p>
-            </div>
-            <div class="text-center p-6 rounded-2xl border border-gray-100 hover:shadow-lg custom-transition group">
-                <div class="flex-center size-16 rounded-2xl bg-indigo-50 mx-auto mb-4 group-hover:bg-indigo-500 custom-transition">
-                    <i class="ri-stethoscope-line text-3xl text-indigo-500 group-hover:text-white custom-transition"></i>
-                </div>
-                <h6 class="font-bold text-heading">{{ translate('UCAT Excellence') }}</h6>
-                <p class="text-gray-500 text-sm mt-2">{{ translate('Medicine pathway preparation') }}</p>
-            </div>
-            <div class="text-center p-6 rounded-2xl border border-gray-100 hover:shadow-lg custom-transition group">
-                <div class="flex-center size-16 rounded-2xl bg-amber-50 mx-auto mb-4 group-hover:bg-amber-500 custom-transition">
-                    <i class="ri-award-line text-3xl text-amber-500 group-hover:text-white custom-transition"></i>
-                </div>
-                <h6 class="font-bold text-heading">{{ translate('Selective Exam Prep') }}</h6>
-                <p class="text-gray-500 text-sm mt-2">{{ translate('BSHS & scholarship exams') }}</p>
-            </div>
+        @php
+            $offerings = [
+                ['title' => 'Tutoring for Year 5-12',     'desc' => 'Maths, English, Science and more',          'icon' => 'ri-book-open-line',  'color' => '#0d9488', 'slug' => 'tutoring-for-year-5-12'],
+                ['title' => 'Acceleration Class',         'desc' => 'Advanced programs beyond grade level',      'icon' => 'ri-rocket-line',     'color' => '#e52524', 'slug' => 'acceleration-class'],
+                ['title' => 'UCAT Excellence',            'desc' => 'Medicine pathway preparation',              'icon' => 'ri-stethoscope-line','color' => '#6366f1', 'slug' => 'ucat-excellence'],
+                ['title' => 'Selective Exam Prep',        'desc' => 'BSHS & scholarship exams',                  'icon' => 'ri-award-line',      'color' => '#f59e0b', 'slug' => 'selective-exam-preparation'],
+            ];
+        @endphp
+
+        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5 xl:gap-7">
+            @foreach ($offerings as $item)
+                <a href="{{ route('category.course', $item['slug']) }}"
+                   class="group relative bg-white border border-gray-100 rounded-2xl p-6 xl:p-8 hover:shadow-xl hover:-translate-y-1 custom-transition overflow-hidden">
+                    <div class="flex-center size-16 rounded-2xl mb-5"
+                         style="background: {{ $item['color'] }}15;">
+                        <i class="{{ $item['icon'] }} text-3xl" style="color: {{ $item['color'] }};"></i>
+                    </div>
+                    <h5 class="text-heading font-bold text-lg leading-tight group-hover:text-primary custom-transition">
+                        {{ translate($item['title']) }}
+                    </h5>
+                    <p class="text-gray-500 text-sm mt-3 leading-relaxed">
+                        {{ translate($item['desc']) }}
+                    </p>
+                    <div class="mt-5 flex items-center gap-2 text-sm font-semibold text-primary opacity-0 group-hover:opacity-100 custom-transition">
+                        {{ translate('Learn More') }} <i class="ri-arrow-right-line"></i>
+                    </div>
+                    <div class="absolute bottom-0 left-0 right-0 h-1 scale-x-0 group-hover:scale-x-100 custom-transition origin-left"
+                         style="background: {{ $item['color'] }};"></div>
+                </a>
+            @endforeach
         </div>
     </div>
 
     <!-- CTA SECTION -->
-    <div class="bg-primary py-16 sm:py-20">
-        <div class="container text-center">
-            <h2 class="text-white text-3xl lg:text-4xl font-bold">{{ translate('Ready to Start Your Journey?') }}</h2>
-            <p class="text-white/80 mt-4 max-w-2xl mx-auto text-lg">
+    <div class="relative py-20 sm:py-24 overflow-hidden"
+         style="background: linear-gradient(135deg, var(--color-primary) 0%, #0f766e 60%, #e52524 130%);">
+        <span class="absolute -top-24 -left-24 size-72 rounded-full bg-white/10 blur-3xl"></span>
+        <span class="absolute -bottom-24 -right-24 size-80 rounded-full bg-white/10 blur-3xl"></span>
+
+        <div class="container text-center relative z-10">
+            <h2 class="text-white text-3xl lg:text-5xl font-bold leading-tight">
+                {{ translate('Ready to Start Your') }}
+                <span class="inline-block bg-white/15 backdrop-blur-sm px-4 py-1 rounded-2xl">
+                    {{ translate('Journey?') }}
+                </span>
+            </h2>
+            <p class="text-white/85 mt-5 max-w-2xl mx-auto text-lg">
                 {{ translate('Join hundreds of students who have transformed their academic performance with Ace Academics.') }}
             </p>
-            <div class="flex flex-wrap justify-center gap-4 mt-8">
-                <a href="{{ route('contact.page') }}" class="btn b-solid bg-white text-primary btn-lg !rounded-full font-bold hover:bg-gray-100 custom-transition">
+            <div class="flex flex-wrap justify-center gap-4 mt-10">
+                <a href="{{ route('contact.page') }}"
+                   class="inline-flex items-center gap-2 px-8 py-4 rounded-full bg-white text-primary font-bold text-base shadow-xl hover:shadow-2xl hover:-translate-y-0.5 custom-transition">
+                    <i class="ri-customer-service-2-line text-lg"></i>
                     {{ translate('Enquire Now') }}
-                    <i class="ri-arrow-right-up-line ml-1"></i>
+                    <i class="ri-arrow-right-up-line text-lg"></i>
                 </a>
-                <a href="{{ route('course.list') }}" class="btn b-outline border-white text-white btn-lg !rounded-full font-bold hover:bg-white/10 custom-transition">
+                <a href="{{ route('course.list') }}"
+                   class="inline-flex items-center gap-2 px-8 py-4 rounded-full bg-white/10 backdrop-blur-sm border-2 border-white text-white font-bold text-base hover:bg-white hover:text-primary custom-transition">
+                    <i class="ri-book-open-line text-lg"></i>
                     {{ translate('Browse Programs') }}
                 </a>
             </div>

@@ -202,7 +202,9 @@ class HomeController extends Controller
         $category = \Modules\LMS\Models\Category::where('slug', $slug)->first();
 
         if ($category) {
-            return redirect()->route('course.list', ['categories' => [$category->id]]);
+            // Pass as a comma-separated string — CourseRepository::filterByCategories expects ?string
+            // and will throw a TypeError if it receives an array.
+            return redirect()->route('course.list', ['categories' => (string) $category->id]);
         }
 
         // Unknown slug — just fall back to the generic course listing.

@@ -15,37 +15,19 @@
         $categoryBtnText = 'Add Category';
     }
 
-    // Define the 4 featured program tiles
-    $featuredPrograms = [
-        [
-            'title' => 'Tutoring for Year 5-12',
-            'description' => 'Comprehensive subject tutoring from primary to senior levels, covering Maths, English, Science and more.',
-            'icon' => 'ri-book-open-line',
-            'slug' => 'tutoring-for-year-5-12',
-            'color' => '#0d9488',
-        ],
-        [
-            'title' => 'Acceleration Class',
-            'description' => 'Advanced programs for students ready to move ahead of their grade level with challenging curriculum.',
-            'icon' => 'ri-rocket-line',
-            'slug' => 'acceleration-class',
-            'color' => '#e52524',
-        ],
-        [
-            'title' => 'UCAT Excellence',
-            'description' => 'Structured UCAT preparation with practice exams, strategy sessions, and personalised feedback.',
-            'icon' => 'ri-stethoscope-line',
-            'slug' => 'ucat-excellence',
-            'color' => '#6366f1',
-        ],
-        [
-            'title' => 'Selective Exam Preparation',
-            'description' => 'Targeted coaching for selective school entry exams including BSHS and academic scholarship tests.',
-            'icon' => 'ri-award-line',
-            'slug' => 'selective-exam-preparation',
-            'color' => '#f59e0b',
-        ],
+    // Default 4 featured program tiles — admin can override via Home Page Sections settings.
+    $defaultFeaturedPrograms = [
+        ['title' => 'Tutoring for Year 5-12',     'description' => 'Comprehensive subject tutoring from primary to senior levels, covering Maths, English, Science and more.', 'icon' => 'ri-book-open-line',  'slug' => 'tutoring-for-year-5-12',     'color' => '#0d9488'],
+        ['title' => 'Acceleration Class',         'description' => 'Advanced programs for students ready to move ahead of their grade level with challenging curriculum.',          'icon' => 'ri-rocket-line',     'slug' => 'acceleration-class',         'color' => '#e52524'],
+        ['title' => 'UCAT Excellence',            'description' => 'Structured UCAT preparation with practice exams, strategy sessions, and personalised feedback.',                'icon' => 'ri-stethoscope-line','slug' => 'ucat-excellence',            'color' => '#6366f1'],
+        ['title' => 'Selective Exam Preparation', 'description' => 'Targeted coaching for selective school entry exams including BSHS and academic scholarship tests.',              'icon' => 'ri-award-line',      'slug' => 'selective-exam-preparation', 'color' => '#f59e0b'],
     ];
+    $homeSections = get_theme_option(key: 'home_sections') ?? [];
+    $configuredTiles = $homeSections['tiles'] ?? [];
+    $featuredPrograms = [];
+    foreach ($defaultFeaturedPrograms as $i => $defaultTile) {
+        $featuredPrograms[] = array_merge($defaultTile, $configuredTiles[$i] ?? []);
+    }
 @endphp
 <div class="bg-white pt-10 xl:pt-0 pb-16 sm:pb-24 lg:pb-[120px]">
     <div class="container">

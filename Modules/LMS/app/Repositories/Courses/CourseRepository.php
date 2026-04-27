@@ -1265,11 +1265,19 @@ class CourseRepository extends BaseRepository
 
     /**
      * Filter courses by category or subcategory.
+     *
+     * Accepts a comma-separated string (e.g. "1,2,3") or an array of IDs — callers
+     * historically passed both forms via query string (`?categories=1,2` vs `?categories[]=1`).
      */
-    private function filterByCategories($query, ?string $categories, string $column): void
+    private function filterByCategories($query, $categories, string $column): void
     {
-        if (! empty($categories)) {
-            $query->whereIn($column, explode(',', $categories));
+        if (empty($categories)) {
+            return;
+        }
+        $ids = is_array($categories) ? $categories : explode(',', $categories);
+        $ids = array_filter(array_map('trim', $ids), fn($v) => $v !== '');
+        if (! empty($ids)) {
+            $query->whereIn($column, $ids);
         }
     }
 
