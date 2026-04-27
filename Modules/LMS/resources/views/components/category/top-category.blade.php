@@ -90,13 +90,9 @@
             @endforeach
         </div>
 
-        <!-- Also show database categories below if available -->
-        @if (!empty($categories) && is_iterable($categories))
-            <div class="grid grid-cols-12 gap-4 xl:gap-7 mt-10">
-                @foreach ($categories as $category)
-                    <x-theme::cards.category.card-one :category="$category" />
-                @endforeach
-            </div>
-        @endif
+        {{-- Secondary database-loaded category grid was hidden (2026-04) per client request:
+             home page should show only the four curated Ace program tiles, not the full
+             category catalogue underneath. Categories like Digital Marketing / UI&UX / Data
+             Science were leaking through from the demo seeder. --}}
     </div>
 </div>

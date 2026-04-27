@@ -40,13 +40,8 @@
                     </div>
                 @endif
 
-                <!-- ONLINE PLATFORM BUTTON -->
-                <a href="{{ url('/page/online-platform') }}" aria-label="Online Platform"
-                    class="hidden lg:flex btn b-solid btn-primary-solid h-10 !rounded-full !text-white font-semibold text-sm px-4 shadow-md hover:shadow-lg custom-transition"
-                    style="background: linear-gradient(135deg, var(--color-primary), #e52524); border: none;">
-                    <i class="ri-computer-line mr-1.5"></i>
-                    {{ translate('Online Platform') }}
-                </a>
+                {{-- Online Platform header button removed (2026-04) per client request.
+                     Page is still reachable via /page/online-platform if needed. --}}
 
                 <x-dynamic-component component='{{ "{$theme}:theme::header.right-side" }}' :theme="$theme"
                     :data="$data" />

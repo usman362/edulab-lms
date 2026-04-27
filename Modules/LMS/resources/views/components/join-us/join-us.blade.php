@@ -3,10 +3,10 @@
     <div class="container relative z-10">
         <div class="grid grid-cols-12 gap-7">
             <div class="col-span-full lg:col-span-7 self-end relative">
-                <div class="area-subtitle">
+                <div class="area-subtitle text-primary-300">
                     {{ translate('Get Started') }}
                 </div>
-                <h2 class="area-title mt-2">
+                <h2 class="area-title mt-2 !text-white">
                     {{ translate('Join Ace ') }}
                     <span class="title-highlight-one">
                         {{ translate('Academics') }}

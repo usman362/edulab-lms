@@ -4,7 +4,7 @@
     $imgSrc =
         $profileImg && fileExists('lms/instructors', $profileImg) == true
             ? edulab_asset('/lms/instructors/' . $profileImg)
-            : edulab_global_asset('lms/frontend/assets/images/370x396.svg');
+            : edulab_global_asset('lms/frontend/assets/images/placeholder/profile.jpg');
     $userTranslations = parse_translation($user);
     if ($user?->designation) {
         $designationData = parse_translation($user?->designation);
