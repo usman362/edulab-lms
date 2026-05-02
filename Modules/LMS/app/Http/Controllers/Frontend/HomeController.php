@@ -224,12 +224,14 @@ class HomeController extends Controller
 
     public function policyContent()
     {
-        abort(404);
+        // Forward named-route hits to the corresponding CMS Page so the footer
+        // links don't 404 even when admin hasn't yet customised the named route.
+        return redirect('/page/privacy-policy');
     }
 
     public function termsCondition()
     {
-        abort(404);
+        return redirect('/page/terms-and-conditions');
     }
 
     public function categoryList()

@@ -3,6 +3,7 @@
 namespace Modules\LMS\Notifications;
 
 use Illuminate\Bus\Queueable;
+use Illuminate\Notifications\Messages\MailMessage;
 use Illuminate\Notifications\Notification;
 
 class NotifyAdmin extends Notification
@@ -22,19 +23,31 @@ class NotifyAdmin extends Notification
      */
     public function via($notifiable): array
     {
-        return ['database'];
+        // Email is delivered only when SMTP is configured. Falls back to database
+        // entry alone if mail config is missing.
+        $channels = ['database'];
+        if (config('mail.default') && config('mail.mailers.' . config('mail.default') . '.host')) {
+            $channels[] = 'mail';
+        }
+        return $channels;
     }
 
     /**
      * Get the mail representation of the notification.
      */
-    // public function toMail($notifiable): MailMessage
-    // {
-    //     return (new MailMessage)
-    //         ->line('The introduction to the notification.')
-    //         ->action('Notification Action', 'https://laravel.com')
-    //         ->line('Thank you for using our application!');
-    // }
+    public function toMail($notifiable): MailMessage
+    {
+        $title = $this->data['title'] ?? 'Admin notification';
+        $body  = $this->data['body'] ?? $this->data['message'] ?? 'You have a new notification on ACE Academic.';
+        $url   = $this->data['url'] ?? url('/dashboard');
+
+        return (new MailMessage)
+            ->subject($title)
+            ->greeting('Hi Admin,')
+            ->line($body)
+            ->action('Open Dashboard', $url)
+            ->line('— ACE Academic');
+    }
 
     /**
      * Get the array representation of the notification.

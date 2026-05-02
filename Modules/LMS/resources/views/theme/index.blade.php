@@ -18,13 +18,13 @@
                 <div class="text-center max-w-3xl mx-auto">
                     <div class="flex flex-wrap justify-center gap-3 mb-6">
                         <span class="inline-flex items-center px-4 py-2 rounded-full bg-primary/10 text-primary font-bold text-sm">
-                            ATAR 99.95
+                            {{ translate('ATAR 99.95') }}
                         </span>
                         <span class="inline-flex items-center px-4 py-2 rounded-full bg-red-50 text-red-600 font-bold text-sm">
-                            Medicine (UQ)
+                            {{ translate('Medicine (UQ)') }}
                         </span>
                         <span class="inline-flex items-center px-4 py-2 rounded-full bg-amber-50 text-amber-600 font-bold text-sm">
-                            Top Achievers
+                            {{ translate('Top Achievers') }}
                         </span>
                     </div>
                     <p class="area-description text-lg">
@@ -133,7 +133,9 @@
         <!-- END ONLINE VIDEO COURSE AREA -->
     @endif
 
-    @if ($show('blogs'))
+    {{-- Blogs default off — ACE has no blog posts seeded yet. Admin can enable
+         from Settings → Home Page Sections once content exists. --}}
+    @if ($show('blogs', '0') && !empty($data['blogs']))
         <x-theme::blog.latest-blog-one :blogs="$data['blogs']" />
     @endif
 

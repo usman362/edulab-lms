@@ -256,7 +256,7 @@
                     </a>
                 </li>
 
-                @if (module_enable_check('subscription'))
+                @if (module_enable_check('subscription') && Route::has('student.subscription.list'))
                     <li
                         class="relative group/sm w-full group-data-[sidebar-size=sm]:hover:w-[calc(theme('spacing.app-menu-sm')_*_3.4)] group-data-[sidebar-size=sm]:flex-center">
                         <a href="{{ route('student.subscription.list') }}"

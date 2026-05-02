@@ -163,11 +163,18 @@ class AceAcademicsSeeder extends Seeder
     }
 
     /**
-     * Seed course categories — matches 3 programs from old site Programs page.
+     * Seed course categories — matches 4 program tiles on the home page.
+     * NOTE: Slugs MUST match Modules/LMS/resources/views/components/category/top-category.blade.php
+     * tile slugs, otherwise the tile silently redirects to the generic course list.
      */
     private function seedCategories(): void
     {
         $categories = [
+            [
+                'title' => 'Tutoring for Year 5-12',
+                'slug' => 'tutoring-for-year-5-12',
+                'meta_description' => 'Comprehensive subject tutoring from primary to senior levels, covering Maths, English, Science and more.',
+            ],
             [
                 'title' => 'Acceleration Class',
                 'slug' => 'acceleration-class',
@@ -497,7 +504,7 @@ class AceAcademicsSeeder extends Seeder
             'two_menu' => '<ul><li><a href="/">Home</a></li><li><a href="/page/programs">Programs</a></li><li><a href="/page/about-us">About</a></li><li><a href="/page/online-platform">Online Platform</a></li><li><a href="/page/free-resources">Free Resources</a></li><li><a href="/page/workshop">Workshop</a></li><li><a href="/contact">Contact</a></li></ul>',
             'three_status' => 'on',
             'three_title' => 'Programs',
-            'three_menu' => '<ul><li><a href="/category/acceleration-class">Acceleration Class</a></li><li><a href="/category/ucat-excellence">UCAT Excellence</a></li><li><a href="/category/selective-exam-preparation">Selective Exam Preparation</a></li></ul>',
+            'three_menu' => '<ul><li><a href="/category/tutoring-for-year-5-12">Tutoring for Year 5-12</a></li><li><a href="/category/acceleration-class">Acceleration Class</a></li><li><a href="/category/ucat-excellence">UCAT Excellence</a></li><li><a href="/category/selective-exam-preparation">Selective Exam Preparation</a></li></ul>',
             'five_status' => 'on',
             'five_title' => 'Subscribe to Our Newsletter',
         ];
@@ -536,7 +543,9 @@ class AceAcademicsSeeder extends Seeder
         // General settings (top bar email, phone, address, office hours)
         $general = [
             'email' => 'admin@aceacademic.com.au',
-            'phone' => '0412345678',
+            // Phone left blank intentionally — admin sets the real ACE contact
+            // number via Settings → General. Avoids leaking a placeholder publicly.
+            'phone' => '',
             'address' => 'Brisbane, Queensland, Australia',
             'second_email' => '',
             'second_phone' => '',

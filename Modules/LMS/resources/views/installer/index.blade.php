@@ -176,11 +176,11 @@
                     <fieldset class="installation">
                         <form action="{{ route('install.requirement') }}">
                             <div class="step-title mb-25">
-                                <h3> Welcome to the EduLab Application Installer! </h3>
+                                <h3> Welcome to the ACE Academic Application Installer! </h3>
                                 <p>
                                     We understand the value of your time and the importance of a seamless installation
                                     experience. That's why we've designed a user-friendly installer to make setting up
-                                    EduLab
+                                    your platform
                                     effortless.
                                     Say goodbye to complex setups and hello to a streamlined, intuitive process. Let’s get
                                     started and bring your learning platform to life in just a few simple steps!

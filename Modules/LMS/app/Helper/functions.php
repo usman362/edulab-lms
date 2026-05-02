@@ -2264,25 +2264,57 @@ if (!function_exists('ai_service_type')) {
 if (!function_exists('get_currency_list')) {
     function get_currency_list()
     {
-        $currencies = [];
-        $locales = ResourceBundle::getLocales('');
-        foreach ($locales as $locale) {
-            $formatter = new NumberFormatter($locale, NumberFormatter::CURRENCY);
-            $currencyCode = $formatter->getTextAttribute(NumberFormatter::CURRENCY_CODE);
-            $currencySymbol = $formatter->getSymbol(NumberFormatter::CURRENCY_SYMBOL);
-            $country = Locale::getDisplayRegion('-' . strtoupper($locale), 'en');
+        // Curated fallback list — guaranteed to be present even when the PHP intl
+        // extension on the host is missing/limited locales (e.g. some shared
+        // hosting where en_AU is absent so AUD is never produced by NumberFormatter).
+        $currencies = [
+            'AUD' => ['country' => 'Australia',      'code' => 'AUD', 'name' => 'Australian Dollar',  'symbol' => 'A$'],
+            'USD' => ['country' => 'United States',  'code' => 'USD', 'name' => 'US Dollar',          'symbol' => '$'],
+            'EUR' => ['country' => 'Eurozone',       'code' => 'EUR', 'name' => 'Euro',               'symbol' => '€'],
+            'GBP' => ['country' => 'United Kingdom', 'code' => 'GBP', 'name' => 'British Pound',      'symbol' => '£'],
+            'CAD' => ['country' => 'Canada',         'code' => 'CAD', 'name' => 'Canadian Dollar',    'symbol' => 'C$'],
+            'NZD' => ['country' => 'New Zealand',    'code' => 'NZD', 'name' => 'New Zealand Dollar', 'symbol' => 'NZ$'],
+            'INR' => ['country' => 'India',          'code' => 'INR', 'name' => 'Indian Rupee',       'symbol' => '₹'],
+            'PKR' => ['country' => 'Pakistan',       'code' => 'PKR', 'name' => 'Pakistani Rupee',    'symbol' => '₨'],
+            'BDT' => ['country' => 'Bangladesh',     'code' => 'BDT', 'name' => 'Bangladeshi Taka',   'symbol' => '৳'],
+            'AED' => ['country' => 'UAE',            'code' => 'AED', 'name' => 'UAE Dirham',         'symbol' => 'د.إ'],
+            'SAR' => ['country' => 'Saudi Arabia',   'code' => 'SAR', 'name' => 'Saudi Riyal',        'symbol' => '﷼'],
+            'JPY' => ['country' => 'Japan',          'code' => 'JPY', 'name' => 'Japanese Yen',       'symbol' => '¥'],
+            'CNY' => ['country' => 'China',          'code' => 'CNY', 'name' => 'Chinese Yuan',       'symbol' => '¥'],
+            'SGD' => ['country' => 'Singapore',      'code' => 'SGD', 'name' => 'Singapore Dollar',   'symbol' => 'S$'],
+            'MYR' => ['country' => 'Malaysia',       'code' => 'MYR', 'name' => 'Malaysian Ringgit',  'symbol' => 'RM'],
+            'IDR' => ['country' => 'Indonesia',      'code' => 'IDR', 'name' => 'Indonesian Rupiah',  'symbol' => 'Rp'],
+            'ZAR' => ['country' => 'South Africa',   'code' => 'ZAR', 'name' => 'South African Rand', 'symbol' => 'R'],
+            'CHF' => ['country' => 'Switzerland',    'code' => 'CHF', 'name' => 'Swiss Franc',        'symbol' => 'CHF'],
+            'HKD' => ['country' => 'Hong Kong',      'code' => 'HKD', 'name' => 'Hong Kong Dollar',   'symbol' => 'HK$'],
+            'TRY' => ['country' => 'Turkey',         'code' => 'TRY', 'name' => 'Turkish Lira',       'symbol' => '₺'],
+        ];
 
-            $currencyName = Locale::getDisplayName($currencyCode, 'en');
+        // Optionally enrich with whatever the intl extension can produce on this host.
+        if (class_exists('ResourceBundle') && class_exists('NumberFormatter')) {
+            try {
+                $locales = ResourceBundle::getLocales('');
+                foreach ($locales as $locale) {
+                    $formatter = new NumberFormatter($locale, NumberFormatter::CURRENCY);
+                    $currencyCode = $formatter->getTextAttribute(NumberFormatter::CURRENCY_CODE);
+                    $currencySymbol = $formatter->getSymbol(NumberFormatter::CURRENCY_SYMBOL);
+                    $country = Locale::getDisplayRegion('-' . strtoupper($locale), 'en');
+                    $currencyName = Locale::getDisplayName($currencyCode, 'en');
 
-            if ($currencyCode && !isset($currencies[$currencyCode])) {
-                $currencies[$currencyCode] = [
-                    'country' => $country ?: 'Unknown',
-                    'code' => $currencyCode,
-                    'name' => $currencyName ?: 'Unknown Currency',
-                    'symbol' => $currencySymbol,
-                ];
+                    if ($currencyCode && !isset($currencies[$currencyCode])) {
+                        $currencies[$currencyCode] = [
+                            'country' => $country ?: 'Unknown',
+                            'code'    => $currencyCode,
+                            'name'    => $currencyName ?: 'Unknown Currency',
+                            'symbol'  => $currencySymbol,
+                        ];
+                    }
+                }
+            } catch (\Throwable $e) {
+                // intl extension misbehaving on host — silently fall back to curated list.
             }
         }
+
         ksort($currencies);
         return $currencies;
     }

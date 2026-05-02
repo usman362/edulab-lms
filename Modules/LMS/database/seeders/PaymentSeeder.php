@@ -17,7 +17,7 @@ class PaymentSeeder extends Seeder
             [
                 'method_name' => 'Stripe',
                 'slug' => 'stripe',
-                'currency' => 'USD',
+                'currency' => 'AUD',
                 'conversation_rate' => null,
                 'keys' => null,
                 'enabled_test_mode' => 1,
@@ -30,7 +30,7 @@ class PaymentSeeder extends Seeder
             [
                 'method_name' => 'Paypal',
                 'slug' => 'paypal',
-                'currency' => 'USD',
+                'currency' => 'AUD',
                 'conversation_rate' => null,
                 'keys' => null,
                 'enabled_test_mode' => 1,
@@ -40,6 +40,9 @@ class PaymentSeeder extends Seeder
                 'created_at' => now(),
 
             ],
+            // Regional gateways below are disabled by default for AU client.
+            // Razorpay = India only (INR), Xendit = SEA only (IDR/PHP/etc.),
+            // Paystack = Africa only (ZAR/NGN). Admin can enable later if needed.
             [
                 'method_name' => 'Razorpay',
                 'slug' => 'razorpay',
@@ -48,7 +51,7 @@ class PaymentSeeder extends Seeder
                 'keys' => null,
                 'enabled_test_mode' => 1,
                 'logo' =>  'lms-7Djey1BX.png',
-                'status' => 1,
+                'status' => 0,
                 'updated_at' => now(),
                 'created_at' => now(),
 
@@ -61,7 +64,7 @@ class PaymentSeeder extends Seeder
                 'keys' => null,
                 'enabled_test_mode' => 1,
                 'logo' =>  'lms-NAXoWT6H.png',
-                'status' => 1,
+                'status' => 0,
                 'updated_at' => now(),
                 'created_at' => now(),
 
@@ -74,7 +77,7 @@ class PaymentSeeder extends Seeder
                 'keys' => null,
                 'enabled_test_mode' => 1,
                 'logo' =>  'lms-8tWnmaIX.png',
-                'status' => 1,
+                'status' => 0,
                 'updated_at' => now(),
                 'created_at' => now(),
 
@@ -82,7 +85,7 @@ class PaymentSeeder extends Seeder
             [
                 'method_name' => 'Offline',
                 'slug' => 'offline',
-                'currency' => 'BDT',
+                'currency' => 'AUD',
                 'conversation_rate' => null,
                 'keys' => null,
                 'enabled_test_mode' => 1,

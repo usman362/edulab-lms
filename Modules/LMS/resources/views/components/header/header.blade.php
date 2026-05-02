@@ -40,8 +40,13 @@
                     </div>
                 @endif
 
-                {{-- Online Platform header button removed (2026-04) per client request.
-                     Page is still reachable via /page/online-platform if needed. --}}
+                <!-- ONLINE PLATFORM BUTTON -->
+                {{-- Uses theme primary token only so admin colour changes propagate. --}}
+                <a href="{{ url('/page/online-platform') }}" aria-label="Online Platform"
+                    class="hidden lg:flex btn b-solid btn-primary-solid h-10 !rounded-full !text-white font-semibold text-sm px-4 shadow-md hover:shadow-lg custom-transition">
+                    <i class="ri-computer-line mr-1.5"></i>
+                    {{ translate('Online Platform') }}
+                </a>
 
                 <x-dynamic-component component='{{ "{$theme}:theme::header.right-side" }}' :theme="$theme"
                     :data="$data" />

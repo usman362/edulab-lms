@@ -25,6 +25,8 @@
                         </span>
                     </a>
                 </li>
+                {{-- Theme Manage menu (Hero/Slider editor) hidden — ACE uses fixed frontend.
+                     Re-enable by changing @if(false) to @if(true) below. --}}
                 @if(false)
                 @can('menu.theme')
                     <li
@@ -186,6 +188,7 @@
                         </a>
                     </li>
                 @endcan
+                {{-- Meeting Providers menu hidden — ACE doesn't use Zoom/Meet integration. --}}
                 @if(false)
                 @can('menu.meeting')
                     <li
@@ -873,6 +876,7 @@
                         </div>
                     </li>
                 @endcan
+                {{-- License Key menu hidden — license validation handled separately. --}}
                 @if(false)
                 @can('menu.license')
                     <li class="relative group/sm w-full group-data-[sidebar-size=sm]:hover:w-[calc(theme('spacing.app-menu-sm')_*_3.4)] group-data-[sidebar-size=sm]:flex-center">
