@@ -15,6 +15,18 @@
                             name="seat_capacity" class="form-input"
                             value="{{ $course?->courseSetting?->seat_capacity ?? '' }}">
                     </div>
+                    <div class="leading-none mb-10">
+                        <label for="free_trial_days" class="form-label">
+                            {{ translate('Free Trial (days)') }}
+                        </label>
+                        <input type="number" id="free_trial_days" min="0" max="90"
+                            placeholder="{{ translate('e.g. 7 for a 7-day free trial') }}"
+                            name="free_trial_days" class="form-input"
+                            value="{{ $course?->courseSetting?->free_trial_days ?? 0 }}">
+                        <p class="text-xs text-gray-500 mt-1">
+                            {{ translate('Set to 0 to disable trial. Set to 7 to grant new students 7 days of free access before they must pay.') }}
+                        </p>
+                    </div>
                 </div>
             </div>
             <div class="col-span-full lg:col-span-6 card">

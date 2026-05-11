@@ -25,9 +25,9 @@
                         </span>
                     </a>
                 </li>
-                {{-- Theme Manage menu (Hero/Slider editor) hidden — ACE uses fixed frontend.
-                     Re-enable by changing @if(false) to @if(true) below. --}}
-                @if(false)
+                {{-- Theme Manage menu re-enabled (May 2026) so ACE admin can upload
+                     the home-page hero image and edit slider text. --}}
+                @if(true)
                 @can('menu.theme')
                     <li
                         class="relative group/sm w-full group-data-[sidebar-size=sm]:hover:w-[calc(theme('spacing.app-menu-sm')_*_3.4)] group-data-[sidebar-size=sm]:flex-center">

@@ -540,13 +540,12 @@ class AceAcademicsSeeder extends Seeder
             'total_experience' => 5,
         ];
 
-        // General settings (top bar email, phone, address, office hours)
+        // General settings (top bar email, phone, address, office hours).
+        // Contact details provided by ACE Academic (May 2026).
         $general = [
-            'email' => 'admin@aceacademic.com.au',
-            // Phone left blank intentionally — admin sets the real ACE contact
-            // number via Settings → General. Avoids leaking a placeholder publicly.
-            'phone' => '',
-            'address' => 'Brisbane, Queensland, Australia',
+            'email' => 'info@aceacademic.au',
+            'phone' => '+61 413 965 532',
+            'address' => '19 Duke Street, Annerley, QLD 4103',
             'second_email' => '',
             'second_phone' => '',
             'office_hours' => '9AM-6PM',
