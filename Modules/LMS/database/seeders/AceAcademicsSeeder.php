@@ -504,7 +504,7 @@ class AceAcademicsSeeder extends Seeder
             'two_menu' => '<ul><li><a href="/">Home</a></li><li><a href="/page/programs">Programs</a></li><li><a href="/page/about-us">About</a></li><li><a href="/page/online-platform">Online Platform</a></li><li><a href="/page/free-resources">Free Resources</a></li><li><a href="/page/workshop">Workshop</a></li><li><a href="/contact">Contact</a></li></ul>',
             'three_status' => 'on',
             'three_title' => 'Programs',
-            'three_menu' => '<ul><li><a href="/category/tutoring-for-year-5-12">Tutoring for Year 5-12</a></li><li><a href="/category/acceleration-class">Acceleration Class</a></li><li><a href="/category/ucat-excellence">UCAT Excellence</a></li><li><a href="/category/selective-exam-preparation">Selective Exam Preparation</a></li></ul>',
+            'three_menu' => '<ul><li><a href="/category-course/tutoring-for-year-5-12">Tutoring for Year 5-12</a></li><li><a href="/category-course/acceleration-class">Acceleration Class</a></li><li><a href="/category-course/ucat-excellence">UCAT Excellence</a></li><li><a href="/category-course/selective-exam-preparation">Selective Exam Preparation</a></li></ul>',
             'five_status' => 'on',
             'five_title' => 'Subscribe to Our Newsletter',
         ];
