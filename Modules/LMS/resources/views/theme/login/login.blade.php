@@ -63,6 +63,17 @@
                 <div class="dashkit-tab-content w-full *:hidden" id="userRegisterTabContent">
                     {{-- MEMBER (student / instructor / organisation) --}}
                     <div class="dashkit-tab-pane !block" data-tab="member">
+                        {{-- User-type tabs above the fields (no demo credentials).
+                             All three submit to the same login endpoint; the backend
+                             detects the role from the account. --}}
+                        <div class="flex flex-wrap gap-2 mt-8" id="memberRoleTabs">
+                            <button type="button" data-role="student" aria-label="Login as student"
+                                class="member-role-tab active px-4 py-2 rounded-full text-sm font-semibold bg-gray-100 text-heading/70 [&.active]:bg-primary [&.active]:text-white custom-transition">{{ translate('Student') }}</button>
+                            <button type="button" data-role="instructor" aria-label="Login as instructor"
+                                class="member-role-tab px-4 py-2 rounded-full text-sm font-semibold bg-gray-100 text-heading/70 [&.active]:bg-primary [&.active]:text-white custom-transition">{{ translate('Instructor') }}</button>
+                            <button type="button" data-role="organization" aria-label="Login as organisation"
+                                class="member-role-tab px-4 py-2 rounded-full text-sm font-semibold bg-gray-100 text-heading/70 [&.active]:bg-primary [&.active]:text-white custom-transition">{{ translate('Organisation') }}</button>
+                        </div>
                         <x-theme::form.login-form />
                     </div>
 
@@ -113,13 +124,21 @@
 
     @push('js')
         <script>
-            // Clean Member/Admin tab toggle — no pre-filled credentials.
+            // Member/Admin tab toggle — no pre-filled credentials.
             $(document).on('click', '#userRegisterTab .dashkit-tab-btn', function () {
                 var tab = $(this).data('tab');
                 $('#userRegisterTab .dashkit-tab-btn').removeClass('active');
                 $(this).addClass('active');
                 $('#userRegisterTabContent .dashkit-tab-pane').removeClass('!block').hide();
                 $('#userRegisterTabContent .dashkit-tab-pane[data-tab="' + tab + '"]').addClass('!block').show();
+            });
+
+            // Student / Instructor / Organisation tabs — set the user_type the
+            // member login form submits (all share the same endpoint).
+            $(document).on('click', '#memberRoleTabs .member-role-tab', function () {
+                $('#memberRoleTabs .member-role-tab').removeClass('active');
+                $(this).addClass('active');
+                $('#login_user_type').val($(this).data('role'));
             });
         </script>
     @endpush

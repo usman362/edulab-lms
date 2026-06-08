@@ -1,5 +1,8 @@
-<form action="{{ route('auth.login') }}" class="w-full max-w-screen-sm mt-10 form" method="POST">
+<form action="{{ route('auth.login') }}" class="w-full max-w-screen-sm mt-8 form" method="POST">
     @csrf
+    {{-- Set by the Student/Instructor/Organisation tabs on the login screen. --}}
+    <input type="hidden" name="user_type" id="login_user_type" value="student">
+
     <div class="grid grid-cols-2 gap-x-3 gap-y-5">
         <div class="col-span-full">
             <div class="relative">
