@@ -50,35 +50,28 @@
                     {{ translate('Sign in to access your ACE learning dashboard.') }}
                 </p>
 
-                {{-- Member / Admin toggle (no demo credentials) --}}
-                <div class="dashkit-tab inline-flex p-1 bg-gray-100 rounded-full mt-8" id="userRegisterTab">
-                    <button type="button" aria-label="Member login"
-                        class="dashkit-tab-btn active px-6 py-2.5 rounded-full text-sm font-semibold text-heading [&.active]:bg-white [&.active]:shadow-card custom-transition"
-                        data-tab="member">{{ translate('Member') }}</button>
-                    <button type="button" aria-label="Admin login"
-                        class="dashkit-tab-btn px-6 py-2.5 rounded-full text-sm font-semibold text-heading/60 [&.active]:bg-white [&.active]:shadow-card [&.active]:text-heading custom-transition"
-                        data-tab="admin">{{ translate('Admin') }}</button>
+                {{-- One row of role tabs, directly above the fields (no demo creds).
+                     Student/Instructor/Organisation use the member login (backend
+                     detects the role); Admin uses the admin login. --}}
+                <div class="flex flex-wrap gap-2 mt-8" id="loginRoleTabs">
+                    <button type="button" data-role="student" data-pane="member" aria-label="Login as student"
+                        class="login-role-tab active px-4 py-2 rounded-full text-sm font-semibold bg-gray-100 text-heading/70 [&.active]:bg-primary [&.active]:text-white custom-transition">{{ translate('Student') }}</button>
+                    <button type="button" data-role="instructor" data-pane="member" aria-label="Login as instructor"
+                        class="login-role-tab px-4 py-2 rounded-full text-sm font-semibold bg-gray-100 text-heading/70 [&.active]:bg-primary [&.active]:text-white custom-transition">{{ translate('Instructor') }}</button>
+                    <button type="button" data-role="organization" data-pane="member" aria-label="Login as organisation"
+                        class="login-role-tab px-4 py-2 rounded-full text-sm font-semibold bg-gray-100 text-heading/70 [&.active]:bg-primary [&.active]:text-white custom-transition">{{ translate('Organisation') }}</button>
+                    <button type="button" data-role="admin" data-pane="admin" aria-label="Login as admin"
+                        class="login-role-tab px-4 py-2 rounded-full text-sm font-semibold bg-gray-100 text-heading/70 [&.active]:bg-primary [&.active]:text-white custom-transition">{{ translate('Admin') }}</button>
                 </div>
 
                 <div class="dashkit-tab-content w-full *:hidden" id="userRegisterTabContent">
                     {{-- MEMBER (student / instructor / organisation) --}}
-                    <div class="dashkit-tab-pane !block" data-tab="member">
-                        {{-- User-type tabs above the fields (no demo credentials).
-                             All three submit to the same login endpoint; the backend
-                             detects the role from the account. --}}
-                        <div class="flex flex-wrap gap-2 mt-8" id="memberRoleTabs">
-                            <button type="button" data-role="student" aria-label="Login as student"
-                                class="member-role-tab active px-4 py-2 rounded-full text-sm font-semibold bg-gray-100 text-heading/70 [&.active]:bg-primary [&.active]:text-white custom-transition">{{ translate('Student') }}</button>
-                            <button type="button" data-role="instructor" aria-label="Login as instructor"
-                                class="member-role-tab px-4 py-2 rounded-full text-sm font-semibold bg-gray-100 text-heading/70 [&.active]:bg-primary [&.active]:text-white custom-transition">{{ translate('Instructor') }}</button>
-                            <button type="button" data-role="organization" aria-label="Login as organisation"
-                                class="member-role-tab px-4 py-2 rounded-full text-sm font-semibold bg-gray-100 text-heading/70 [&.active]:bg-primary [&.active]:text-white custom-transition">{{ translate('Organisation') }}</button>
-                        </div>
+                    <div class="login-pane !block" data-pane="member">
                         <x-theme::form.login-form />
                     </div>
 
                     {{-- ADMIN --}}
-                    <div class="dashkit-tab-pane" data-tab="admin">
+                    <div class="login-pane" data-pane="admin">
                         <form action="{{ route('admin.login') }}" class="w-full mt-8 form" method="POST">
                             @csrf
                             <div class="grid grid-cols-2 gap-x-3 gap-y-5">
@@ -124,21 +117,22 @@
 
     @push('js')
         <script>
-            // Member/Admin tab toggle — no pre-filled credentials.
-            $(document).on('click', '#userRegisterTab .dashkit-tab-btn', function () {
-                var tab = $(this).data('tab');
-                $('#userRegisterTab .dashkit-tab-btn').removeClass('active');
-                $(this).addClass('active');
-                $('#userRegisterTabContent .dashkit-tab-pane').removeClass('!block').hide();
-                $('#userRegisterTabContent .dashkit-tab-pane[data-tab="' + tab + '"]').addClass('!block').show();
-            });
+            // Single row of role tabs above the fields — no pre-filled credentials.
+            // Student/Instructor/Organisation -> member pane (+ user_type);
+            // Admin -> admin pane.
+            $(document).on('click', '#loginRoleTabs .login-role-tab', function () {
+                var pane = $(this).data('pane');
+                var role = $(this).data('role');
 
-            // Student / Instructor / Organisation tabs — set the user_type the
-            // member login form submits (all share the same endpoint).
-            $(document).on('click', '#memberRoleTabs .member-role-tab', function () {
-                $('#memberRoleTabs .member-role-tab').removeClass('active');
+                $('#loginRoleTabs .login-role-tab').removeClass('active');
                 $(this).addClass('active');
-                $('#login_user_type').val($(this).data('role'));
+
+                $('#userRegisterTabContent .login-pane').removeClass('!block').hide();
+                $('#userRegisterTabContent .login-pane[data-pane="' + pane + '"]').addClass('!block').show();
+
+                if (pane === 'member') {
+                    $('#login_user_type').val(role);
+                }
             });
         </script>
     @endpush
