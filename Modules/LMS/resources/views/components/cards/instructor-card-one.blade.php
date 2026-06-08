@@ -24,7 +24,7 @@
                 <x-theme::social.social-list-one
                     :socials="$instructor->socials" hoverButton="yes"
                     ulClass=""
-                    itemClass="flex-center size-10 rounded-50 bg-primary text-white hover:bg-secondary hover:text-heading dark:text-white custom-transition"
+                    itemClass="flex-center size-10 rounded-50 bg-primary text-white hover:bg-primary-700 hover:text-white dark:text-white custom-transition"
                     listClass="absolute top-3 right-2.5 z-0 group-hover/instructor:top-[calc(40px_*_1_+_12px)] duration-500"
                 />
             @endif

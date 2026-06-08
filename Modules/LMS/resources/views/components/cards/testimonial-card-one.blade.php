@@ -31,7 +31,7 @@
                     </p>
                 </div>
                 <img data-src="{{ edulab_global_asset('lms/frontend/assets/images/icons/quote.svg') }}" alt="Quote icon"
-                    class="shrink-0 animate-bounce">
+                    class="shrink-0 opacity-20">
             </div>
         </div>
     </div>

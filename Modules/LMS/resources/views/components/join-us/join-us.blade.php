@@ -1,9 +1,9 @@
 <div
-    class="relative pt-16 sm:pt-24 lg:pt-[120px] pb-24 lg:pb-40 xl:pb-[200px] before:absolute before:size-full before:inset-0 before:bg-video before:blur-[100px] before:opacity-10 overflow-hidden">
+    class="relative bg-heading text-white pt-16 sm:pt-24 lg:pt-[120px] pb-24 lg:pb-40 xl:pb-[200px] before:absolute before:size-[600px] before:-top-40 before:-right-40 before:rounded-full before:bg-primary before:blur-[120px] before:opacity-25 overflow-hidden">
     <div class="container relative z-10">
         <div class="grid grid-cols-12 gap-7">
             <div class="col-span-full lg:col-span-7 self-end relative">
-                <div class="area-subtitle text-primary-300">
+                <div class="area-subtitle !text-secondary">
                     {{ translate('Get Started') }}
                 </div>
                 <h2 class="area-title mt-2 !text-white">
@@ -34,7 +34,7 @@
                                     </video>
                                     <!-- CONTROLLER -->
                                     <div
-                                        class="controll-wrapper flex-center size-full bg-[#D9D9D9]/30 rounded-2xl absolute inset-0 [&.hide]:invisible">
+                                        class="controll-wrapper flex-center size-full bg-heading/20 rounded-2xl absolute inset-0 [&.hide]:invisible">
                                         <button type="button"
                                             aria-label="Video popup button"
                                             class="controller btn-icon size-[60px] b-solid btn-secondary-icon-solid !text-heading dark:text-white pulse-animation active:scale-105">
@@ -62,7 +62,7 @@
                                     </video>
                                     <!-- CONTROLLER -->
                                     <div
-                                        class="controll-wrapper flex-center size-full bg-[#D9D9D9]/30 rounded-2xl absolute inset-0 [&.hide]:invisible">
+                                        class="controll-wrapper flex-center size-full bg-heading/20 rounded-2xl absolute inset-0 [&.hide]:invisible">
                                         <button type="button"
                                             aria-label="Video popup button"
                                             class="controller btn-icon size-[60px] b-solid btn-secondary-icon-solid !text-heading dark:text-white pulse-animation active:scale-105">

@@ -1,7 +1,7 @@
 <!-- START INNER HERO AREA -->
-<div class="bg-transparent relative overflow-hidden mb-6 sm:mb-8 lg:mb-10">
-    <div class="container py-10 lg:py-12 relative">
-        <h1 class="area-title xl:text-5xl text-center lg:text-left rtl:lg:text-right">{{ isset($pageTitle) && $pageTitle ? translate($pageTitle) : '' }}</h1>
+<div class="bg-primary-50 relative overflow-hidden mb-10 sm:mb-14 lg:mb-20">
+    <div class="container py-12 lg:py-16 relative">
+        <h1 class="area-title title-lg text-center lg:text-left rtl:lg:text-right">{{ isset($pageTitle) && $pageTitle ? translate($pageTitle) : '' }}</h1>
         <!-- BREADCRUMB -->
         <ul class="flex items-center bg-white px-4 py-3 lg:px-6 lg:py-3.5 mx-0 lg:mx-3 gap-1.5 *:flex-center *:gap-1.5 leading-none absolute bottom-0 left-1/2 -translate-x-1/2 lg:left-auto rtl:lg:left-0 lg:right-0 rtl:lg:right-auto lg:translate-x-0 rounded-t-2xl w-max">
             <li
@@ -18,13 +18,8 @@
             </li>
         </ul>
     </div>
-    <!-- POSITIONAL ELEMENTS -->
-    <ul>
-        <!-- LEFT -->
-        <li class="block size-[550px] w-[33.33vw] rounded-50 bg-[#1AEBC5]/15 blur-[200px] absolute top-1/2 -translate-y-1/2 -left-[10%] rtl:left-auto rtl:-right-[10%] -z-10"></li>
-        <!-- CENTER -->
-        <li class="block size-[550px] w-[33.33vw] rounded-50 bg-[#F98272]/15 blur-[200px] absolute top-1/2 -translate-y-1/2 left-1/2 -translate-x-1/2 -z-10"></li>
-        <!-- RIGHT -->
-        <li class="block size-[550px] w-[33.33vw] rounded-50 bg-[#5F3EED]/20 blur-[200px] absolute top-1/2 -translate-y-1/2 -right-[10%] rtl:right-auto rtl:-left-[10%] -z-10"></li>
+    <!-- POSITIONAL ELEMENTS (single brand blob) -->
+    <ul class="pointer-events-none">
+        <li class="block size-[550px] w-[33.33vw] rounded-50 bg-primary/[0.07] blur-[200px] absolute top-1/2 -translate-y-1/2 -right-[8%] rtl:right-auto rtl:-left-[8%] -z-10"></li>
     </ul>
 </div>
