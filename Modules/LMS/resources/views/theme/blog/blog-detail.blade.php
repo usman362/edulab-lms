@@ -39,7 +39,7 @@
                                 @foreach ($blog->blogCategories as $category)
                                     @if ($loop->first)
                                         @php $categoryTranslations = parse_translation($category); @endphp
-                                        <div class="badge b-solid badge-secondary-solid rounded-full !text-heading shrink-0">
+                                        <div class="badge badge-heading-outline b-outline rounded-full shrink-0">
                                             <a href="{{ route('blog.list', ['category' => $category->id]) }}"
                                                 aria-label="Category link">
                                                 {{ $categoryTranslations['name'] ?? $category->name ?? '' }}

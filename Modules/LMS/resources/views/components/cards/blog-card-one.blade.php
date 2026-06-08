@@ -23,7 +23,7 @@
                             @if($loop->first)
                                 @php $categoryTranslations = parse_translation($category);  @endphp
                                 <span
-                                    class="badge b-solid badge-secondary-solid rounded-full !text-heading dark:text-white absolute top-4 right-4 z-10">{{ $categoryTranslations['name'] ?? $category->name ?? '' }}</span>
+                                    class="inline-flex items-center px-3 py-1.5 rounded-full text-xs font-semibold bg-white/90 text-heading backdrop-blur shadow-card absolute top-4 right-4 z-10">{{ $categoryTranslations['name'] ?? $category->name ?? '' }}</span>
                             @endif
                         @endforeach
                     @endif

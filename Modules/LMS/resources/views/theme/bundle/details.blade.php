@@ -34,7 +34,7 @@
                             <!-- BUNDLE LABEL -->
                             @foreach ($bundle->levels as $level)
                                 @php $levelTranslations = parse_translation($level); @endphp
-                                <div class="badge b-solid badge-secondary-solid rounded-full !text-heading">
+                                <div class="badge badge-heading-outline b-outline rounded-full">
                                     {{ $levelTranslations['name'] ?? ($level->name ?? '') }}</div>
                             @endforeach
                             <!-- BUNDLE CATEGORY -->

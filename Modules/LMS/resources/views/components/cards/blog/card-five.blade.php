@@ -45,7 +45,7 @@
                 {!! clean($description) !!}
             </div>
             <div class="flex items-center flex-wrap gap-1 mt-6">
-                <div class="badge b-solid badge-secondary-solid rounded-full !text-heading h-7 shrink-0">
+                <div class="badge badge-heading-outline b-outline rounded-full h-7 shrink-0">
                     <i class="ri-calendar-2-line"></i>
                     <span
                         class="text-[14px] font-semibold">{{ customDateFormate($blog->created_at, format: 'd M Y') }}</span>

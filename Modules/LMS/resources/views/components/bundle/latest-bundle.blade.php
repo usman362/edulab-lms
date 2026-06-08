@@ -16,7 +16,7 @@
     }
 @endphp
 
-<div class="bg-section pb-16 sm:pb-24 lg:pb-[120px]">
+<div class="bg-primary-50 pb-16 sm:pb-24 lg:pb-[120px]">
     <div class="container">
         <!-- HEADER -->
         <div class="grid grid-cols-12 gap-4 items-center">

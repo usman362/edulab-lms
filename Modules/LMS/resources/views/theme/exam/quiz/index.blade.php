@@ -49,7 +49,7 @@
             background: #fff;
             display: flex; align-items: center; justify-content: center;
             margin: 0 auto .5rem;
-            color: #6366f1;
+            color: var(--color-primary);
         }
         .kh-stat-title { font-size: 1.125rem; font-weight: 700; color: #1e293b; line-height: 1.1; }
         .kh-stat-title.danger { color: #dc2626; }

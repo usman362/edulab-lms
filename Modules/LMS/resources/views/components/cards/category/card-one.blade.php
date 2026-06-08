@@ -4,7 +4,7 @@
 @endphp
 
 <div class="col-span-full sm:col-span-6 lg:col-span-3">
-    <div class="relative bg-section rounded-[20px] px-4 xl:px-10 py-7 xl:py-12 flex-center flex-col border border-transparent hover:border-primary hover:shadow custom-transition h-full group/category">
+    <div class="relative bg-primary-50 rounded-2xl px-4 xl:px-10 py-7 xl:py-12 flex-center flex-col border border-transparent hover:border-primary hover:shadow custom-transition h-full group/category">
         <div class="flex-center size-12">
             @if ($categoryImageName && fileExists('lms/categories', $categoryImageName) == true)
                 <img data-src="{{ edulab_asset('/lms/categories/' . $categoryImageName) }}" alt="Category icon"

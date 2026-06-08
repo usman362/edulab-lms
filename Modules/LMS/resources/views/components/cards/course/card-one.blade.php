@@ -26,7 +26,7 @@
         @foreach ($course->levels as $level)
             @php $levelTranslations = parse_translation($level); @endphp
             <span
-                class="badge b-solid badge-secondary-solid rounded-full !text-heading dark:text-white absolute top-4 left-4 rtl:left-auto rtl:right-4 z-10">{{ $levelTranslations['name'] ?? ($level->name ?? '') }}
+                class="inline-flex items-center px-3 py-1.5 rounded-full text-xs font-semibold bg-white/90 text-heading backdrop-blur shadow-card absolute top-4 left-4 rtl:left-auto rtl:right-4 z-10">{{ $levelTranslations['name'] ?? ($level->name ?? '') }}
             </span>
         @endforeach
         @auth

@@ -17,7 +17,7 @@
             <span class="text-danger error-text bank_document_err"></span>
         </div>
         <div class="col-span-full">
-            <button type="submit" aria-label="Deposit Slip" class="btn b-solid btn-info-solid !font-medium">
+            <button type="submit" aria-label="Deposit Slip" class="btn b-solid btn-primary-solid !font-medium">
                 {{ translate('Upload') }}
             </button>
         </div>

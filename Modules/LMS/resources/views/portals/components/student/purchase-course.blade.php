@@ -26,7 +26,7 @@
         <div class="relative aspect-[1.71] overflow-hidden shrink-0">
             @if ($purchase->subscription_id)
                 <span
-                    class="badge b-solid badge-secondary-solid rounded-full !text-heading dark:text-white absolute top-4 left-4 rtl:left-auto rtl:right-4 z-10">
+                    class="inline-flex items-center px-3 py-1.5 rounded-full text-xs font-semibold bg-white/90 text-heading backdrop-blur shadow-card absolute top-4 left-4 rtl:left-auto rtl:right-4 z-10">
                     {{ translate('Subscription') }}
                 </span>
             @endif

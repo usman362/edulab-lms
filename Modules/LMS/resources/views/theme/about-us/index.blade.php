@@ -108,33 +108,33 @@
         </div>
 
         @php
+            // All tiles brand-red; the two prestige programs (UCAT, Selective) get the reserved gold accent.
             $offerings = [
-                ['title' => 'Tutoring for Year 5-12',     'desc' => 'Maths, English, Science and more',          'icon' => 'ri-book-open-line',  'color' => '#0d9488', 'slug' => 'tutoring-for-year-5-12'],
-                ['title' => 'Acceleration Class',         'desc' => 'Advanced programs beyond grade level',      'icon' => 'ri-rocket-line',     'color' => '#e52524', 'slug' => 'acceleration-class'],
-                ['title' => 'UCAT Excellence',            'desc' => 'Medicine pathway preparation',              'icon' => 'ri-stethoscope-line','color' => '#6366f1', 'slug' => 'ucat-excellence'],
-                ['title' => 'Selective Exam Prep',        'desc' => 'BSHS & scholarship exams',                  'icon' => 'ri-award-line',      'color' => '#f59e0b', 'slug' => 'selective-exam-preparation'],
+                ['title' => 'Tutoring for Year 5-12',     'desc' => 'Maths, English, Science and more',          'icon' => 'ri-book-open-line',  'prestige' => false, 'slug' => 'tutoring-for-year-5-12'],
+                ['title' => 'Acceleration Class',         'desc' => 'Advanced programs beyond grade level',      'icon' => 'ri-rocket-line',     'prestige' => false, 'slug' => 'acceleration-class'],
+                ['title' => 'UCAT Excellence',            'desc' => 'Medicine pathway preparation',              'icon' => 'ri-stethoscope-line','prestige' => true,  'slug' => 'ucat-excellence'],
+                ['title' => 'Selective Exam Prep',        'desc' => 'BSHS & scholarship exams',                  'icon' => 'ri-award-line',      'prestige' => true,  'slug' => 'selective-exam-preparation'],
             ];
         @endphp
 
         <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5 xl:gap-7">
             @foreach ($offerings as $item)
+                @php $isPrestige = $item['prestige'] ?? false; @endphp
                 <a href="{{ route('category.course', $item['slug']) }}"
-                   class="group relative bg-white border border-gray-100 rounded-2xl p-6 xl:p-8 hover:shadow-xl hover:-translate-y-1 custom-transition overflow-hidden">
-                    <div class="flex-center size-16 rounded-2xl mb-5"
-                         style="background: {{ $item['color'] }}15;">
-                        <i class="{{ $item['icon'] }} text-3xl" style="color: {{ $item['color'] }};"></i>
+                   class="group/card relative flex flex-col bg-white border border-border rounded-2xl p-6 xl:p-8 hover:shadow-card-hover hover:-translate-y-1 custom-transition overflow-hidden">
+                    <div class="flex-center size-16 rounded-2xl mb-5 {{ $isPrestige ? 'bg-secondary/10' : 'bg-primary/10' }}">
+                        <i class="{{ $item['icon'] }} text-3xl {{ $isPrestige ? 'text-secondary' : 'text-primary' }}"></i>
                     </div>
-                    <h5 class="text-heading font-bold text-lg leading-tight group-hover:text-primary custom-transition">
+                    <h5 class="text-heading font-bold text-lg leading-tight group-hover/card:text-primary custom-transition">
                         {{ translate($item['title']) }}
                     </h5>
-                    <p class="text-gray-500 text-sm mt-3 leading-relaxed">
+                    <p class="text-heading/60 text-sm mt-3 leading-relaxed">
                         {{ translate($item['desc']) }}
                     </p>
-                    <div class="mt-5 flex items-center gap-2 text-sm font-semibold text-primary opacity-0 group-hover:opacity-100 custom-transition">
-                        {{ translate('Learn More') }} <i class="ri-arrow-right-line"></i>
+                    <div class="mt-5 flex items-center gap-2 text-sm font-semibold text-primary custom-transition">
+                        {{ translate('Learn More') }} <i class="ri-arrow-right-line group-hover/card:translate-x-1 custom-transition"></i>
                     </div>
-                    <div class="absolute bottom-0 left-0 right-0 h-1 scale-x-0 group-hover:scale-x-100 custom-transition origin-left"
-                         style="background: {{ $item['color'] }};"></div>
+                    <div class="absolute bottom-0 left-0 right-0 h-1 scale-x-0 group-hover/card:scale-x-100 custom-transition origin-left {{ $isPrestige ? 'bg-secondary' : 'bg-primary' }}"></div>
                 </a>
             @endforeach
         </div>

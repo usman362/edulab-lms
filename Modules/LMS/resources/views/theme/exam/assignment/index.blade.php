@@ -162,7 +162,7 @@
                                             </div>
                                             <div class="col-span-full">
                                                 <button type="submit" aria-label="Submit assignment"
-                                                    class="btn b-solid btn-info-solid !font-medium">
+                                                    class="btn b-solid btn-primary-solid !font-medium">
                                                     {{ translate('Submit') }}
                                                 </button>
                                             </div>
@@ -201,7 +201,7 @@
                                             @if (isset($userExam->id))
                                                 <div class="col-span-full">
                                                     <button type="submit" aria-label="Save assignment"
-                                                        class="btn b-solid btn-info-solid !font-medium">
+                                                        class="btn b-solid btn-primary-solid !font-medium">
                                                         {{ translate('Save') }}
                                                     </button>
                                                 </div>
