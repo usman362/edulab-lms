@@ -26,7 +26,7 @@
             ]
         ]
     ])
-    <main>
+    <main class="pt-[theme('spacing.header')]">
         {{ $slot }}
     </main>
 

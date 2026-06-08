@@ -8,7 +8,7 @@
 
 <x-auth-layout :data="$settings">
 
-    <div class="min-w-full min-h-screen flex items-stretch">
+    <div class="min-w-full min-h-[calc(100vh-theme('spacing.header'))] flex items-stretch">
         {{-- LEFT — branded premium panel (no stock illustration) --}}
         <div class="hidden lg:flex flex-col justify-between w-1/2 p-12 xl:p-16 bg-heading text-white relative overflow-hidden">
             <div class="absolute -top-32 -right-32 size-[28rem] rounded-full bg-primary/30 blur-[120px] pointer-events-none"></div>
@@ -43,7 +43,7 @@
         </div>
 
         {{-- RIGHT — clean sign-in --}}
-        <div class="grow min-h-screen w-full lg:w-1/2 pt-32 pb-12 px-5 lg:p-12 xl:p-16 flex-center flex-col">
+        <div class="grow w-full lg:w-1/2 py-12 px-5 lg:p-12 xl:p-16 flex-center flex-col">
             <div class="w-full max-w-md">
                 <h2 class="area-title">{{ translate('Welcome back') }}</h2>
                 <p class="area-description mt-3">

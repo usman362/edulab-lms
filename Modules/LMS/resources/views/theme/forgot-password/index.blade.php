@@ -1,5 +1,5 @@
 <x-auth-layout>
-    <div class="min-w-full min-h-screen flex items-stretch">
+    <div class="min-w-full min-h-[calc(100vh-theme('spacing.header'))] flex items-stretch">
         <div class="hidden lg:flex flex-col justify-between w-1/2 p-12 xl:p-16 bg-heading text-white relative overflow-hidden">
             <div class="absolute -top-32 -right-32 size-[28rem] rounded-full bg-primary/30 blur-[120px] pointer-events-none"></div>
             <div class="absolute -bottom-40 -left-20 size-[28rem] rounded-full bg-primary/15 blur-[120px] pointer-events-none"></div>
@@ -18,7 +18,7 @@
             </div>
             <div class="relative z-10 text-white/50 text-sm">© {{ date('Y') }} {{ translate('ACE Academic Coaching') }}</div>
         </div>
-        <div class="grow min-h-screen h-full w-full lg:w-1/2 pt-32 pb-12 px-3 lg:p-3 flex-center flex-col">
+        <div class="grow w-full lg:w-1/2 py-12 px-5 lg:p-12 xl:p-16 flex-center flex-col">
             <h2 class="area-title"> {{ !isset($token) ? translate('Reset your') : translate('Update your') }}
                 {{ translate('Password') }}</h2>
             <p class="area-description max-w-screen-sm mx-auto text-center mt-5">
