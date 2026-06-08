@@ -13,24 +13,25 @@
 
     @if ($show('top_results'))
         <!-- START TOP STUDENT RESULTS AREA -->
-        <div class="bg-white py-12 sm:py-16">
+        <div class="bg-white pt-16 sm:pt-20 lg:pt-[120px]">
             <div class="container">
                 <div class="text-center max-w-3xl mx-auto">
                     <div class="flex flex-wrap justify-center gap-3 mb-6">
-                        <span class="inline-flex items-center px-4 py-2 rounded-full bg-primary/10 text-primary font-bold text-sm">
-                            {{ translate('ATAR 99.95') }}
-                        </span>
-                        <span class="inline-flex items-center px-4 py-2 rounded-full bg-red-50 text-red-600 font-bold text-sm">
-                            {{ translate('Medicine (UQ)') }}
-                        </span>
-                        <span class="inline-flex items-center px-4 py-2 rounded-full bg-amber-50 text-amber-600 font-bold text-sm">
-                            {{ translate('Top Achievers') }}
-                        </span>
+                        @foreach ([
+                            ['icon' => 'ri-trophy-line',     'label' => 'ATAR 99.95'],
+                            ['icon' => 'ri-stethoscope-line', 'label' => 'Medicine (UQ)'],
+                            ['icon' => 'ri-medal-line',       'label' => 'Top Achievers'],
+                        ] as $chip)
+                            <span class="inline-flex items-center gap-1.5 px-4 py-2 rounded-full bg-secondary/10 text-secondary font-bold text-sm">
+                                <i class="{{ $chip['icon'] }}"></i>
+                                {{ translate($chip['label']) }}
+                            </span>
+                        @endforeach
                     </div>
                     <p class="area-description text-lg">
                         {{ translate('Our students turn effort into excellence — because ACE isn\'t luck, it\'s structure.') }}
                     </p>
-                    <a href="{{ route('course.list') }}" class="btn b-solid btn-primary-solid btn-lg !rounded-full font-medium mt-6">
+                    <a href="{{ route('course.list') }}" class="btn b-solid btn-primary-solid btn-xl font-semibold mt-7">
                         {{ translate('See How We Do It') }}
                         <i class="ri-arrow-right-up-line text-[18px] ml-1"></i>
                     </a>
@@ -60,7 +61,7 @@
 
     @if ($show('about'))
         <!-- START ABOUT US AREA (from Ace Academic website) -->
-        <div class="bg-white py-16 sm:py-24 lg:py-[120px]">
+        <div class="bg-white py-16 sm:py-20 lg:py-[120px]">
             <div class="container">
                 <div class="grid grid-cols-12 gap-7 xl:gap-12 items-center">
                     <div class="col-span-full lg:col-span-6">
@@ -82,7 +83,7 @@
                             {{ translate('About Ace') }}
                             <span class="title-highlight-one">{{ translate('Academics') }}</span>
                         </h2>
-                        <div class="mt-5 space-y-4 text-gray-600 leading-relaxed">
+                        <div class="mt-5 space-y-4 text-heading/70 leading-relaxed">
                             <p>
                                 {{ translate('At Ace Academics, we support students from primary through to senior levels. Whether it is selective school and scholarship preparation, NAPLAN, ICAS, school-based assessments, or ATAR externals, our structured approach helps students build confidence, develop effective study habits, and achieve their academic goals.') }}
                             </p>
@@ -94,11 +95,11 @@
                             </p>
                         </div>
                         <div class="flex flex-wrap gap-4 mt-8">
-                            <a href="{{ route('about.us') }}" class="btn b-solid btn-primary-solid btn-lg !rounded-full font-medium">
+                            <a href="{{ route('about.us') }}" class="btn b-solid btn-primary-solid btn-xl font-semibold">
                                 {{ translate('Learn More About Us') }}
                                 <i class="ri-arrow-right-up-line text-[18px] ml-1"></i>
                             </a>
-                            <a href="{{ route('instructor.list') }}" class="btn b-outline btn-primary-outline btn-lg !rounded-full font-medium">
+                            <a href="{{ route('instructor.list') }}" class="btn b-outline btn-primary-outline btn-xl font-semibold">
                                 {{ translate('Meet Our Tutors') }}
                             </a>
                         </div>

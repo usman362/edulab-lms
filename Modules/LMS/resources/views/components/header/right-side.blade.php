@@ -85,20 +85,20 @@
 <div class="flex gap-4 shrink-0">
     @auth
         <a href="{{ $url }}" aria-label="Profile info"
-            class="{{ $loggedin['link_class'] ?? 'btn b-outline btn-secondary-outline h-11 !rounded-full !text-heading font-semibold' }}">
+            class="{{ $loggedin['link_class'] ?? 'btn h-11 !rounded-full !text-heading font-semibold border border-border hover:bg-gray-100' }}">
             <span class="hidden md:block"><i class="ri-user-3-line"></i></span>
             {{ $user?->name ?? $user->first_name }}
         </a>
     @else
         @if (Auth::guard('admin')->check())
             <a href="{{ route('admin.dashboard') }}" aria-label="Profile info"
-                class="{{ $loggedin['link_class'] ?? 'btn b-outline btn-secondary-outline h-11 !rounded-full !text-heading font-semibold' }}">
+                class="{{ $loggedin['link_class'] ?? 'btn h-11 !rounded-full !text-heading font-semibold border border-border hover:bg-gray-100' }}">
                 <span class="hidden md:block"><i class="ri-user-3-line"></i></span>
                 {{ auth('admin')->user()->name }}
             </a>
         @elseif ($login['is_show'] ?? true)
             <a href="{{ $login['url'] ?? route('login') }}" aria-label="Log in"
-                class="{{ $login['link_class'] ?? 'flex btn b-outline btn-secondary-outline h-11 !rounded-full !text-heading font-semibold' }}">
+                class="{{ $login['link_class'] ?? 'flex btn h-11 !rounded-full !text-heading font-semibold border border-border hover:bg-gray-100' }}">
                 <span class="hidden md:block"><i class="ri-user-3-line"></i></span>
                 {{ translate($login['label'] ?? 'Log In') }}
             </a>
@@ -106,7 +106,7 @@
     @endauth
     @if (!Auth::guard('admin')->check() && !Auth::guard('web')->check() && ($register['is_show'] ?? true))
         <a href="{{ route('register.page') }}?user_type=instructor" aria-label="Become a Tutor"
-            class="{{ $register['link_class'] ?? 'hidden md:flex btn b-solid btn-secondary-solid h-11 !rounded-full !text-white font-semibold' }}">
+            class="{{ $register['link_class'] ?? 'hidden md:flex btn b-outline btn-primary-outline h-11 !rounded-full font-semibold' }}">
             {{ translate('Become a Tutor') }}
             <span class="hidden md:block">
                 <i class="ri-arrow-right-up-line"></i>

@@ -20,17 +20,17 @@
         <!-- COURSE CARD -->
         <div class="swiper-slide col-span-full md:col-span-6 xl:col-span-4 group-data-[card-layout=list]:!col-span-full">
             <div
-                class="flex flex-col bg-white rounded-2xl h-full p-5 group-data-[card-layout=list]:flex-row [&.card-border]:border [&.card-border]:border-border [&.card-border]:hover:shadow-md custom-transition group/course {{ isset($borderClass) ? 'card-border' : '' }}">
+                class="flex flex-col bg-white border border-border rounded-2xl h-full p-5 group-data-[card-layout=list]:flex-row hover:shadow-card-hover hover:-translate-y-1 custom-transition group/course">
                 <!-- COURSE THUMBNAIL -->
                 <div class="relative aspect-video rounded-xl overflow-hidden">
                     <img data-src="{{ $thumbnail }}"
-                        class="course-grid-thumb-img w-full group-hover/topCourse:scale-110 duration-300"
+                        class="course-grid-thumb-img w-full group-hover/course:scale-110 duration-300"
                         alt="Course thumbnail" />
                     <!-- badge -->
                     @foreach ($course->levels as $level)
                         @php $levelTranslations = parse_translation($level); @endphp
                         <span
-                            class="badge b-solid badge-secondary-solid rounded-full !text-heading dark:text-white absolute top-4 left-4 rtl:left-auto rtl:right-4 z-10">{{ $levelTranslations['name'] ?? ($level->name ?? '') }}
+                            class="inline-flex items-center px-3 py-1.5 rounded-full text-xs font-semibold bg-white/90 text-heading backdrop-blur shadow-card absolute top-4 left-4 rtl:left-auto rtl:right-4 z-10">{{ $levelTranslations['name'] ?? ($level->name ?? '') }}
                         </span>
                     @endforeach
                     @auth
@@ -73,11 +73,10 @@
                                         $course?->coursePrice?->discount_flag == 1 &&
                                         $course?->coursePrice?->discount_period != '' &&
                                         dateCompare($course?->coursePrice?->discount_period) == true)
-                                    <span> {{ $course?->coursePrice->currency }}
-                                        {{ dotZeroRemove($course?->coursePrice?->discounted_price ?? 0) }}</span>
+                                    <span>{{ $currencySymbol }}{{ dotZeroRemove($course?->coursePrice?->discounted_price ?? 0) }}</span>
                                     <span>
                                         <del
-                                            class="text-heading/50 text-[16px] font-semibold">{{ $currencySymbol }}{{ dotZeroRemove($course?->coursePrice?->price ?? 0) }}</del>
+                                            class="text-heading/50 text-base font-semibold">{{ $currencySymbol }}{{ dotZeroRemove($course?->coursePrice?->price ?? 0) }}</del>
                                     </span>
                                 @else
                                     <span>{{ $currencySymbol }}{{ dotZeroRemove($course?->coursePrice?->price ?? 0) }}</span>

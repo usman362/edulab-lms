@@ -15,7 +15,7 @@
 @endphp
 <div class="col-span-full md:col-span-6 group-data-[card-layout=list]:!col-span-full">
     <div
-        class="flex flex-col bg-white rounded-2xl p-5 h-full card-border sm:group-data-[card-layout=list]:flex-row [&.card-border]:border [&.card-border]:border-border [&.card-border]:hover:shadow-md custom-transition group/course">
+        class="flex flex-col bg-white border border-border rounded-2xl p-5 h-full sm:group-data-[card-layout=list]:flex-row hover:shadow-card-hover hover:-translate-y-1 custom-transition group/course">
         <!-- COURSE THUMBNAIL -->
         <div class="relative aspect-video sm:group-data-[card-layout=list]:max-w-52 rounded-xl overflow-hidden shrink-0">
             <img data-src="{{ $thumbnail }}" alt="Course thumbnail"
@@ -45,7 +45,7 @@
                     $levelTranslation = parse_translation($level);
                 @endphp
                 <span
-                    class="badge b-solid badge-secondary-solid rounded-full !text-heading dark:text-white absolute top-4 left-4 rtl:left-auto rtl:right-4 z-10">
+                    class="inline-flex items-center px-3 py-1.5 rounded-full text-xs font-semibold bg-white/90 text-heading backdrop-blur shadow-card absolute top-4 left-4 rtl:left-auto rtl:right-4 z-10">
                     {{ $levelTranslation['name'] ?? ($level->name ?? '') }}</span>
             @endforeach
         </div>
@@ -70,7 +70,7 @@
                             <span>{{ $currencySymbol }}{{ dotZeroRemove($course?->coursePrice?->discounted_price ?? 0) }}</span>
                             <span>
                                 <del
-                                    class="text-heading/50 text-[16px] font-semibold">{{ $currencySymbol }}{{ dotZeroRemove($course?->coursePrice?->price ?? 0) }}</del>
+                                    class="text-heading/50 text-base font-semibold">{{ $currencySymbol }}{{ dotZeroRemove($course?->coursePrice?->price ?? 0) }}</del>
                             </span>
                         @else
                             <span>{{ $currencySymbol }}{{ dotZeroRemove($course?->coursePrice?->price ?? 0) }}</span>

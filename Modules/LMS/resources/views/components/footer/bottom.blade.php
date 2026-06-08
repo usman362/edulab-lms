@@ -14,7 +14,7 @@
 
 @if ($showBottom && (strip_tags($copyRight) !== '' || strip_tags($menu) !== ''))
     <!-- START BOTTOM -->
-    <div class="bg-[#FFFFFF0F] py-5 rounded-t-lg">
+    <div class="bg-white/[0.06] py-5 rounded-t-lg">
         <div class="container">
             <div class="grid grid-cols-12 gap-7">
                 @if (strip_tags($copyRight) !== '')
