@@ -14,6 +14,7 @@ use Modules\LMS\Models\General\ThemeSetting;
 use Modules\LMS\Models\Hero\Hero;
 use Modules\LMS\Models\Slider\Slider;
 use Modules\LMS\Models\Auth\Instructor;
+use Modules\LMS\Models\Designation;
 use Modules\LMS\Models\Courses\Level;
 use Modules\LMS\Models\Courses\Subject;
 use Modules\LMS\Models\User;
@@ -713,7 +714,26 @@ class AceAcademicsSeeder extends Seeder
             ],
         ];
 
+        // Credible designations shown on the tutor cards (keyed by first name).
+        $designationMap = [
+            'Aditya'   => 'Founder & Lead Tutor · 99.95 ATAR',
+            'Prabhas'  => 'Senior Tutor · 99.00 ATAR',
+            'Adwitiya' => 'Science Tutor · Medicine, UQ',
+            'Ishaan'   => 'Maths & Physics Tutor · Medicine, UQ',
+            'Suhani'   => 'UCAT & English Tutor · Medicine, UQ',
+            'Turhan'   => 'Science Tutor · 99.85 ATAR',
+            'Dinidu'   => 'Maths & Economics Tutor · 99.65 ATAR',
+            'Devraj'   => 'UCAT & Science Tutor · Medicine, UQ',
+            'Rohith'   => 'Maths & Economics Tutor · 99.65 ATAR',
+        ];
+
         foreach ($tutors as $tutor) {
+            // 'Aditya' appears twice (Anand / N.) — disambiguate by last initial.
+            $designationTitle = $tutor['first_name'] === 'Aditya' && $tutor['last_name'] === 'N.'
+                ? 'Science Tutor · 99.65 ATAR'
+                : ($designationMap[$tutor['first_name']] ?? 'Expert Tutor · 99+ ATAR');
+            $designation = Designation::firstOrCreate(['title' => $designationTitle]);
+
             $instructor = Instructor::updateOrCreate(
                 ['first_name' => $tutor['first_name'], 'last_name' => $tutor['last_name']],
                 [
@@ -721,6 +741,7 @@ class AceAcademicsSeeder extends Seeder
                     'last_name' => $tutor['last_name'],
                     'phone' => $tutor['phone'],
                     'about' => $tutor['about'],
+                    'designation_id' => $designation->id,
                     'status' => 1,
                 ]
             );
@@ -738,5 +759,9 @@ class AceAcademicsSeeder extends Seeder
                 ]
             );
         }
+
+        // Hide leftover demo instructors (e.g. the template's "Robert Smith /
+        // Senior Web Developer") so only real ACE tutors show. Safe no-op if absent.
+        Instructor::where('first_name', 'Robert')->where('last_name', 'Smith')->update(['status' => 0]);
     }
 }

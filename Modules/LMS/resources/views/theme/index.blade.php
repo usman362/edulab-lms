@@ -140,9 +140,12 @@
         <x-theme::blog.latest-blog-one :blogs="$data['blogs']" />
     @endif
 
-    @if ($show('subscriptions'))
+    {{-- Subscription section only renders when plans actually exist — an empty
+         "Choose Your Plan" header with no cards reads as unfinished. --}}
+    @php $subs = $data['subscriptions'] ?? []; @endphp
+    @if ($show('subscriptions') && is_countable($subs) && count($subs) > 0)
         <!-- START Subscription AREA -->
-        <x-theme::subscription.subscription-list :subscriptions="$data['subscriptions']" />
+        <x-theme::subscription.subscription-list :subscriptions="$subs" />
         <!-- END Subscription AREA -->
     @endif
 

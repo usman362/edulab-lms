@@ -1,12 +1,20 @@
 @php
+    // Counter shows ACE's real track record, NOT raw LMS account counts (which
+    // read as "1" on a fresh install and contradict the hero's "500+" claim).
+    // Admin can set exact figures in Settings → Counter; otherwise we use the
+    // brand floor (a fresh site still looks established) and grow with real data.
     $counter = get_theme_option(key: 'counter') ?? [];
-    $totalExperience = $counter['total_experience'] ?? 1;
-    $totalCourse = get_all_course('approved')->count() ?? [];
-    $totalCourseText = $totalCourse > 1 ? 'Programs' : 'Program';
-    $totalTutor = get_all_instructor()->count() ?? [];
-    $totalTutorText = $totalTutor > 1 ? 'Expert Tutors' : 'Expert Tutor';
-    $totalStudent = get_all_student()->count() ?? [];
-    $totalStudentText = $totalStudent > 1 ? 'Happy Students' : 'Happy Student';
+
+    $totalStudent = (int) ($counter['total_student'] ?? max(get_all_student()->count(), 500));
+    $totalStudentText = 'Happy Students';
+
+    $totalTutor = (int) ($counter['total_tutor'] ?? max(get_all_instructor()->count(), 20));
+    $totalTutorText = 'Expert Tutors';
+
+    $totalExperience = (int) ($counter['total_experience'] ?? 10);
+
+    $totalCourse = (int) ($counter['total_course'] ?? max(get_all_course('approved')->count(), 4));
+    $totalCourseText = 'Programs';
 @endphp
 <!-- counter -->
 @php
