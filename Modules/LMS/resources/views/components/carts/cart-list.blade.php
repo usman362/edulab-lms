@@ -53,7 +53,7 @@
                             </h6>
                             <div class="flex items-center gap-2">
                                 <div class="flex items-center gap-1">
-                                    <i class="ri-star-fill text-sm !text-secondary"></i>
+                                    <i class="ri-star-fill text-sm text-secondary"></i>
                                     <span
                                         class="text-xs font-semibold leading-none">{{ $cartCourse['review']['average_rating'] ?? 0 }}</span>
                                 </div>
@@ -67,11 +67,11 @@
                 <td class="px-3.5 py-4">
                     <span class="text-primary font-semibold">
                         @if (isset($cartCourse['discount_price']) && $cartCourse['discount_price'] !== 0)
-                            {{ $currencySymbol }}{{ $cartCourse['currency'] }}
-                            <del>
-                                {{ $currencySymbol }}{{ $cartCourse['price'] }}</del>
+                            {{ $currencySymbol }}{{ number_format($cartCourse['discount_price'], 2) }}
+                            <del class="text-heading/50 font-normal">
+                                {{ $currencySymbol }}{{ number_format($cartCourse['price'], 2) }}</del>
                         @else
-                            {{ $currencySymbol }}{{ $cartCourse['price'] }}
+                            {{ $currencySymbol }}{{ number_format($cartCourse['price'], 2) }}
                         @endif
                     </span>
                 </td>

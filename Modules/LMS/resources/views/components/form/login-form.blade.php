@@ -3,7 +3,7 @@
     <div class="grid grid-cols-2 gap-x-3 gap-y-5">
         <div class="col-span-full">
             <div class="relative">
-                <input type="email" name="email" id="role_email" class="form-input rounded-full peer" placeholder=""
+                <input type="email" name="email" id="role_email" class="form-input rounded-lg peer" placeholder=""
                     required />
                 <label for="role_email" class="form-label floating-form-label"> {{ translate('Email') }} <span
                         class="text-danger">*</span></label>
@@ -12,7 +12,7 @@
         </div>
         <div class="col-span-full">
             <div class="relative">
-                <input type="password" name="password" id="role_password" class="form-input rounded-full peer"
+                <input type="password" name="password" id="role_password" class="form-input rounded-lg peer"
                     placeholder="" required />
                 <label for="role_password" class="form-label floating-form-label">
                     {{ translate('Password') }}
@@ -45,7 +45,7 @@
         </div>
         <div class="col-span-full">
             <button type="submit"
-                class="btn b-solid btn-secondary-solid !text-white btn-xl !rounded-full font-bold w-full h-12"
+                class="btn b-solid btn-primary-solid btn-xl font-bold w-full h-12"
                 aria-label="Login">
                 {{ translate('Log in') }}
             </button>
