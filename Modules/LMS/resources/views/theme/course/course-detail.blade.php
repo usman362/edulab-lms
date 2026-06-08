@@ -18,7 +18,7 @@
     <x-theme::breadcrumbs.breadcrumb-one pageTitle="Course Details" pageName="Course Details" />
     <!-- START INNER CONTENT AREA -->
     <div class="container">
-        <div class="grid grid-cols-12 gap-5">
+        <div class="grid grid-cols-12 gap-5 items-start">
             <!-- START COURSE DETAILS -->
             <div class="col-span-full lg:col-span-8">
                 <div class="flex items-start gap-2.5">
@@ -69,7 +69,7 @@
                             <!-- COURSE LABEL -->
                             @foreach ($course->levels as $level)
                                 @php $levelTranslations = parse_translation($level); @endphp
-                                <div class="badge b-solid badge-secondary-solid rounded-full !text-heading">
+                                <div class="badge badge-heading-outline b-outline rounded-full">
                                     {{ $levelTranslations['name'] ?? ($level->name ?? '') }}</div>
                             @endforeach
                             <!-- COURSE CATEGORY -->

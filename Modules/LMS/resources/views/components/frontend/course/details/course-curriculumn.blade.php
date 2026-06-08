@@ -17,7 +17,7 @@
                 <div class="accordionpanel panel">
                     @foreach ($chapter->topics as $topic)
                         @if ($topic?->topicable?->topic_type?->slug == 'video')
-                            <a href="{{ authCheck() ? route('play.course', $course->slug . '?type=' . $topic?->topicable?->topic_type?->slug . '&item=' . $topic->id) : '#' }}" class="course-accord-item gap-5 hover:bg-slate-100 group/curriculum" aria-label="Course curriculum">
+                            <a href="{{ authCheck() ? route('play.course', $course->slug . '?type=' . $topic?->topicable?->topic_type?->slug . '&item=' . $topic->id) : '#' }}" class="course-accord-item gap-5 hover:bg-gray-100 group/curriculum" aria-label="Course curriculum">
                                 <div class="flex items-center gap-2 font-medium group-hover/curriculum:text-primary duration-200 grow">
                                     <i class="ri-file-video-line"></i>
                                     <span class="-mb-1 line-clamp-1">{{ $topic?->topicable?->title }}</span>
@@ -27,7 +27,7 @@
                         @endif
 
                         @if ($topic?->topicable?->topic_type?->slug == 'reading')
-                            <a href="{{ authCheck() ? route('play.course', $course->slug . '?type=' . $topic?->topicable?->topic_type?->slug . '&item=' . $topic->id) : '#' }}" class="course-accord-item gap-5 hover:bg-slate-100 group/curriculum" aria-label="Course curriculum">
+                            <a href="{{ authCheck() ? route('play.course', $course->slug . '?type=' . $topic?->topicable?->topic_type?->slug . '&item=' . $topic->id) : '#' }}" class="course-accord-item gap-5 hover:bg-gray-100 group/curriculum" aria-label="Course curriculum">
                                 <div class="flex items-center gap-2 font-medium group-hover/curriculum:text-primary duration-200 grow">
                                     <i class="ri-file-text-line"></i>
                                     <span class="-mb-1 line-clamp-1">{{ $topic?->topicable?->title }}</span>
@@ -37,7 +37,7 @@
                         @endif
 
                         @if ($topic?->topicable?->topic_type?->slug == 'supplement')
-                            <a href="{{ authCheck() ? route('play.course', $course->slug . '?type=' . $topic?->topicable?->topic_type?->slug . '&item=' . $topic->id) : '#' }}" class="course-accord-item gap-5 hover:bg-slate-100 group/curriculum" aria-label="Course curriculum">
+                            <a href="{{ authCheck() ? route('play.course', $course->slug . '?type=' . $topic?->topicable?->topic_type?->slug . '&item=' . $topic->id) : '#' }}" class="course-accord-item gap-5 hover:bg-gray-100 group/curriculum" aria-label="Course curriculum">
                                 <div class="flex items-center gap-2 font-medium group-hover/curriculum:text-primary duration-200 grow">
                                     <i class="ri-file-text-line"></i>
                                     <span class="-mb-1 line-clamp-1">{{ $topic?->topicable?->title }}</span>
@@ -47,7 +47,7 @@
                         @endif
 
                         @if ($topic?->topicable?->topic_type?->slug == 'assignment')
-                            <a href="{{ authCheck() ? route('play.course', $course->slug . '?type=' . $topic?->topicable?->topic_type?->slug . '&item=' . $topic->id) : '#' }}" class="course-accord-item gap-5 hover:bg-slate-100 group/curriculum" aria-label="Course curriculum">
+                            <a href="{{ authCheck() ? route('play.course', $course->slug . '?type=' . $topic?->topicable?->topic_type?->slug . '&item=' . $topic->id) : '#' }}" class="course-accord-item gap-5 hover:bg-gray-100 group/curriculum" aria-label="Course curriculum">
                                 <div class="flex items-center gap-2 font-medium group-hover/curriculum:text-primary duration-200 grow">
                                     <i class="ri-a-b"></i>
                                     <span class="-mb-1 line-clamp-1">{{ $topic?->topicable?->title }}</span>
@@ -57,7 +57,7 @@
                         @endif
 
                         @if ($topic?->topicable?->topic_type?->slug == 'quiz')
-                            <a href="{{ authCheck() ? route('play.course', $course->slug . '?type=' . $topic?->topicable?->topic_type?->slug . '&item=' . $topic->id) : '#' }}" class="course-accord-item gap-5 hover:bg-slate-100 group/curriculum" aria-label="Course curriculum">
+                            <a href="{{ authCheck() ? route('play.course', $course->slug . '?type=' . $topic?->topicable?->topic_type?->slug . '&item=' . $topic->id) : '#' }}" class="course-accord-item gap-5 hover:bg-gray-100 group/curriculum" aria-label="Course curriculum">
                                 <div class="flex items-center gap-2 font-medium group-hover/curriculum:text-primary duration-200 grow">
                                     <i class="ri-questionnaire-line"></i>
                                     <span class="-mb-1 line-clamp-1">{{ $topic?->topicable?->title }}</span>

@@ -9,13 +9,13 @@
     $courseSetting = $course?->courseSetting ?? null;
 @endphp
 
-<div class="col-span-full lg:col-span-4">
-    <div class="bg-primary-50 p-6 rounded-2xl">
+<div class="col-span-full lg:col-span-4 lg:sticky lg:top-28 self-start">
+    <div class="bg-primary-50 border border-border p-6 rounded-2xl">
         <div data-modal-id="demo-video-modal"
             class="flex-center relative cursor-pointer w-full aspect-video rounded-2xl overflow-hidden">
             <img data-src="{{ $thumbnail }}" alt="Course thumbnail" class="size-full object-cover">
             <!-- CONTROLLER -->
-            <div class="flex-center size-full bg-[#D9D9D9]/30 rounded-2xl absolute inset-0 [&.hide]:invisible">
+            <div class="flex-center size-full bg-heading/20 rounded-2xl absolute inset-0 [&.hide]:invisible">
                 <button type="button" aria-label="Open demo video modal button"
                     class="btn-icon size-9 b-solid btn-secondary-icon-solid !text-heading dark:text-white pulse-animation active:scale-105">
                     <i class="ri-play-fill text-base"></i>
@@ -162,7 +162,7 @@
                                     <span>{{ $currencySymbol }}{{ dotZeroRemove($course?->coursePrice?->discounted_price ?? 0) }}</span>
                                     <span>
                                         <del
-                                            class="text-heading/50 text-[16px] font-semibold">{{ $currencySymbol }}{{ dotZeroRemove($course?->coursePrice?->price ?? 0) }}</del>
+                                            class="text-heading/50 text-base font-semibold">{{ $currencySymbol }}{{ dotZeroRemove($course?->coursePrice?->price ?? 0) }}</del>
                                     </span>
                                 @else
                                     <span>{{ $currencySymbol }}{{ dotZeroRemove($course?->coursePrice?->price ?? 0) }}</span>
@@ -230,11 +230,18 @@
             </a>
         @endif
         @if ($courseSetting?->is_subscription && !$hasPurchase && module_enable_check('subscription'))
-            <a class="btn b-solid btn-primary-solid btn-xl font-medium !rounded-full w-full h-12 mt-5"
-                aria-label="Go to Course video" href="{{ route('subscription.apply', $course?->slug) }}">
+            <a class="btn b-outline btn-primary-outline btn-xl font-semibold w-full h-12 mt-3"
+                aria-label="Subscribe to this course" href="{{ route('subscription.apply', $course?->slug) }}">
                 {{ translate('Subscription') }}
             </a>
         @endif
+
+        {{-- Trust strip — reassurance for high-ticket purchase --}}
+        <div class="flex flex-col gap-2.5 mt-6 pt-5 border-t border-border text-sm text-heading/70">
+            <div class="flex items-center gap-2.5"><i class="ri-shield-check-line text-primary text-base"></i> {{ translate('Secure checkout') }}</div>
+            <div class="flex items-center gap-2.5"><i class="ri-medal-line text-secondary text-base"></i> {{ translate('Taught by 99+ ATAR tutors') }}</div>
+            <div class="flex items-center gap-2.5"><i class="ri-customer-service-2-line text-primary text-base"></i> {{ translate('Dedicated student support') }}</div>
+        </div>
     </div>
 </div>
 

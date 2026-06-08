@@ -13,22 +13,22 @@
     @endphp
 
     {{-- CHAPTER (UNIT) BLOCK --}}
-    <div class="lms-accordion select-none border-b border-slate-100">
+    <div class="lms-accordion select-none border-b border-border">
         {{-- CHAPTER HEADER --}}
-        <div class="px-5 py-3 cursor-pointer lms-accordion-button {{ $showClass }} group/accordion peer/accordion hover:bg-slate-50 transition">
+        <div class="px-5 py-3 cursor-pointer lms-accordion-button {{ $showClass }} group/accordion peer/accordion hover:bg-primary-50 transition">
             <div class="flex items-start justify-between gap-3">
                 <div class="min-w-0 flex-1">
-                    <div class="text-[10px] uppercase tracking-wider text-slate-500 font-semibold">
+                    <div class="text-[10px] uppercase tracking-wider text-heading/60 font-semibold">
                         {{ translate('Unit') }} {{ $key + 1 }}
                     </div>
                     <h5 class="text-sm text-heading font-bold mt-0.5 leading-snug">
                         {{ $chapter->title }}
                     </h5>
-                    <div class="text-xs text-slate-500 mt-1">
+                    <div class="text-xs text-heading/60 mt-1">
                         {{ $topicCount }} {{ $topicCount === 1 ? translate('Lesson') : translate('Lessons') }}
                     </div>
                 </div>
-                <i class="ri-arrow-down-s-line text-slate-500 text-lg mt-0.5 shrink-0 transition-transform group-[.panel-show]/accordion:rotate-180"></i>
+                <i class="ri-arrow-down-s-line text-heading/60 text-lg mt-0.5 shrink-0 transition-transform group-[.panel-show]/accordion:rotate-180"></i>
             </div>
         </div>
 
