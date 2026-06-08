@@ -40,6 +40,7 @@ module.exports = {
                     400: "rgb(from var(--color-primary-400) r g b / <alpha-value>)",
                     500: "rgb(from var(--color-primary-500) r g b / <alpha-value>)",
                     600: "rgb(from var(--color-primary-600) r g b / <alpha-value>)",
+                    700: "rgb(from var(--color-primary-700) r g b / <alpha-value>)",
                 },
                 secondary: {
                     DEFAULT:
@@ -56,7 +57,7 @@ module.exports = {
                     DEFAULT: "#FF4626",
                 },
                 success: {
-                    DEFAULT: "#66CC33",
+                    DEFAULT: "#16A34A",
                 },
                 info: {
                     DEFAULT: "#498CFF",
@@ -77,7 +78,7 @@ module.exports = {
             backgroundImage: {
                 "text-highlighter":
                     "url('../../assets/images/icons/text-highlighter.svg')",
-                video: "linear-gradient(90deg, #44FF9A -0.55%, #44B0FF 22.86%, #8B44FF 48.36%, #F64 73.33%, #EBFF70 99.34%)",
+                video: "linear-gradient(90deg, var(--color-primary) 0%, var(--color-primary-700) 100%)",
                 header: "linear-gradient(90deg, #F7F4FF 50%, #fff 50%)",
                 "overlay-gradient":
                     "linear-gradient(180deg, rgba(17, 24, 39, 0.00) 0%, #111827 100%)",
@@ -107,6 +108,11 @@ module.exports = {
             },
             boxShadow: {
                 secondary: "30px 30px var(--color-secondary)",
+                /* Semantic elevation language — use these everywhere instead of
+                   one-off pricing-* shadows. card = resting, card-hover = lifted. */
+                card: "0 1px 2px 0 rgba(17,24,39,0.04), 0 8px 24px -8px rgba(17,24,39,0.10)",
+                "card-hover": "0 2px 8px 0 rgba(17,24,39,0.06), 0 24px 48px -12px rgba(17,24,39,0.16)",
+                popover: "0 8px 32px -8px rgba(17,24,39,0.18)",
                 "pricing-four": "0px 0px 1px 1px rgba(3, 6, 17, 0.12)",
                 "pricing-five": "0px 1px 2px 0px rgba(14, 27, 46, 0.10)",
                 "pricing-five-hover": "0px 2px 40px 0px rgba(3, 6, 17, 0.14)",

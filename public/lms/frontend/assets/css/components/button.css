@@ -32,7 +32,7 @@
     @apply [&.btn-lg]:sm:text-[18px] [&.btn-lg]:rounded-lg [&.btn-lg]:px-4 [&.btn-lg]:py-3 [&.btn-lg]:sm:px-5 [&.btn-lg]:sm:py-3;
 }
 .btn {
-    @apply [&.btn-xl]:rounded-[12px] [&.btn-xl]:px-8 [&.btn-xl]:py-3 [&.btn-xl]:xl:px-9 [&.btn-xl]:xl:py-4;
+    @apply [&.btn-xl]:rounded-full [&.btn-xl]:px-8 [&.btn-xl]:py-3 [&.btn-xl]:xl:px-9 [&.btn-xl]:xl:py-4;
 }
 /* .btn.effect-one {
     @apply relative overflow-hidden;

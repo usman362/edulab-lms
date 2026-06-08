@@ -14,47 +14,33 @@
 @tailwind utilities;
 
 @layer base {
+    /* ── ACE design-system tokens (compiled fallback) ──────────────────────────
+       These are the build-time fallbacks. At runtime head.blade.php re-emits the
+       full primary ramp from the admin's chosen colour via color-mix(). The ramp
+       is RED (brand), secondary is RESERVED gold, section is a soft-red wash.
+       The old teal (#0d9488) and the 4 demo theme blocks were removed — they were
+       the mechanical source of the "teal leaks through" inconsistency. */
     :root {
-        --color-primary: #0d9488;
-        --color-primary-50: #f0fdfa;
-        --color-primary-100: #ccfbf1;
-        --color-primary-200: #99f6e4;
-        --color-secondary: #0d9488;
+        --color-primary: #e0102b;
+        --color-primary-50: #fef2f3;
+        --color-primary-100: #fbd9dd;
+        --color-primary-200: #f4a6ae;
+        --color-primary-300: #ed7882;
+        --color-primary-400: #e63e50;
+        --color-primary-500: #e0102b;
+        --color-primary-600: #b40d22;
+        --color-primary-700: #8a0a1a;
+        --color-secondary: #f4b826;
         --color-heading: #111827;
-        --color-section: #f7f4ff;
+        --color-section: #fef2f3;
 
-        /* FOR VIDEO PLAYER */
+        /* FOR VIDEO PLAYER (gold = achievement accent, kept) */
         --plyr-font-family: "Mulish", sans-serif;
         --plyr-color-main: #f4b826;
         --plyr-video-background: #111827;
 
         --font-primary: "Mulish", sans-serif;
         --font-secondary: "Public Sans", sans-serif;
-    }
-
-    /* HOME E-LEARNING EDUCATION */
-    .home-e-learning {
-        --color-primary: #d2093c;
-        --color-section: #f7f4ff;
-    }
-
-    /* HOME LMS EDUCATION */
-    .home-lms-education {
-        --color-primary: #17423b;
-        --font-secondary: "Roboto", sans-serif;
-    }
-
-    /* HOME DIGITAL EDUCATION */
-    .home-digital-education {
-        --color-primary: #d2eb1a;
-        --color-secondary: #00a264;
-        --color-section: #eff4e0;
-    }
-
-    /* HOME KINDERGARTERN */
-    .home-kindergarten {
-        --color-primary: #00a264;
-        --font-secondary: "Newsreader", sans-serif;
     }
 
     html {
@@ -65,10 +51,10 @@
 
 @layer components {
     .area-subtitle {
-        @apply text-sm lg:text-base inline-flex items-center justify-center text-primary !leading-none font-bold tracking-tight;
+        @apply text-sm inline-flex items-center justify-center text-primary !leading-none font-bold uppercase tracking-[0.08em];
     }
     .area-subtitle {
-        @apply [&.subtitle-outline]:px-5 [&.subtitle-outline]:py-2 [&.subtitle-outline]:border [&.subtitle-outline]:border-primary/10 [&.subtitle-outline]:rounded-full;
+        @apply [&.subtitle-outline]:px-5 [&.subtitle-outline]:py-2 [&.subtitle-outline]:border [&.subtitle-outline]:border-primary/15 [&.subtitle-outline]:rounded-full [&.subtitle-outline]:normal-case;
     }
     .area-subtitle.subtitle-outline {
         @apply [&.style-two]:text-heading [&.style-two]:border-heading/15 [&.style-two]:rounded-md;
@@ -77,13 +63,19 @@
         @apply [&.style-three]:rounded-l-none rtl:[&.style-three]:rounded-l-full rtl:[&.style-three]:rounded-r-none [&.style-three]:border-transparent [&.style-three]:bg-secondary/[0.08] [&.style-three]:!border-l-2 rtl:[&.style-three]:!border-l-0 rtl:[&.style-three]:!border-r-2 [&.style-three]:border-l-secondary;
     }
     .area-title {
-        @apply text-heading text-2xl md:text-3xl lg:text-4xl xl:text-[44px] !leading-[1.22] font-extrabold;
+        @apply text-heading text-2xl md:text-3xl lg:text-4xl xl:text-[40px] !leading-[1.2] font-extrabold tracking-[-0.01em];
     }
     .area-title {
-        @apply [&.title-lg]:text-3xl md:[&.title-lg]:text-5xl xl:[&.title-lg]:text-[70px] [&.title-lg]:leading-[1.14];
+        @apply [&.title-lg]:text-[32px] md:[&.title-lg]:text-5xl xl:[&.title-lg]:text-[56px] [&.title-lg]:leading-[1.1];
     }
+    /* Brand-tied highlight underline — follows --color-primary instead of the old
+       hardcoded amber SVG, so the most prominent typographic accent is always brand. */
     .area-title .title-highlight-one {
-        @apply inline-block relative bg-text-highlighter bg-no-repeat bg-[length:100%_auto] bg-bottom;
+        @apply inline-block relative z-0;
+    }
+    .area-title .title-highlight-one::after {
+        content: "";
+        @apply absolute inset-x-0 bottom-[0.08em] -z-10 h-[0.3em] rounded-[2px] bg-primary/20;
     }
     .area-title .title-highlight-two {
         @apply text-primary font-secondary font-medium italic;
@@ -187,20 +179,21 @@
         width: 150px;
         height: 150px;
     }
-    /* Central glowing orb */
+    /* Central glowing orb (brand red) */
     .orb {
         position: absolute;
         top: 50%;
         left: 50%;
         width: 20px;
         height: 20px;
-        background: #5f3eed;
+        background: var(--color-primary);
         border-radius: 50%;
-        box-shadow: 0 0 15px #5f3eed, 0 0 20px #5f3eed, 0 0 60px #5f3eed;
+        box-shadow: 0 0 15px var(--color-primary),
+            0 0 20px var(--color-primary), 0 0 60px var(--color-primary);
         transform: translate(-50%, -50%);
         animation: pulse 2s infinite ease-in-out;
     }
-    /* Pulsating waves */
+    /* Pulsating waves (brand red) */
     .wave {
         position: absolute;
         top: 50%;
@@ -208,7 +201,7 @@
         width: 100%;
         height: 100%;
         background: none;
-        border: 5px solid #5f3eed;
+        border: 5px solid var(--color-primary);
         border-radius: 50%;
         transform: translate(-50%, -50%) scale(0);
         animation: expand 2s infinite ease-in-out;

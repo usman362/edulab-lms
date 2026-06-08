@@ -56,17 +56,29 @@
         </style>
     @endif
     <style>
+        /* ── ACE design-system tokens ──────────────────────────────────────────
+           The admin's single brand colour ($primaryColor) generates the WHOLE
+           red ramp via color-mix so bg-primary-50/100/200 are always a soft-red
+           wash (never the old teal) and primary-300..600 are always defined
+           (previously undefined → ~572 dead utilities). --color-secondary is a
+           RESERVED gold accent (ratings / prestige only), never equal to primary. */
         :root {
             --color-primary: {{ $primaryColor }};
-            --color-secondary: {{ $primaryColor }};
+            --color-primary-50: color-mix(in srgb, {{ $primaryColor }} 6%, #fff);
+            --color-primary-100: color-mix(in srgb, {{ $primaryColor }} 14%, #fff);
+            --color-primary-200: color-mix(in srgb, {{ $primaryColor }} 30%, #fff);
+            --color-primary-300: color-mix(in srgb, {{ $primaryColor }} 46%, #fff);
+            --color-primary-400: color-mix(in srgb, {{ $primaryColor }} 66%, #fff);
+            --color-primary-500: {{ $primaryColor }};
+            --color-primary-600: color-mix(in srgb, {{ $primaryColor }} 80%, #000);
+            --color-primary-700: color-mix(in srgb, {{ $primaryColor }} 62%, #000);
+            --color-secondary: #F4B826;
+            --color-section: color-mix(in srgb, {{ $primaryColor }} 6%, #fff);
         }
 
+        /* Logo sizing + nav spacing — kept until logo/menu components absorb these. */
         header img {
-            max-height: 75px !important;
-        }
-
-        nav {
-            padding-left: 100px !important;
+            max-height: 56px;
         }
     </style>
 </head>
