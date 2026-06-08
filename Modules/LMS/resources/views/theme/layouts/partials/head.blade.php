@@ -13,9 +13,11 @@
     $customScript = get_theme_option('custom_script') ?? [];
     $customCss = $customScript['custom_css'] ?? '';
     $customJs = $customScript['custom_js'] ?? '';
-    $primaryColor = $backendSetting['primary_color'] ?? '#0d9488';
+    // ACE brand red is the fallback (NOT the old template teal #0d9488) so the
+    // site never reverts to teal if the admin's primary_color setting is missing.
+    $primaryColor = $backendSetting['primary_color'] ?? '#e52524';
     if (!preg_match('/^#[0-9A-Fa-f]{6}$/', $primaryColor)) {
-        $primaryColor = '#0d9488';
+        $primaryColor = '#e52524';
     }
 @endphp
 

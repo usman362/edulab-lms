@@ -554,8 +554,11 @@ class AceAcademicsSeeder extends Seeder
             'is_multiple_theme' => '',
         ];
 
-        // Backend general settings
+        // Backend general settings. NOTE: these are DEFAULTS only — the seeding
+        // loop below merges them UNDER any existing admin-set values, so a
+        // re-seed never clobbers the client's customisations (colour, etc.).
         $backendGeneral = [
+            'primary_color' => '#e52524', // ACE brand red (default; admin override always wins)
             'footer_show_bottom' => '1',
             'footer_copyright' => '&copy; ' . date('Y') . ' Ace Academic Coaching. All Rights Reserved.',
             'footer_menu' => '<a href="/page/privacy-policy">Privacy Policy</a><a href="/page/terms-conditions">Terms & Conditions</a><a href="/page/refund-policy">Refund Policy</a>',
@@ -576,14 +579,20 @@ class AceAcademicsSeeder extends Seeder
             'backend_general' => $backendGeneral,
         ];
 
+        // NON-DESTRUCTIVE seeding: never overwrite admin customisations.
+        // For an existing setting, merge the defaults UNDER the stored content
+        // (stored values win), only filling in keys that don't exist yet. This
+        // is what prevents a re-seed from wiping the client's brand colour, etc.
         foreach ($settings as $key => $content) {
-            ThemeSetting::updateOrCreate(
-                ['key' => $key],
-                [
-                    'key' => $key,
-                    'content' => $content,
-                ]
-            );
+            $existing = ThemeSetting::where('key', $key)->first();
+
+            if ($existing) {
+                $stored = is_array($existing->content) ? $existing->content : [];
+                $existing->content = array_merge($content, $stored); // stored (admin) wins
+                $existing->save();
+            } else {
+                ThemeSetting::create(['key' => $key, 'content' => $content]);
+            }
         }
     }
 
