@@ -54,13 +54,13 @@
                      Student/Instructor/Organisation use the member login (backend
                      detects the role); Admin uses the admin login. --}}
                 <div class="flex flex-wrap gap-2 mt-8" id="loginRoleTabs">
-                    <button type="button" data-role="student" data-pane="member" aria-label="Login as student"
+                    <button type="button" data-role="student" data-pane="member" data-email="student@gmail.com" data-password="123456" aria-label="Login as student"
                         class="login-role-tab active px-4 py-2 rounded-full text-sm font-semibold bg-gray-100 text-heading/70 [&.active]:bg-primary [&.active]:text-white custom-transition">{{ translate('Student') }}</button>
-                    <button type="button" data-role="instructor" data-pane="member" aria-label="Login as instructor"
+                    <button type="button" data-role="instructor" data-pane="member" data-email="instructor@gmail.com" data-password="123456" aria-label="Login as instructor"
                         class="login-role-tab px-4 py-2 rounded-full text-sm font-semibold bg-gray-100 text-heading/70 [&.active]:bg-primary [&.active]:text-white custom-transition">{{ translate('Instructor') }}</button>
-                    <button type="button" data-role="organization" data-pane="member" aria-label="Login as organisation"
+                    <button type="button" data-role="organization" data-pane="member" data-email="organization@gmail.com" data-password="123456" aria-label="Login as organisation"
                         class="login-role-tab px-4 py-2 rounded-full text-sm font-semibold bg-gray-100 text-heading/70 [&.active]:bg-primary [&.active]:text-white custom-transition">{{ translate('Organisation') }}</button>
-                    <button type="button" data-role="admin" data-pane="admin" aria-label="Login as admin"
+                    <button type="button" data-role="admin" data-pane="admin" data-email="admin@gmail.com" data-password="123456" aria-label="Login as admin"
                         class="login-role-tab px-4 py-2 rounded-full text-sm font-semibold bg-gray-100 text-heading/70 [&.active]:bg-primary [&.active]:text-white custom-transition">{{ translate('Admin') }}</button>
                 </div>
 
@@ -123,6 +123,8 @@
             $(document).on('click', '#loginRoleTabs .login-role-tab', function () {
                 var pane = $(this).data('pane');
                 var role = $(this).data('role');
+                var email = $(this).data('email');
+                var password = $(this).data('password');
 
                 $('#loginRoleTabs .login-role-tab').removeClass('active');
                 $(this).addClass('active');
@@ -132,8 +134,16 @@
 
                 if (pane === 'member') {
                     $('#login_user_type').val(role);
+                    $('#role_email').val(email);
+                    $('#role_password').val(password);
+                } else {
+                    $('#admin-email').val(email);
+                    $('#admin-password').val(password);
                 }
             });
+
+            // Pre-fill the default (Student) credentials on load.
+            $(function () { $('#loginRoleTabs .login-role-tab.active').trigger('click'); });
         </script>
     @endpush
 </x-auth-layout>
