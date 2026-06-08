@@ -1,7 +1,22 @@
 <x-auth-layout>
-    <div class="min-w-full min-h-screen flex items-center">
-        <div class="grow min-h-screen h-full w-full lg:w-1/2 p-3 bg-primary-50 hidden lg:flex-center">
-            <img data-src="{{ edulab_global_asset('lms/frontend/assets/images/auth/auth-loti.svg') }}" alt="loti">
+    <div class="min-w-full min-h-screen flex items-stretch">
+        <div class="hidden lg:flex flex-col justify-between w-1/2 p-12 xl:p-16 bg-heading text-white relative overflow-hidden">
+            <div class="absolute -top-32 -right-32 size-[28rem] rounded-full bg-primary/30 blur-[120px] pointer-events-none"></div>
+            <div class="absolute -bottom-40 -left-20 size-[28rem] rounded-full bg-primary/15 blur-[120px] pointer-events-none"></div>
+            <a href="{{ route('home.index') }}" class="relative z-10 inline-flex items-center gap-2 text-2xl font-extrabold tracking-tight">
+                <span class="size-10 flex-center rounded-xl bg-primary text-white"><i class="ri-graduation-cap-fill"></i></span>
+                {{ translate('ACE Academic') }}
+            </a>
+            <div class="relative z-10 max-w-md">
+                <h2 class="text-4xl xl:text-5xl font-extrabold leading-[1.1] tracking-[-0.02em]">
+                    {{ translate('Back to') }}
+                    <span class="text-secondary">{{ translate('learning, fast.') }}</span>
+                </h2>
+                <p class="text-white/70 text-lg leading-relaxed mt-5">
+                    {{ translate('Reset your password and pick up right where you left off.') }}
+                </p>
+            </div>
+            <div class="relative z-10 text-white/50 text-sm">© {{ date('Y') }} {{ translate('ACE Academic Coaching') }}</div>
         </div>
         <div class="grow min-h-screen h-full w-full lg:w-1/2 pt-32 pb-12 px-3 lg:p-3 flex-center flex-col">
             <h2 class="area-title"> {{ !isset($token) ? translate('Reset your') : translate('Update your') }}
@@ -18,7 +33,7 @@
                 <div class="grid grid-cols-2 gap-x-3 gap-y-5">
                     <div class="col-span-full">
                         <div class="relative">
-                            <input type="email" id="user_email" name="email" class="form-input rounded-full peer"
+                            <input type="email" id="user_email" name="email" class="form-input rounded-lg peer"
                                 placeholder="" />
                             <label for="user_email" class="form-label floating-form-label">{{ translate('Email') }}
                                 <span class="text-danger">*</span></label>
@@ -30,7 +45,7 @@
                         <div class="col-span-full">
                             <div class="relative">
                                 <input type="password" id="user_password" name="password"
-                                    class="form-input rounded-full peer" placeholder="" />
+                                    class="form-input rounded-lg peer" placeholder="" />
                                 <label for="user_password"
                                     class="form-label floating-form-label">{{ translate('Password') }} <span
                                         class="text-danger">*</span></label>
@@ -47,7 +62,7 @@
                         <div class="col-span-full">
                             <div class="relative">
                                 <input type="password" id="user_password_confirm" name="password_confirmation"
-                                    class="form-input rounded-full peer" placeholder="" />
+                                    class="form-input rounded-lg peer" placeholder="" />
                                 <label for="user_password"
                                     class="form-label floating-form-label">{{ translate('Confirm Password') }} <span
                                         class="text-danger">*</span></label>
@@ -63,7 +78,7 @@
                     @endif
                     <div class="col-span-full">
                         <button type="submit" aria-label="Update password"
-                            class="btn b-solid btn-secondary-solid !text-white btn-xl !rounded-full font-bold w-full h-12">
+                            class="btn b-solid btn-primary-solid btn-xl font-bold w-full h-12">
                             {{ !isset($token) ? translate('Send Request') : translate('Update Password') }}
                         </button>
                     </div>

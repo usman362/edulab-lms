@@ -18,7 +18,7 @@
 @endphp
 
 <div class="col-span-full md:col-span-6 lg:col-span-4">
-    <div class="flex flex-col bg-section px-4 sm:px-6 md:px-8 xl:px-10 py-8 md:py-10 xl:py-12 rounded-[10px] h-full relative duration-300">
+    <div class="flex flex-col bg-primary-50 px-4 sm:px-6 md:px-8 xl:px-10 py-8 md:py-10 xl:py-12 rounded-2xl h-full relative duration-300">
         @if (!empty($iconImg))
             <div class="flex">
                 <img data-src="{{ $iconImg }}" alt="Pricing plan image" class="max-w-[70px]">
@@ -51,7 +51,7 @@
         <!-- BADGE -->
         @if ($subscription->is_popular)
             <div class="absolute top-0 left-1/2 -translate-x-1/2">
-                <div class="text-sm uppercase leading-none font-bold bg-[#43D477] rounded-md rounded-t-none px-3.5 py-1.5 w-max">{{ translate('Popular') }}</div>
+                <div class="text-sm uppercase leading-none font-bold bg-secondary text-heading rounded-md rounded-t-none px-3.5 py-1.5 w-max">{{ translate('Popular') }}</div>
             </div>
         @endif
     </div>

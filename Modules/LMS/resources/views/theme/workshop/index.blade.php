@@ -19,7 +19,7 @@
                     <span class="inline-flex items-center px-5 py-2 rounded-full bg-heading text-white font-bold text-sm tracking-wide">
                         {{ translate('STRATEGIC') }}
                     </span>
-                    <span class="inline-flex items-center px-5 py-2 rounded-full text-white font-bold text-sm tracking-wide" style="background: #e52524;">
+                    <span class="inline-flex items-center px-5 py-2 rounded-full bg-primary text-white font-bold text-sm tracking-wide">
                         {{ translate('RESULTS-DRIVEN') }}
                     </span>
                 </div>
@@ -77,13 +77,13 @@
             <!-- Module 3 -->
             <div class="bg-white border border-gray-100 rounded-2xl p-8 hover:shadow-xl hover:-translate-y-1 custom-transition group">
                 <div class="flex items-start gap-5">
-                    <div class="flex-center size-14 rounded-2xl bg-indigo-50 shrink-0 group-hover:bg-indigo-500 custom-transition">
-                        <i class="ri-road-map-line text-2xl text-indigo-500 group-hover:text-white custom-transition"></i>
+                    <div class="flex-center size-14 rounded-2xl bg-primary/10 shrink-0 group-hover:bg-primary custom-transition">
+                        <i class="ri-road-map-line text-2xl text-primary group-hover:text-white custom-transition"></i>
                     </div>
                     <div>
                         <div class="flex items-center gap-3 mb-2">
                             <h5 class="text-heading font-bold text-lg">{{ translate('Subject & Degree Strategy') }}</h5>
-                            <span class="inline-flex items-center px-3 py-1 rounded-full bg-indigo-50 text-indigo-500 text-xs font-semibold">20 min</span>
+                            <span class="inline-flex items-center px-3 py-1 rounded-full bg-primary/10 text-primary text-xs font-semibold">20 min</span>
                         </div>
                         <p class="text-gray-500 leading-relaxed">
                             {{ translate('Prerequisite clarity and pathway alignment. Understand how your subject choices affect university admission and career paths.') }}
@@ -147,8 +147,8 @@
                             </div>
                         </div>
                         <div class="bg-white rounded-xl p-6 flex items-start gap-4 shadow-sm">
-                            <div class="flex-center size-10 rounded-lg bg-indigo-50 shrink-0">
-                                <i class="ri-brain-line text-lg text-indigo-500"></i>
+                            <div class="flex-center size-10 rounded-lg bg-primary/10 shrink-0">
+                                <i class="ri-brain-line text-lg text-primary"></i>
                             </div>
                             <div>
                                 <h6 class="font-bold text-heading text-sm">{{ translate('Active Recall Guide') }}</h6>
@@ -210,11 +210,11 @@
                         @csrf
                         <input type="hidden" name="subject" value="Workshop Expression of Interest">
                         <div class="relative">
-                            <input type="text" name="name" id="workshop_name" class="form-input rounded-full peer" placeholder="" required />
+                            <input type="text" name="name" id="workshop_name" class="form-input rounded-lg peer" placeholder="" required />
                             <label for="workshop_name" class="form-label floating-form-label">{{ translate('Name') }} <span class="text-danger">*</span></label>
                         </div>
                         <div class="relative">
-                            <input type="email" name="email" id="workshop_email" class="form-input rounded-full peer" placeholder="" required />
+                            <input type="email" name="email" id="workshop_email" class="form-input rounded-lg peer" placeholder="" required />
                             <label for="workshop_email" class="form-label floating-form-label">{{ translate('Email') }} <span class="text-danger">*</span></label>
                         </div>
                         <div class="relative">

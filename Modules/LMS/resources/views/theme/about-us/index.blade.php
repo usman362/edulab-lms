@@ -142,7 +142,7 @@
 
     <!-- CTA SECTION -->
     <div class="relative py-20 sm:py-24 overflow-hidden"
-         style="background: linear-gradient(135deg, var(--color-primary) 0%, #0f766e 60%, #e52524 130%);">
+         style="background: linear-gradient(135deg, var(--color-primary) 0%, var(--color-primary-700) 100%);">
         <span class="absolute -top-24 -left-24 size-72 rounded-full bg-white/10 blur-3xl"></span>
         <span class="absolute -bottom-24 -right-24 size-80 rounded-full bg-white/10 blur-3xl"></span>
 
