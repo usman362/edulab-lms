@@ -142,6 +142,8 @@ Route::group(['middleware' => ['checkInstaller']], function () {
     Route::group(['controller' => LoginController::class], function () {
         Route::get('login', 'showForm')->name('login');
         Route::post('login',  'login')->name('auth.login');
+        // Student-only "Online Platform" login entry point.
+        Route::get('onlineplatform', 'studentLoginForm')->name('student.login');
     });
 
     // Register

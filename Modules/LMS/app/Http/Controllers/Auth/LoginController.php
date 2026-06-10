@@ -37,6 +37,25 @@ class LoginController extends Controller
     }
 
     /**
+     * Student-only login screen (the "Online Platform" entry point at
+     * /onlineplatform). No role selection — students only.
+     */
+    public function studentLoginForm()
+    {
+        if (Auth::check() || auth::guard('admin')->check()) {
+            $guard = authCheck()->guard ?? null;
+            $redirectRoute = match ($guard) {
+                'instructor' => 'instructor.dashboard',
+                'student' => 'student.dashboard',
+                'organization' => 'organization.dashboard',
+                default => 'admin.dashboard',
+            };
+            return redirect()->route($redirectRoute);
+        }
+        return view('theme::login.student-login');
+    }
+
+    /**
      * creating a new resource.
      */
     public function login(Request $request)

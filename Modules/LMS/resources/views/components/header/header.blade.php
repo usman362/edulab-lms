@@ -42,7 +42,7 @@
 
                 <!-- ONLINE PLATFORM BUTTON -->
                 {{-- Uses theme primary token only so admin colour changes propagate. --}}
-                <a href="{{ url('/page/online-platform') }}" aria-label="Online Platform"
+                <a href="{{ route('student.login') }}" aria-label="Online Platform"
                     class="hidden lg:flex btn b-solid btn-primary-solid h-11 !rounded-full font-semibold text-sm px-5 shadow-card hover:shadow-card-hover custom-transition">
                     <i class="ri-computer-line mr-1.5"></i>
                     {{ translate('Online Platform') }}

@@ -79,6 +79,7 @@ class InstructorRepository extends BaseRepository
                     'email' => $request->email,
                     'password' => $request->password,
                     'organization_id' => $request->organization_id,
+                    'is_verify' => 0, // Teachers require owner approval before they can log in.
                 ]
             );
             $user->assignRole('Instructor');

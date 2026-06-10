@@ -10,7 +10,7 @@
         </div>
         <!-- Online Platform Button (mobile) -->
         <div class="px-4 mt-3">
-            <a href="{{ url('/page/online-platform') }}" aria-label="Online Platform"
+            <a href="{{ route('student.login') }}" aria-label="Online Platform"
                 class="flex items-center justify-center gap-2 w-full py-2.5 rounded-full bg-primary text-white font-semibold text-sm shadow-md">
                 <i class="ri-computer-line"></i>
                 {{ translate('Online Platform') }}
