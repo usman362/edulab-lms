@@ -27,15 +27,15 @@
                 <p class="text-white/70 text-lg leading-relaxed mt-5">
                     {{ translate('Sign in to access your courses, lessons and resources — anytime, anywhere.') }}
                 </p>
-                <div class="flex items-center gap-8 mt-10 pt-8 border-t border-white/15">
-                    <div>
-                        <div class="text-3xl font-extrabold text-secondary leading-none">99.95</div>
-                        <div class="text-xs uppercase tracking-wider text-white/60 mt-1.5">{{ translate('Top ATAR') }}</div>
-                    </div>
-                    <div>
-                        <div class="text-3xl font-extrabold text-secondary leading-none">500+</div>
-                        <div class="text-xs uppercase tracking-wider text-white/60 mt-1.5">{{ translate('Students') }}</div>
-                    </div>
+                <div class="mt-10 pt-8 border-t border-white/15 space-y-3">
+                    <a href="mailto:admin@aceacademic.com.au" class="flex items-center gap-3 text-white/85 hover:text-white custom-transition w-max">
+                        <span class="size-9 flex-center rounded-lg bg-white/10 shrink-0"><i class="ri-mail-line"></i></span>
+                        admin@aceacademic.com.au
+                    </a>
+                    <a href="tel:+61413965532" class="flex items-center gap-3 text-white/85 hover:text-white custom-transition w-max">
+                        <span class="size-9 flex-center rounded-lg bg-white/10 shrink-0"><i class="ri-phone-line"></i></span>
+                        +61 413 965 532
+                    </a>
                 </div>
             </div>
 
