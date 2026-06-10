@@ -9,8 +9,11 @@
                 class="text-[14px] !leading-none space-y-1 group-data-[sidebar-size=sm]:space-y-2.5 group-data-[sidebar-size=sm]:flex group-data-[sidebar-size=sm]:flex-col group-data-[sidebar-size=sm]:items-start group-data-[sidebar-size=sm]:mx-2 group-data-[sidebar-size=sm]:overflow-visible">
                 @php
                     // Client request: students see only Courses + Support in the
-                    // sidebar. Set student_menu_minimal to '0' to restore full menu.
-                    $studentMinimalMenu = (get_theme_option('student_menu_minimal') ?? '1') == '1';
+                    // sidebar. Minimal is the DEFAULT — only disabled when the
+                    // theme option is explicitly set to '0'. (?? doesn't fire on
+                    // an empty string returned by missing settings, which left
+                    // the full menu visible.)
+                    $studentMinimalMenu = get_theme_option('student_menu_minimal') !== '0';
                 @endphp
                 <li
                     class="relative group/sm w-full group-data-[sidebar-size=sm]:hover:w-[calc(theme('spacing.app-menu-sm')_*_3.4)] group-data-[sidebar-size=sm]:flex-center">
