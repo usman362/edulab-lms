@@ -6,9 +6,9 @@
     ];
 @endphp
 
-<x-auth-layout :data="$settings">
+<x-auth-layout :data="$settings" :hide-header="true">
 
-    <div class="min-w-full min-h-[calc(100vh-theme('spacing.header'))] flex items-stretch">
+    <div class="min-w-full min-h-screen flex items-stretch">
         {{-- LEFT — branded premium panel --}}
         <div class="hidden lg:flex flex-col justify-between w-1/2 p-12 xl:p-16 bg-heading text-white relative overflow-hidden">
             <div class="absolute -top-32 -right-32 size-[28rem] rounded-full bg-primary/30 blur-[120px] pointer-events-none"></div>
