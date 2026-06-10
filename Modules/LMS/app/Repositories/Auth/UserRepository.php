@@ -1042,7 +1042,7 @@ class UserRepository  extends BaseRepository
             // Define dashboard routes based on user guard types
             $dashboardRoutes = [
                 'instructor' => route('instructor.dashboard'),
-                'student' => route('home.index'),
+                'student' => route('student.dashboard'),
                 'organization' => route('organization.dashboard'),
             ];
 
