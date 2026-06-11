@@ -239,7 +239,11 @@ class CourseRepository extends BaseRepository
         self::translate(course: $course,  data: $translateData, locale: $request->locale);
 
         if ($request->locale &&  $defaultLanguage === $request->locale) {
-            $course->update($formaData);
+            // Never let an edit change the course status — only the initial
+            // create (and the admin's explicit approve/reject) controls it.
+            $updateData = $formaData;
+            unset($updateData['status']);
+            $course->update($updateData);
         }
 
         // Sync related models
@@ -404,7 +408,12 @@ class CourseRepository extends BaseRepository
             'demo_url' => $request->demo_url,
             'thumbnail' => $request->image,
             'admin_id' => (authCheck()?->guard == 'instructor' || authCheck()?->guard == 'organization') ? null : Auth::guard('admin')->user()->id,
-            'status' => CourseStatus::PENDING,
+            // Admin-created courses are published immediately so they appear in
+            // the catalogue right away; instructor/organization submissions still
+            // go to Pending for admin review before they show publicly.
+            'status' => (authCheck()?->guard == 'instructor' || authCheck()?->guard == 'organization')
+                ? CourseStatus::PENDING
+                : CourseStatus::APPROVED,
         ];
     }
 
